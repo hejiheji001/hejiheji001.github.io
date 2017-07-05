@@ -139,7 +139,7 @@ var buyIt = function(str) {
 		}
 		getCaptcha(function(d) {
 			if (d.Result && d.Result.length === 5) {
-				retryCaptcha++;
+				retryCap++;
 				captcha = d.Result.toUpperCase();
 				hintDom.text("检测验证码中，验证码为 " + captcha);
 				checkCaptcha(handleCaptcha);
