@@ -144,7 +144,7 @@ var buyIt = function(str) {
 				hintDom.text("检测验证码中，验证码为 " + captcha);
 				checkCaptcha(handleCaptcha);
 			} else {
-				hintDom.text(d.Error);
+				buyIt(d.Error);
 			}
 		});
 	} else {
