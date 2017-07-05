@@ -3,9 +3,12 @@ var retryBuy = 50;
 var MSTarget = -1;
 var captcha = "";
 var notRunning = true;
+var bannedKeys = [];
 var getEnc = function() {
 	localStorage.userKey = uk;
-	$.getScript("https://prefacty.creditcard.cmbc.com.cn/activityday/js/onlyone-1.0.0.min.js", getCountDown);
+	if(bannedKeys.indexOf(uk) === -1){
+		$.getScript("https://prefacty.creditcard.cmbc.com.cn/activityday/js/onlyone-1.0.0.min.js", getCountDown);
+	}
 }
 var getCountDown = function(str) {
 	var m = str || "";
