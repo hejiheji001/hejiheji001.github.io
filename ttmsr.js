@@ -5,7 +5,6 @@ var captcha = "";
 var notRunning = true;
 var bannedKeys = [];
 var getEnc = function() {
-	localStorage.userKey = uk;
 	if(bannedKeys.indexOf(uk) === -1){
 		$.getScript("https://prefacty.creditcard.cmbc.com.cn/activityday/js/onlyone-1.0.0.min.js", getCountDown);
 	}
@@ -43,6 +42,7 @@ var getOrder = function() {
 	var a = info[day][0];
 	var g = info[day][1];
 	var m = info[day][2];
+	localStorage.userKey = uk;
 	return "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/main/Order.json?tmp=" + getTmp() + "&channelType=activityday&giftNum=1&groupId=&isCaptcha=true&actyId=" + a + "&giftId=" + g + "&merchantId=" + m + "&userKey=" + encodeURIComponent(uk) + "&jcaptchaText=" + captcha;
 }
 
