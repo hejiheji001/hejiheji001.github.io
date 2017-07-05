@@ -1,0 +1,249 @@
+var retryCap = 50;
+var retryBuy = 50;
+var MSTarget = -1;
+var captcha = "";
+var notRunning = true;
+var getEnc = function() {
+	localStorage.userKey = uk;
+	$.getScript("https://prefacty.creditcard.cmbc.com.cn/activityday/js/onlyone-1.0.0.min.js", getCountDown);
+}
+var getCountDown = function(str) {
+	var m = str || "";
+	var hintDom = $("#autobuy");
+	hintDom.text("正在获取倒计时" + m);
+	var info = {
+		"1": ["A20170206786", "G201702078122", "0009123"],
+		"3": ["A20170505897", "G201705057258", "0007134"],
+		"4": ["A20170505897", "G201705057259", "0007135"],
+		"5": ["A20170505897", "G201705057260", "0007136"],
+		"6": ["A20170505897", "G201705057261", "0007137"],
+		"0": ["A20170505897", "G201705057262", "0007138"]
+	};
+	var day = (new Date).getDay();
+	var a = info[day][0];
+	var g = info[day][1];
+	var m = info[day][2];
+	var url = "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/main/QueryGift.json?actyId=" + a + "&giftId=" + g + "&isQualify=true&maxInterval=172800&userKey=" + encodeURIComponent(uk);
+	checkCaptcha(handleCountdown, url);
+}
+
+var getOrder = function() {
+	var info = {
+		"1": ["A20170206786", "G201702078122", "0009123"],
+		"3": ["A20170505897", "G201705057258", "0007134"],
+		"4": ["A20170505897", "G201705057259", "0007135"],
+		"5": ["A20170505897", "G201705057260", "0007136"],
+		"6": ["A20170505897", "G201705057261", "0007137"],
+		"0": ["A20170505897", "G201705057262", "0007138"]
+	};
+	var day = (new Date).getDay();
+	var a = info[day][0];
+	var g = info[day][1];
+	var m = info[day][2];
+	return "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/main/Order.json?tmp=" + getTmp() + "&channelType=activityday&giftNum=1&groupId=&isCaptcha=true&actyId=" + a + "&giftId=" + g + "&merchantId=" + m + "&userKey=" + encodeURIComponent(uk) + "&jcaptchaText=" + captcha;
+}
+
+var pausecomp = function(millis) {
+	var date = new Date();
+	var curDate = null;
+	do {
+		curDate = new Date();
+	}
+	while (curDate - date < millis);
+}
+
+var checkCaptcha = function(callback, url) {
+	retryCap--;
+	if (0 < retryCap) {
+		var u = getOrder();
+		if (url) {
+			u = url;
+		}
+		$.ajax({
+			url: "https://query.yahooapis.com/v1/public/yql",
+			dataType: "json",
+			timeout: 6000,
+			data: {
+				format: "json",
+				q: $("#autobuy").data("ql") + u + $("#autobuy").data("qr")
+			},
+			success: callback,
+			error: function(c, u) {
+				retryCaptcha(c, u, callback, url);
+			}
+		});
+	} else {
+		$("#autobuy").text("无法检测验证码 碰碰运气");
+		if (url) {
+			callback();
+		}
+	}
+}
+
+var retryCaptcha = function(c, u, callback, url) {
+	var t = $("#autobuy").text().split(" ")[0];
+	$("#autobuy").text(t + " 第" + (50 - retryCap) + "次尝试");
+	checkCaptcha(callback, url);
+}
+
+var placeOrder = function(target, dom) {
+	var t = new Date();
+	var str = t.toLocaleString("zh-cn", {
+		hour12: false
+	}).split(" ")[0];
+	var start = t.getTime();
+	var end = new Date(str + " " + (target - 1) + ":59:58").getTime();
+	if (0 < MSTarget) {
+		end = MSTarget;
+	}
+	var u = getOrder();
+	$(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购");
+	var x = setTimeout(function() {
+		notRunning = false;
+		$(dom).text("抢购中");
+		for (var i = 0; i < 30; i++) {
+			if (i % 5 == 0) {
+				checkCaptcha(handleCaptcha);
+			} else {
+				$.ajax({
+					url: u,
+					dataType: "jsonp"
+				});
+			}
+			pausecomp(40);
+		}
+	}, (end - start) / 1);
+}
+
+var getThisOrder = function() {
+	var h = (new Date()).getHours();
+	if (h < 10 || h === 10) {
+		return 10;
+	} else {
+		return 15;
+	}
+}
+
+var buyIt = function(str) {
+	retryBuy--;
+	var hintDom = $("#autobuy");
+	if (0 < retryBuy) {
+		hintDom.attr("onclick", "buyIt()");
+		if (str) {
+			hintDom.text(str + " 重新获取验证码中");
+		} else {
+			hintDom.text("获取验证码中");
+		}
+		getCaptcha(function(d) {
+			if (d.Result && d.Result.length === 5) {
+				retryCaptcha++;
+				captcha = d.Result.toUpperCase();
+				hintDom.text("检测验证码中，验证码为 " + captcha);
+				checkCaptcha(handleCaptcha);
+			} else {
+				hintDom.text(d.Error);
+			}
+		});
+	} else {
+		hintDom.text("无法获取验证码 请立刻刷新页面");
+	}
+}
+
+var getCaptcha = function(callback) {
+	$.ajax({
+		type: "POST",
+		url: "http://api.ruokuai.com/create.json",
+		timeout: 6000,
+		data: {
+			username: "hejiheji001",
+			password: "CE649C68CCB1763AC369C4A05EEC3914",
+			typeid: "3050",
+			softid: "84562",
+			softkey: "ea41751488db4a43a55cb436cd35afac",
+			imageurl: "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk)
+		},
+		success: callback,
+		error: retryBuyIt,
+		dataType: "json"
+	});
+}
+
+var retryBuyIt = function() {
+	buyIt("验证码获取失败");
+}
+
+var formaTime = function(time) {
+	if (time < 10) {
+		return '0' + time;
+	} else {
+		return '' + time;
+	}
+};
+var getTimeFormat = function(time) {
+	var h = Math.floor(time / 3600);
+	var m = Math.floor((time % 3600) / 60);
+	var s = time % 60;
+	if (0 <= time) {
+		return "距离抢兑开始还有 " + formaTime(h) + ":" + formaTime(m) + ":" + formaTime(s);
+	} else {
+		return "";
+	}
+}
+
+var handleCountdown = function(result) {
+	if (window.int) {
+		window.clearInterval(int);
+	}
+	var hintDom = $("#autobuy");
+	hintDom.attr("onclick", "getCountDown();");
+	if (result.query.results) {
+		var data = result.query.results;
+		var countDownTimes = data.reply.countDownTimes;
+		var isCountDown = data.reply.isCountDown;
+		var countNumAdd = countDownTimes + 1;
+		if (isCountDown) {
+			hintDom.text(getTimeFormat(countDownTimes));
+			window.int = self.setInterval(function() {
+				countDownTimes -= 1;
+				if (countDownTimes <= 40 && notRunning) {
+					notRunning = false;
+					MSTarget = (new Date()).getTime() + countDownTimes * 1000;
+					buyIt();
+					window.clearInterval(int);
+				}
+				if (0 <= countDownTimes) {
+					hintDom.text(getTimeFormat(countDownTimes));
+				}
+			}, 1000);
+		} else {
+			hintDom.text("暂无民生倒计时");
+		}
+	} else {
+		getCountDown(" 您的网速可能较慢 第" + (50 - retryCap) + "次尝试");
+	}
+}
+
+var handleCaptcha = function(result) {
+	var hintDom = $("#autobuy");
+	if (result.query.results) {
+		var msg = result.query.results.reply.orderMessage;
+		hintDom.text(msg);
+		if (-1 < msg.indexOf("尚未开始")) {
+			var thisOrder = getThisOrder();
+			placeOrder(thisOrder, "#autobuy");
+		} else if (getThisOrder() === 15 && msg === "已经抢光啦" && notRunning) {
+			var thisOrder = getThisOrder();
+			placeOrder(thisOrder, "#autobuy");
+		} else if (-1 < msg.indexOf("支付")) {
+			alert("成功了");
+		} else if (-1 < msg.indexOf("key")) {
+			buyIt(msg);
+		} else if (-1 < msg.indexOf("图片")) {
+			buyIt(msg);
+		} else {
+			hintDom.text("请10点或15点03分之后查看官方待支付页面");
+		}
+	} else {
+		checkCaptcha(handleCaptcha);
+	}
+}
