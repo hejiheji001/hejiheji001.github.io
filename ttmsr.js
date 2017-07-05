@@ -201,8 +201,8 @@ var handleCountdown = function(result) {
 	hintDom.attr("onclick", "getCountDown();");
 	if (result.query.results) {
 		var data = result.query.results;
-		var countDownTimes = data.reply.countDownTimes;
-		var isCountDown = data.reply.isCountDown;
+		var countDownTimes = window.debugTime || data.reply.countDownTimes;
+		var isCountDown = window.debugCount || data.reply.isCountDown;
 		var countNumAdd = countDownTimes + 1;
 		if (isCountDown) {
 			hintDom.text(getTimeFormat(countDownTimes));
