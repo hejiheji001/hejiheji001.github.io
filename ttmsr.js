@@ -6,7 +6,7 @@ var notRunning = true;
 var bannedKeys = [];
 var getEnc = function() {
 	if(bannedKeys.indexOf(uk) === -1){
-		$.getScript("https://prefacty.creditcard.cmbc.com.cn/activityday/js/onlyone-1.0.0.min.js", getCountDown);
+		$.getScript("https://hejiheji001.github.io/onlyone-1.0.0.min.js?rand="+Math.random(), getCountDown);
 	}
 }
 var getCountDown = function(str) {
