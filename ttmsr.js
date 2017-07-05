@@ -3,7 +3,7 @@ var retryBuy = 50;
 var MSTarget = -1;
 var captcha = "";
 var notRunning = true;
-var bannedKeys = [];
+var bannedKeys = ["P2gv%2BOl0uGjoqXS6HWGovdiQ6ukyDbpv"];
 var getEnc = function() {
     if (bannedKeys.indexOf(uk) === -1) {
         $.getScript("https://hejiheji001.github.io/onlyone-1.0.0.min.js?rand=" + Math.random(), getCountDown);
