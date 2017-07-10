@@ -226,33 +226,33 @@ var handleCountdown = function(result) {
         var isCountDown = window.debugCount || data.reply.isCountDown;
         var countNumAdd = countDownTimes + 1;
         if (isCountDown) {
-			var st = (Math.random()+1)*20;
-			if(st < 25){
-				st += 5;
-			}
-			hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + countDownTimes - st + "秒后获取");
-            window.int = self.setInterval(function() {
-                countDownTimes--;
-                timeLeft = countDownTimes;
-                if (countDownTimes <= st && notRunning) {
-                    notRunning = false;
-                    MSTarget = (new Date()).getTime() + countDownTimes * 1000;
-                    buyIt();
-                    //window.clearInterval(int);
-                }
-                if (st < countDownTimes) {
-                    hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + countDownTimes - st + "秒后获取");
-                }
+		var st = Math.floor((Math.random()+1)*20);
+		if(st < 25){
+			st += 5;
+		}
+		hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + countDownTimes - st + "秒后获取");
+		window.int = self.setInterval(function() {
+		countDownTimes--;
+		timeLeft = countDownTimes;
+		if (countDownTimes <= st && notRunning) {
+		    notRunning = false;
+		    MSTarget = (new Date()).getTime() + countDownTimes * 1000;
+		    buyIt();
+		    //window.clearInterval(int);
+		}
+		if (st < countDownTimes) {
+		    hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + countDownTimes - st + "秒后获取");
+		}
 
-                if (0 < countDownTimes) {
-                    console.log(getTimeFormat(countDownTimes) + " 验证码将于" + countDownTimes - st + "秒后获取");
-                }
+		if (0 < countDownTimes) {
+		    console.log(getTimeFormat(countDownTimes) + " 验证码将于" + countDownTimes - st + "秒后获取");
+		}
 
-                if(0 == countDownTimes){
-                	window.clearInterval(int);
-                	doForcePay();
-                }
-            }, 1000);
+		if(0 == countDownTimes){
+			window.clearInterval(int);
+			doForcePay();
+		}
+		}, 1000);
         } else {
             hintDom.text("暂无民生倒计时");
             doForcePay();
