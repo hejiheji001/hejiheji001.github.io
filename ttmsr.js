@@ -241,11 +241,11 @@ var handleCountdown = function(result) {
 		    //window.clearInterval(int);
 		}
 		if (st < countDownTimes) {
-		    hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + countDownTimes - st + "秒后获取");
+		    hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
 		}
 
 		if (0 < countDownTimes) {
-		    console.log(getTimeFormat(countDownTimes) + " 验证码将于" + countDownTimes - st + "秒后获取");
+		    console.log(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
 		}
 
 		if(0 == countDownTimes){
