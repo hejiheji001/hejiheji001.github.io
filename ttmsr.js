@@ -109,7 +109,7 @@ var placeOrder = function(target, dom) {
         end = MSTarget;
     }
     var u = getOrder();
-    console.log(MSTarget + "placeOrder in " + (end - start));
+    console.log("placeOrder in " + (end - start));
     $(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购");
     var x = setTimeout(function() {
         notRunning = false;
