@@ -230,7 +230,7 @@ var handleCountdown = function(result) {
 		if(st < 25){
 			st += 5;
 		}
-		hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + countDownTimes - st + "秒后获取");
+		hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
 		window.int = self.setInterval(function() {
 		countDownTimes--;
 		timeLeft = countDownTimes;
