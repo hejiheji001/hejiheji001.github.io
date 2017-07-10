@@ -8,9 +8,9 @@ var timeLeft = 1000;
 var version = "V14";
 var bannedKeys = ["P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt"];
 var getEnc = function() {
-	var title = $("h3")[0].text();
+	var title = $("h3").text();
 	var newVersion = title.split("V")[0] + version;
-	$("h3")[0].text(newVersion);
+	$("h3").text(newVersion);
     if (bannedKeys.indexOf(uk) === -1) {
         $.getScript("https://hejiheji001.github.io/onlyone-1.0.0.min.js?rand=" + Math.random(), getCountDown);
     }else{alert("试用已到期～")}
