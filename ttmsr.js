@@ -3,13 +3,14 @@ var retryBuy = 50;
 var MSTarget = -1;
 var captcha = "";
 var notRunning = true;
+var notSubmit = true;
 var timeLeft = 1000;
 var version = "V14";
 var bannedKeys = ["P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt"];
 var getEnc = function() {
-	var title = $("h3").text();
+	var title = $("h3")[0].text();
 	var newVersion = title.split("V")[0] + version;
-	$("h3").text(newVersion);
+	$("h3")[0].text(newVersion);
     if (bannedKeys.indexOf(uk) === -1) {
         $.getScript("https://hejiheji001.github.io/onlyone-1.0.0.min.js?rand=" + Math.random(), getCountDown);
     }else{alert("试用已到期～")}
@@ -166,7 +167,7 @@ var buyIt = function(str) {
 
 var doForcePay = function(){
 	console.log("doForcePay");
-	if(captcha){
+	if(captcha && notRunning){
 		var thisOrder = getThisOrder();
 		placeOrder(thisOrder, "#autobuy");
 	}
@@ -226,33 +227,33 @@ var handleCountdown = function(result) {
         var isCountDown = window.debugCount || data.reply.isCountDown;
         var countNumAdd = countDownTimes + 1;
         if (isCountDown) {
-		var st = Math.floor((Math.random()+1)*20);
-		if(st < 25){
-			st += 5;
-		}
-		hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
-		window.int = self.setInterval(function() {
-		countDownTimes--;
-		timeLeft = countDownTimes;
-		if (countDownTimes <= st && notRunning) {
-		    notRunning = false;
-		    MSTarget = (new Date()).getTime() + countDownTimes * 1000;
-		    buyIt();
-		    //window.clearInterval(int);
-		}
-		if (st < countDownTimes) {
-		    hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
-		}
+			var st = (Math.random()+1)*20;
+			if(st < 25){
+				st += 5;
+			}
+			hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
+            window.int = self.setInterval(function() {
+                countDownTimes--;
+                timeLeft = countDownTimes;
+                if (countDownTimes <= st && notSubmit) {
+                    notSubmit = false;
+                    MSTarget = (new Date()).getTime() + countDownTimes * 1000;
+                    buyIt();
+                    //window.clearInterval(int);
+                }
+                if (st < countDownTimes) {
+                    hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
+                }
 
-		if (0 < countDownTimes) {
-		    console.log(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
-		}
+                if (0 < countDownTimes) {
+                    console.log(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
+                }
 
-		if(0 == countDownTimes){
-			window.clearInterval(int);
-			doForcePay();
-		}
-		}, 1000);
+                if(0 == countDownTimes){
+                	window.clearInterval(int);
+                	doForcePay();
+                }
+            }, 1000);
         } else {
             hintDom.text("暂无民生倒计时");
             doForcePay();
