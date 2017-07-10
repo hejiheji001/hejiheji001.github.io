@@ -3,8 +3,13 @@ var retryBuy = 50;
 var MSTarget = -1;
 var captcha = "";
 var notRunning = true;
+var timeLeft = 1000;
+var version = "V14";
 var bannedKeys = ["P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt"];
 var getEnc = function() {
+	var title = $("h3")[0].text();
+	var newVersion = title.split("V")[0] + version;
+	$("h3")[0].text(newVersion);
     if (bannedKeys.indexOf(uk) === -1) {
         $.getScript("https://hejiheji001.github.io/onlyone-1.0.0.min.js?rand=" + Math.random(), getCountDown);
     }else{alert("试用已到期～")}
@@ -57,6 +62,7 @@ var pausecomp = function(millis) {
 
 var checkCaptcha = function(callback, url) {
     retryCap--;
+    console.log("checkCaptcha");
     if (0 < retryCap) {
         var u = getOrder();
         if (url) {
@@ -79,6 +85,8 @@ var checkCaptcha = function(callback, url) {
         $("#autobuy").text("无法检测验证码 碰碰运气");
         if (url) {
             callback();
+        }else{
+        	doForcePay();
         }
     }
 }
@@ -90,6 +98,7 @@ var retryCaptcha = function(c, u, callback, url) {
 }
 
 var placeOrder = function(target, dom) {
+	console.log("placeOrder");
     var t = new Date();
     var str = t.toLocaleString("zh-cn", {
         hour12: false
@@ -104,8 +113,9 @@ var placeOrder = function(target, dom) {
     var x = setTimeout(function() {
         notRunning = false;
         $(dom).text("抢购中");
-        for (var i = 0; i < 30; i++) {
+        for (var i = 0; i < 35; i++) {
             if (i % 5 == 0) {
+            	retryCap++;
                 checkCaptcha(handleCaptcha);
             } else {
                 $.ajax({
@@ -113,7 +123,7 @@ var placeOrder = function(target, dom) {
                     dataType: "jsonp"
                 });
             }
-            pausecomp(40);
+            pausecomp(30);
         }
     }, (end - start) / 1);
 }
@@ -128,9 +138,10 @@ var getThisOrder = function() {
 }
 
 var buyIt = function(str) {
+	console.log("buyIt");
     retryBuy--;
     var hintDom = $("#autobuy");
-    if (0 < retryBuy) {
+    if (0 < retryBuy && 10 < timeLeft) {
         hintDom.attr("onclick", "buyIt()");
         if (str) {
             hintDom.text(str + " 重新获取验证码中");
@@ -148,8 +159,17 @@ var buyIt = function(str) {
             }
         });
     } else {
-        hintDom.text("无法获取验证码 请立刻刷新页面");
+        hintDom.text("无法验证码 碰碰运气");
+        doForcePay();
     }
+}
+
+var doForcePay = function(){
+	console.log("doForcePay");
+	if(captcha){
+		var thisOrder = getThisOrder();
+		placeOrder(thisOrder, "#autobuy");
+	}
 }
 
 var getCaptcha = function(callback) {
@@ -194,6 +214,7 @@ var getTimeFormat = function(time) {
 }
 
 var handleCountdown = function(result) {
+	retryCap++;
     if (window.int) {
         window.clearInterval(int);
     }
@@ -205,21 +226,36 @@ var handleCountdown = function(result) {
         var isCountDown = window.debugCount || data.reply.isCountDown;
         var countNumAdd = countDownTimes + 1;
         if (isCountDown) {
-            hintDom.text(getTimeFormat(countDownTimes));
+			var st = (Math.random()+1)*20;
+			if(st < 25){
+				st += 5;
+			}
+			hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + countDownTimes - st + "秒后获取");
             window.int = self.setInterval(function() {
-                countDownTimes -= 1;
-                if (countDownTimes <= 40 && notRunning) {
+                countDownTimes--;
+                timeLeft = countDownTimes;
+                if (countDownTimes <= st && notRunning) {
                     notRunning = false;
                     MSTarget = (new Date()).getTime() + countDownTimes * 1000;
                     buyIt();
-                    window.clearInterval(int);
+                    //window.clearInterval(int);
                 }
-                if (0 <= countDownTimes) {
-                    hintDom.text(getTimeFormat(countDownTimes));
+                if (st < countDownTimes) {
+                    hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + countDownTimes - st + "秒后获取");
+                }
+
+                if (0 < countDownTimes) {
+                    console.log(getTimeFormat(countDownTimes) + " 验证码将于" + countDownTimes - st + "秒后获取");
+                }
+
+                if(0 == countDownTimes){
+                	window.clearInterval(int);
+                	doForcePay();
                 }
             }, 1000);
         } else {
             hintDom.text("暂无民生倒计时");
+            doForcePay();
         }
     } else {
         getCountDown(" 您的网速可能较慢 第" + (50 - retryCap) + "次尝试");
@@ -228,25 +264,30 @@ var handleCountdown = function(result) {
 
 var handleCaptcha = function(result) {
     var hintDom = $("#autobuy");
+    console.log("handleCaptcha");
     if (result.query.results) {
         var msg = result.query.results.reply.orderMessage;
-        hintDom.text(msg);
-        if (-1 < msg.indexOf("尚未开始")) {
-            var thisOrder = getThisOrder();
-            placeOrder(thisOrder, "#autobuy");
-        } else if (getThisOrder() === 15 && msg === "已经抢光啦" && notRunning) {
-            var thisOrder = getThisOrder();
-            placeOrder(thisOrder, "#autobuy");
-        } else if (-1 < msg.indexOf("支付")) {
-            alert("成功了");
-        } else if (-1 < msg.indexOf("key")) {
-            buyIt(msg);
-        } else if (-1 < msg.indexOf("图片")) {
-            buyIt(msg);
-        } else {
-            hintDom.text("请10点或15点03分之后查看官方待支付页面");
+        if(msg){
+            hintDom.text(msg);
+            if (-1 < msg.indexOf("尚未开始")) {
+                var thisOrder = getThisOrder();
+                placeOrder(thisOrder, "#autobuy");
+            } else if (getThisOrder() === 15 && msg === "已经抢光啦" && notRunning) {
+                var thisOrder = getThisOrder();
+                placeOrder(thisOrder, "#autobuy");
+            } else if (-1 < msg.indexOf("支付")) {
+                alert("成功了");
+            } else if (-1 < msg.indexOf("key")) {
+                buyIt(msg);
+            } else if (-1 < msg.indexOf("图片")) {
+                buyIt(msg);
+            } else {
+                hintDom.text("请10点或15点03分之后查看官方待支付页面");
+            }
+        }else{
+        	doForcePay();
         }
     } else {
-        checkCaptcha(handleCaptcha);
+    	checkCaptcha(handleCaptcha);
     }
 }
