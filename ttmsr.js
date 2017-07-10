@@ -228,7 +228,7 @@ var handleCountdown = function(result) {
         var isCountDown = window.debugCount || data.reply.isCountDown;
         var countNumAdd = countDownTimes + 1;
         if (isCountDown) {
-			var st = (Math.random()+1)*20;
+			var st = Math.floor((Math.random()+1)*20);
 			if(st < 25){
 				st += 5;
 			}
