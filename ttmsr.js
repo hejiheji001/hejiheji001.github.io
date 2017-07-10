@@ -99,7 +99,6 @@ var retryCaptcha = function(c, u, callback, url) {
 }
 
 var placeOrder = function(target, dom) {
-	console.log("placeOrder");
     var t = new Date();
     var str = t.toLocaleString("zh-cn", {
         hour12: false
@@ -110,10 +109,12 @@ var placeOrder = function(target, dom) {
         end = MSTarget;
     }
     var u = getOrder();
+    console.log(MSTarget + "placeOrder in " + (end - start));
     $(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购");
     var x = setTimeout(function() {
         notRunning = false;
         $(dom).text("抢购中");
+        console.log("Placing Order");
         for (var i = 0; i < 35; i++) {
             if (i % 5 == 0) {
             	retryCap++;
@@ -166,8 +167,8 @@ var buyIt = function(str) {
 }
 
 var doForcePay = function(){
-	console.log("doForcePay");
 	if(captcha && notRunning){
+		console.log("doForcePay");
 		var thisOrder = getThisOrder();
 		placeOrder(thisOrder, "#autobuy");
 	}
@@ -283,7 +284,7 @@ var handleCaptcha = function(result) {
             } else if (-1 < msg.indexOf("图片")) {
                 buyIt(msg);
             } else {
-                hintDom.text("请10点或15点03分之后查看官方待支付页面");
+                hintDom.text("请不要离开本页面 03分之后再查看待支付");
             }
         }else{
         	doForcePay();
