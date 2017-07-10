@@ -111,8 +111,8 @@ var placeOrder = function(target, dom) {
     var u = getOrder();
     console.log("placeOrder in " + (end - start));
     $(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购");
+	notRunning = false;
     var x = setTimeout(function() {
-        notRunning = false;
         $(dom).text("抢购中");
         console.log("Placing Order");
         for (var i = 0; i < 35; i++) {
