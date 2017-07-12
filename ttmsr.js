@@ -254,7 +254,9 @@ var handleCountdown = function(result) {
 
 			if(0 == countDownTimes){
 				window.clearInterval(int);
-				doForcePay();
+				if(notRunning){
+					doForcePay();
+				}
 			}
 		}, 1000);
         } else {
