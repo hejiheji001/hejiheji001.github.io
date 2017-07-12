@@ -280,11 +280,11 @@ var handleCaptcha = function(result) {
             if (-1 < msg.indexOf("尚未开始")) {
                 var thisOrder = getThisOrder();
                 placeOrder(thisOrder, "#autobuy");
-            } else if (getThisOrder() === 15 && msg === "已经抢光啦" && notRunning) {
-                var thisOrder = getThisOrder();
-                placeOrder(thisOrder, "#autobuy");
             } else if (-1 < msg.indexOf("支付")) {
                 alert("成功了");
+            } else if (getThisOrder() === 15 && msg === "已经抢光啦" && notRunning) {
+                var thisOrder = getThisOrder();
+		placeOrder(thisOrder, "#autobuy");
             } else if (-1 < msg.indexOf("key")) {
                 buyIt(msg);
             } else if (-1 < msg.indexOf("图片")) {
