@@ -285,9 +285,11 @@ var handleCaptcha = function(result) {
                 buyIt(msg);
             } else if (-1 < msg.indexOf("图片")) {
                 buyIt(msg);
+            } else if (-1 < msg.indexOf("userKey非正常加密")){
+                alert("请联系开发者");
             } else {
-                hintDom.text("请不要离开本页面 03分之后再查看待支付");
-            }
+		hintDom.text("请不要离开本页面 03分之后再查看待支付");
+	    }
         }else{
         	doForcePay();
         }
