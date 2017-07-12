@@ -74,7 +74,7 @@ var checkCaptcha = function(callback, url) {
         $.ajax({
             url: "https://query.yahooapis.com/v1/public/yql",
             dataType: "json",
-            timeout: 6000,
+            timeout: 8000,
             data: {
                 format: "json",
                 q: $("#autobuy").data("ql") + u + $("#autobuy").data("qr")
@@ -173,6 +173,8 @@ var doForcePay = function(){
 		console.log("doForcePay");
 		var thisOrder = getThisOrder();
 		placeOrder(thisOrder, "#autobuy");
+	}else{
+		alert("请立即截图 并及时联系开发者");
 	}
 }
 
@@ -180,7 +182,7 @@ var getCaptcha = function(callback) {
     $.ajax({
         type: "POST",
         url: "http://api.ruokuai.com/create.json",
-        timeout: 6000,
+        timeout: 8000,
         data: {
             username: "hejiheji001",
             password: "CE649C68CCB1763AC369C4A05EEC3914",
@@ -230,33 +232,29 @@ var handleCountdown = function(result) {
         var isCountDown = window.debugCount || data.reply.isCountDown;
         var countNumAdd = countDownTimes + 1;
         if (isCountDown) {
-			var st = Math.floor((Math.random()+1)*20);
-			if(st < 25){
-				st += 5;
+		var st = Math.floor(55 - (Math.random()+1) * 5);
+		hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
+		window.int = self.setInterval(function() {
+			countDownTimes--;
+			timeLeft = countDownTimes;
+			if (countDownTimes <= st && notSubmit) {
+			    notSubmit = false;
+			    MSTarget = (new Date()).getTime() + countDownTimes * 1000;
+			    buyIt();
 			}
-			hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
-            window.int = self.setInterval(function() {
-                countDownTimes--;
-                timeLeft = countDownTimes;
-                if (countDownTimes <= st && notSubmit) {
-                    notSubmit = false;
-                    MSTarget = (new Date()).getTime() + countDownTimes * 1000;
-                    buyIt();
-                    //window.clearInterval(int);
-                }
-                if (st < countDownTimes) {
-                    hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
-                }
+			if (st < countDownTimes) {
+			    hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
+			}
 
-                if (0 < countDownTimes) {
-                    console.log(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
-                }
+			if (0 < countDownTimes) {
+			    console.log(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
+			}
 
-                if(0 == countDownTimes){
-                	window.clearInterval(int);
-                	doForcePay();
-                }
-            }, 1000);
+			if(0 == countDownTimes){
+				window.clearInterval(int);
+				doForcePay();
+			}
+		}, 1000);
         } else {
             hintDom.text("暂无民生倒计时");
             doForcePay();
@@ -286,7 +284,7 @@ var handleCaptcha = function(result) {
             } else if (-1 < msg.indexOf("图片")) {
                 buyIt(msg);
             } else if (-1 < msg.indexOf("userKey非正常加密")){
-                alert("请联系开发者");
+                alert("请立即截图 并联系开发者");
             } else {
 		hintDom.text("请不要离开本页面 03分之后再查看待支付");
 	    }
