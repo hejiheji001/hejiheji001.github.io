@@ -171,7 +171,7 @@ var buyIt = function(str) {
 }
 
 var doForcePay = function(){
-	if(captcha && notRunning){
+	if(captcha){
 		console.log("doForcePay");
 		var thisOrder = getThisOrder();
 		placeOrder(thisOrder, "#autobuy");
@@ -286,7 +286,7 @@ var handleCaptcha = function(result) {
             } else if (-1 < msg.indexOf("图片")) {
                 buyIt(msg);
             } else if (-1 < msg.indexOf("userKey非正常加密")){
-                alert("请立即截图 并联系开发者");
+                alert("请立即截图 userKey非正常加密");
             } else {
 		hintDom.text("请不要离开本页面 03分之后再查看待支付");
 	    }
