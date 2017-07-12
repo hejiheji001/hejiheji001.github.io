@@ -261,7 +261,9 @@ var handleCountdown = function(result) {
 		}, 1000);
         } else {
             hintDom.text("暂无民生倒计时");
-            doForcePay();
+            if(captcha){
+	    	doForcePay();
+	    }
         }
     } else {
         getCountDown(" 您的网速可能较慢 第" + (50 - retryCap) + "次尝试");
