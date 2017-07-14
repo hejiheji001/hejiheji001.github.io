@@ -11,18 +11,21 @@ var version = "V15";
 var bannedKeys = ["P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd"];
 var monthlyKeys = {"W+KrSOFkjnsmxd7Nq2SEtoz9+rDt+szK": "2017-08-15"};
 var getEnc = function() {
-	var title = $("h3").text();
-	var newVersion = title.split("V")[0] + version;
-	$("h3").text(newVersion);
   var end = monthlyKeys[uk];
   var now = new Date();
-  
+  var extra = "";
   if(end){
     if(now >= end){
       alert("试用已到期～");
       return;
+    }else{
+      extra = " 有效期至:" + end;
     }
   }
+	
+var title = $("h3").text();
+var newVersion = title.split("V")[0] + version + extra;
+$("h3").text(newVersion);
 
   if (bannedKeys.indexOf(uk) === -1) {
       $.getScript("https://hejiheji001.github.io/onlyone-1.0.0.min.js?rand=" + Math.random(), getCountDown);
