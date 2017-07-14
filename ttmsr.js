@@ -11,11 +11,11 @@ var version = "V15";
 var bannedKeys = ["P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd"];
 var monthlyKeys = {"W+KrSOFkjnsmxd7Nq2SEtoz9+rDt+szK": "2017-08-15"};
 var getEnc = function() {
-  var end = new Date(monthlyKeys[uk]);
+  var end = monthlyKeys[uk];
   var now = new Date();
   var extra = "";
   if(end){
-    if(now >= end){
+    if(now >= new Date(end)){
       alert("试用已到期～");
       return;
     }else{
