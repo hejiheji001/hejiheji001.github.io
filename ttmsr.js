@@ -9,7 +9,11 @@ var version = "V15";
 //window.debugTime = 60;
 //window.debugCount = true
 var bannedKeys = ["P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd"];
-var monthlyKeys = {"W+KrSOFkjnsmxd7Nq2SEtoz9+rDt+szK": "2017-08-15", "cX34h2JOOKFW44vVmHSnuURv51RMwavH": "2017-08-15"};
+var monthlyKeys = {
+			"W+KrSOFkjnsmxd7Nq2SEtoz9+rDt+szK": "2017-08-15", 
+		   	"cX34h2JOOKFW44vVmHSnuURv51RMwavH": "2017-08-15",
+			"6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "2017-07-18"
+		  };
 var getEnc = function() {
   var end = monthlyKeys[uk];
   var now = new Date();
