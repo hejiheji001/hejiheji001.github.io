@@ -12,7 +12,8 @@ var bannedKeys = ["P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHP
 var monthlyKeys = {
 			"W+KrSOFkjnsmxd7Nq2SEtoz9+rDt+szK": "2017-08-15", 
 		   	"cX34h2JOOKFW44vVmHSnuURv51RMwavH": "2017-08-15",
-			"6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA": "2017-07-18"
+			"6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA": "2017-07-18",
+			"OSwqfpUTZyPFxk9K2b8a2fCrkw7chepY": "2017-07-18"
 		  };
 var getEnc = function() {
   var end = monthlyKeys[uk];
