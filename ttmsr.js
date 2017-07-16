@@ -203,7 +203,11 @@ var doForcePay = function(){
 		var thisOrder = getThisOrder();
 		placeOrder(thisOrder, "#autobuy");
 	}else{
-		$("#autobuy").text("请立即截图 并及时联系开发者");
+		if(captcha){
+			$("#autobuy").text("请截图并查看待支付");
+		}else{
+			$("#autobuy").text("请立即截图 并及时联系开发者");
+		}
 	}
 }
 
