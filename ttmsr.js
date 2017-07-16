@@ -140,7 +140,7 @@ var placeOrder = function(target, dom, extra) {
     }
     var u = getOrder();
     console.log("placeOrder in " + (end - start));
-    $(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购" + extra);
+    $(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购" + extra || "");
     notRunning = false;
     var x = setTimeout(function() {
         $(dom).text("第" + (81 - retryBuy) + "次抢购中" + extra || "");
