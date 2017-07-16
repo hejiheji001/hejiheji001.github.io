@@ -124,6 +124,10 @@ var retryCaptcha = function(c, u, callback, url) {
 }
 
 var placeOrder = function(target, dom) {
+    if(retryBuy < -50){
+	    $(dom).text("请查看待支付页面");
+	    return;
+    }
     var t = new Date();
     var str = t.toLocaleString("zh-cn", {
         hour12: false
@@ -165,7 +169,7 @@ var getThisOrder = function() {
 }
 
 var buyIt = function(str) {
-	console.log("buyIt");
+    console.log("buyIt");
     retryBuy--;
     var hintDom = $("#autobuy");
     if (0 < retryBuy && 10 < timeLeft) {
@@ -194,6 +198,7 @@ var buyIt = function(str) {
 var doForcePay = function(){
 	if(captcha){
 		console.log("doForcePay");
+		retryBuy--;
 		var thisOrder = getThisOrder();
 		placeOrder(thisOrder, "#autobuy");
 	}else{
