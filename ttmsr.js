@@ -278,7 +278,7 @@ var handleCountdown = function(result) {
 			    console.log(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
 			}
 
-			if(0 == countDownTimes){
+			if(countDownTimes <= 0){
 				window.clearInterval(int);
 				if(notRunning){
 					doForcePay();
