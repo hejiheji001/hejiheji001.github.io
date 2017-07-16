@@ -125,7 +125,7 @@ var retryCaptcha = function(c, u, callback, url) {
 }
 
 var placeOrder = function(target, dom) {
-    if(retryBuy < -50){
+    if(retryBuy < 0){
 	    $(dom).text("请查看待支付页面");
 	    return;
     }
