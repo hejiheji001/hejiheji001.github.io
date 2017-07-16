@@ -15,7 +15,8 @@ var monthlyKeys = {
 			"6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA": "2017-07-18",
 			"OSwqfpUTZyPFxk9K2b8a2fCrkw7chepY": "2017-07-18",
 			"VpZ6yaSTACft0KPnQfUppPic67IEX2mu": "2017-08-17",
-			"pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS": "2017-07-18"
+			"pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS": "2017-07-18",
+			"pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP": "2017-07-18"
 		  };
 var getEnc = function() {
   var end = monthlyKeys[uk];
@@ -142,7 +143,7 @@ var placeOrder = function(target, dom) {
     $(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购");
     notRunning = false;
     var x = setTimeout(function() {
-        $(dom).text("抢购中" + " 第" + 100 — retryBuy);
+        $(dom).text("第" + (100 - retryBuy) + "次抢购中");
         console.log("Placing Order");
         for (var i = 0; i < 35; i++) {
             if (i % 5 == 0) {
