@@ -17,7 +17,8 @@ var monthlyKeys = {
 			"VpZ6yaSTACft0KPnQfUppPic67IEX2mu": "2017-08-17",
 			"pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS": "2017-07-18",
 			"pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP": "2017-07-18",
-			"gU0ipPc0/+nivZhC0hIz914M4+Lk5pqB": "2017-08-17"
+			"gU0ipPc0/+nivZhC0hIz914M4+Lk5pqB": "2017-08-17",
+			"kRTBRP0WM4TCUN9WidwKA7fPcnfruRYe": "2017-08-17"
 
 		  };
 var getEnc = function() {
