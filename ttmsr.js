@@ -124,7 +124,7 @@ var retryCaptcha = function(c, u, callback, url) {
     checkCaptcha(callback, url);
 }
 
-var placeOrder = function(target, dom) {
+var placeOrder = function(target, dom, extra) {
     if(retryBuy < 0){
 	    $(dom).text("请查看待支付页面");
 	    return;
@@ -140,10 +140,10 @@ var placeOrder = function(target, dom) {
     }
     var u = getOrder();
     console.log("placeOrder in " + (end - start));
-    $(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购");
+    $(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购" + extra);
     notRunning = false;
     var x = setTimeout(function() {
-        $(dom).text("第" + (81 - retryBuy) + "次抢购中");
+        $(dom).text("第" + (81 - retryBuy) + "次抢购中" + extra);
         console.log("Placing Order");
         for (var i = 0; i < 35; i++) {
             if (i % 5 == 0) {
@@ -192,6 +192,7 @@ var buyIt = function(str) {
         });
     } else {
         hintDom.text("无法验证码 碰碰运气");
+	console.log("Try Force");
         doForcePay();
     }
 }
@@ -201,7 +202,7 @@ var doForcePay = function(){
 		console.log("doForcePay");
 		retryBuy--;
 		var thisOrder = getThisOrder();
-		placeOrder(thisOrder, "#autobuy");
+		placeOrder(thisOrder, "#autobuy", " 由于你的网络问题 目前正在尝试最后的努力 务必等到提示你查看待支付后再退出 外挂可能会很卡");
 	}else{
 		if(captcha){
 			$("#autobuy").text("请截图并查看待支付");
