@@ -1,5 +1,5 @@
 var retryCap = 50;
-var retryBuy = 50;
+var retryBuy = 99;
 var MSTarget = -1;
 var captcha = "";
 var notRunning = true;
