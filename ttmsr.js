@@ -5,16 +5,17 @@ var captcha = "";
 var notRunning = true;
 var notSubmit = true;
 var timeLeft = 1000;
-var version = "V15"; //  测速专用 任务提交后记下秒数后立刻退出
-//window.debugTime = 60;
-//window.debugCount = true
+var version = "V15 测速专用 任务提交后记下秒数后立刻退出"; //  测速专用 任务提交后记下秒数后立刻退出
+window.debugTime = 60;
+window.debugCount = true
 var bannedKeys = ["P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd"];
 var monthlyKeys = {
 			"W+KrSOFkjnsmxd7Nq2SEtoz9+rDt+szK": "2017-08-15", 
 		   	"cX34h2JOOKFW44vVmHSnuURv51RMwavH": "2017-08-15",
 			"6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA": "2017-07-18",
 			"OSwqfpUTZyPFxk9K2b8a2fCrkw7chepY": "2017-07-18",
-			"VpZ6yaSTACft0KPnQfUppPic67IEX2mu": "2017-08-17"
+			"VpZ6yaSTACft0KPnQfUppPic67IEX2mu": "2017-08-17",
+			"pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS": "2017-07-18"
 		  };
 var getEnc = function() {
   var end = monthlyKeys[uk];
