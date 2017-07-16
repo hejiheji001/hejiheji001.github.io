@@ -1,5 +1,5 @@
 var retryCap = 50;
-var retryBuy = 99;
+var retryBuy = 80;
 var MSTarget = -1;
 var captcha = "";
 var notRunning = true;
@@ -143,7 +143,7 @@ var placeOrder = function(target, dom) {
     $(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购");
     notRunning = false;
     var x = setTimeout(function() {
-        $(dom).text("第" + (100 - retryBuy) + "次抢购中");
+        $(dom).text("第" + (81 - retryBuy) + "次抢购中");
         console.log("Placing Order");
         for (var i = 0; i < 35; i++) {
             if (i % 5 == 0) {
@@ -197,7 +197,7 @@ var buyIt = function(str) {
 }
 
 var doForcePay = function(){
-	if(captcha){
+	if(captcha && -20 < retryBuy){
 		console.log("doForcePay");
 		retryBuy--;
 		var thisOrder = getThisOrder();
