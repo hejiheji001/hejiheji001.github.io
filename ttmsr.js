@@ -12,7 +12,7 @@ var bannedKeys = ["P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHP
 var monthlyKeys = {
 			"W+KrSOFkjnsmxd7Nq2SEtoz9+rDt+szK": "2017-08-15", 
 			"6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA": "2017-07-18",
-			"OSwqfpUTZyPFxk9K2b8a2fCrkw7chepY": "2017-08-19",
+			"OSwqfpUTZyPFxk9K2b8a2fCrkw7chepY": "2017-08-20",
 			"VpZ6yaSTACft0KPnQfUppPic67IEX2mu": "2017-08-17",
 			"pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS": "2017-07-18",
 			"pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP": "2017-07-18",
