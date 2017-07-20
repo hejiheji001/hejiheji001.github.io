@@ -210,9 +210,11 @@ var doForcePay = function(){
 		placeOrder(thisOrder, "#autobuy", " 由于你的网络问题 目前正在尝试最后的努力 务必等到提示你查看待支付后再退出 外挂可能会很卡");
 	}else{
 		if(captcha){
-			$("#autobuy").text("请截图并查看待支付");
+			$("#autobuy").text("验证码获取成功 但未能获得有效信息 无法判断成功与否 若03分以前可再点一次本按钮 否则查看待支付");
+			retryBuy = 10;
+			$("#autobuy").attr("onclick", "doForcePay()");
 		}else{
-			$("#autobuy").text("请立即截图 并及时联系开发者");
+			$("#autobuy").text("50次尝试均无法获取验证码 基本无望 可以尝试再点一次本按钮碰运气");
 		}
 	}
 }
