@@ -5,7 +5,7 @@ var captcha = "";
 var notRunning = true;
 var notSubmit = true;
 var timeLeft = 1000;
-var version = "V16"; //  测速专用 任务提交后记下秒数后立刻退出
+var version = "V17"; //  测速专用 任务提交后记下秒数后立刻退出
 //window.debugTime = 60;
 //window.debugCount = true
 var bannedKeys = ["P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
@@ -80,7 +80,7 @@ var getOrder = function() {
     var g = info[day][1];
     var m = info[day][2];
     localStorage.userKey = uk;
-    return "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/main/Order.json?tmp=" + getTmp() + "&channelType=activityday&giftNum=1&groupId=&isCaptcha=true&actyId=" + a + "&giftId=" + g + "&merchantId=" + m + "&userKey=" + encodeURIComponent(uk) + "&jcaptchaText=" + captcha;
+    return "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/main/Order.json?timp=" + getTmp() + "&channelType=activityday&giftNum=1&groupId=&isCaptcha=true&actyId=" + a + "&giftId=" + g + "&merchantId=" + m + "&userKey=" + encodeURIComponent(uk) + "&jcaptchaText=" + captcha;
 }
 
 var pausecomp = function(millis) {
