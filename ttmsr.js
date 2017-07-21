@@ -152,7 +152,7 @@ var placeOrder = function(target, dom, extra) {
         end = MSTarget;
     }
     var u = getOrder();
-    var willExpire = (expire - (new Date()).getTime()) / 1000;
+    var willExpire = 30 + ((expire - (new Date()).getTime()) / 1000);
     console.log("placeOrder in " + (end - start));
     $(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购" + (extra || "") + "，验证码将于" + willExpire + "秒后失效，请确认任务提交后验证码还有5秒以上的有效时间");
     notRunning = false;
