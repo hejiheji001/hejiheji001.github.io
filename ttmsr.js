@@ -5,6 +5,9 @@ var captcha = "";
 var notRunning = true;
 var notSubmit = true;
 var timeLeft = 1000;
+var offset = 0;
+var start = 0;
+var end = 0;
 var version = "V19"; //  测速专用 任务提交后记下秒数后立刻退出
 //window.debugTime = 60;
 //window.debugCount = true
@@ -98,6 +101,7 @@ var checkCaptcha = function(callback, url) {
         if (url) {
             u = url;
         }
+	start = (new Date()).getTime();
         $.ajax({
             url: "https://query.yahooapis.com/v1/public/yql",
             dataType: "json",
@@ -259,7 +263,7 @@ var getTimeFormat = function(time) {
 }
 
 var handleCountdown = function(result) {
-	retryCap++;
+    retryCap++;
     if (window.int) {
         window.clearInterval(int);
     }
@@ -269,10 +273,13 @@ var handleCountdown = function(result) {
         var data = result.query.results;
         var countDownTimes = window.debugTime || data.reply.countDownTimes;
         var isCountDown = window.debugCount || data.reply.isCountDown;
-        var countNumAdd = countDownTimes + 1;
+        var countNumAdd = countDownTimes + 1; 
         if (isCountDown) {
 		var st = Math.floor((Math.random()+2) * 10);
-		hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
+		end = (new Date()).getTime();
+		offset = Math.floor(((end - start)/1000) * Math.random());
+		st += offset;
+		hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取, 并已根据你的网速微调" + offset + "秒");
 		window.int = self.setInterval(function() {
 			countDownTimes--;
 			timeLeft = countDownTimes;
@@ -282,7 +289,7 @@ var handleCountdown = function(result) {
 			    buyIt();
 			}
 			if (st < countDownTimes) {
-			    hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
+			    hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取, 并已根据你的网速微调" + offset + "秒");
 			}
 
 			if (0 < countDownTimes) {
