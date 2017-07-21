@@ -8,6 +8,7 @@ var timeLeft = 1000;
 var offset = 0;
 var start = 0;
 var end = 0;
+var expire = -1;
 var version = "V19"; //  测速专用 任务提交后记下秒数后立刻退出
 //window.debugTime = 60;
 //window.debugCount = true
@@ -96,10 +97,12 @@ var pausecomp = function(millis) {
 var checkCaptcha = function(callback, url) {
     retryCap--;
     console.log("checkCaptcha");
+    var limit = 8000;	
     if (0 < retryCap) {
         var u = getOrder();
         if (url) {
           	u = url;
+		limit = 10000;
  		if(start == 0){
 			start = (new Date()).getTime();
 		}
@@ -108,7 +111,7 @@ var checkCaptcha = function(callback, url) {
         $.ajax({
             url: "https://query.yahooapis.com/v1/public/yql",
             dataType: "json",
-            timeout: 8000,
+            timeout: limit,
             data: {
                 format: "json",
                 q: $("#autobuy").data("ql") + u + $("#autobuy").data("qr")
@@ -149,8 +152,9 @@ var placeOrder = function(target, dom, extra) {
         end = MSTarget;
     }
     var u = getOrder();
+    var willExpire = Math.floor((expire - (new Date()).getTime()) / 1000);
     console.log("placeOrder in " + (end - start));
-    $(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购" + (extra || ""));
+    $(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购" + (extra || "") + "，验证码将于" + willExpire + "秒后失效，请确认任务提交所需的时间比验证码失效时间短5秒以上");
     notRunning = false;
     var x = setTimeout(function() {
         $(dom).text("第" + (81 - retryBuy) + "次抢购中" + (extra || ""));
@@ -194,7 +198,8 @@ var buyIt = function(str) {
             if (d.Result && d.Result.length === 5) {
                 retryCap++;
                 captcha = d.Result.toUpperCase();
-                hintDom.text("检测验证码中，验证码为 " + captcha);
+		expire = (new Date()).getTime();
+                hintDom.text("检测验证码中，验证码为 " + captcha + "，验证码将于30秒后失效");
                 checkCaptcha(handleCaptcha);
             } else {
                 buyIt(d.Error);
