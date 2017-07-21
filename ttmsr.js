@@ -152,9 +152,9 @@ var placeOrder = function(target, dom, extra) {
         end = MSTarget;
     }
     var u = getOrder();
-    var willExpire = Math.floor((expire - (new Date()).getTime()) / 1000);
+    var willExpire = (expire - (new Date()).getTime()) / 1000;
     console.log("placeOrder in " + (end - start));
-    $(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购" + (extra || "") + "，验证码将于" + willExpire + "秒后失效，请确认任务提交所需的时间比验证码失效时间短5秒以上");
+    $(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购" + (extra || "") + "，验证码将于" + willExpire + "秒后失效，请确认任务提交后验证码还有5秒以上的有效时间");
     notRunning = false;
     var x = setTimeout(function() {
         $(dom).text("第" + (81 - retryBuy) + "次抢购中" + (extra || ""));
