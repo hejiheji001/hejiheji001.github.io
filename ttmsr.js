@@ -286,7 +286,7 @@ var handleCountdown = function(result) {
 		var st = Math.floor((Math.random()+2) * 10);
 		end = (new Date()).getTime();
 		offset = Math.floor(((end - start)/1000) * Math.random());
-		st += offset;
+		st -= offset;
 		hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取, 并已根据你的网速微调" + offset + "秒");
 		window.int = self.setInterval(function() {
 			countDownTimes--;
@@ -301,7 +301,7 @@ var handleCountdown = function(result) {
 			}
 
 			if (0 < countDownTimes) {
-			    console.log(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取");
+			    console.log(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取, 并已根据你的网速微调" + offset + "秒");
 			}
 
 			if(countDownTimes <= 0){
