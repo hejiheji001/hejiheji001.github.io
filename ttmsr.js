@@ -283,7 +283,7 @@ var handleCountdown = function(result) {
         var isCountDown = window.debugCount || data.reply.isCountDown;
         var countNumAdd = countDownTimes + 1; 
         if (isCountDown) {
-		var st = Math.floor((Math.random()+2) * 10);
+		var st = Math.floor((Math.random()+2) * 10) + 5;
 		end = (new Date()).getTime();
 		offset = Math.floor(((end - start)/1000) * Math.random());
 		st -= offset;
