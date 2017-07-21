@@ -169,7 +169,7 @@ var placeOrder = function(target, dom, extra) {
                     dataType: "jsonp"
                 });
             }
-            pausecomp(80);
+            pausecomp(120);
         }
     }, (end - start) / 1);
 }
