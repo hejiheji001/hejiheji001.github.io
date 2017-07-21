@@ -99,9 +99,12 @@ var checkCaptcha = function(callback, url) {
     if (0 < retryCap) {
         var u = getOrder();
         if (url) {
-            u = url;
+          	u = url;
+ 		if(start == 0){
+			start = (new Date()).getTime();
+		}
         }
-	start = (new Date()).getTime();
+	
         $.ajax({
             url: "https://query.yahooapis.com/v1/public/yql",
             dataType: "json",
