@@ -9,9 +9,9 @@ var offset = 0;
 var start = 0;
 var end = 0;
 var expire = -1;
-var version = "V20 测速专用 任务提交后 截图 然后后【立刻退出】"; //  测速专用 任务提交后记下秒数后立刻退出
-window.debugTime = 60;
-window.debugCount = true
+var version = "V20"; //   测速专用【任务提交】后 截图 然后【立刻退出】
+//window.debugTime = 60;
+//window.debugCount = true
 var bannedKeys = ["pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP", "pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS", "6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
 var monthlyKeys = {
 			"W+KrSOFkjnsmxd7Nq2SEtoz9+rDt+szK": "2017-08-15", 
