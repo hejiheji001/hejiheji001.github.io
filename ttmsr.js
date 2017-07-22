@@ -188,7 +188,7 @@ var handleReBuy = function(extra){
 						alert("成功了");
 					} else if (-1 < msg.indexOf("userKey非正常加密")){
 						alert("请立即截图 userKey非正常加密");
-					} else if (-1 < msg.indexOf("抢光了")){{
+					} else if (-1 < msg.indexOf("抢光了")){
 						//buyTime = 80;
 					}
 				}else{
