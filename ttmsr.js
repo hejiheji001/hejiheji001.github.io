@@ -1,5 +1,6 @@
 var retryCap = 50;
 var retryBuy = 80;
+var buyTime = 0;
 var MSTarget = -1;
 var captcha = "";
 var notRunning = true;
@@ -161,17 +162,31 @@ var placeOrder = function(target, dom, extra) {
     notRunning = false;
     var x = setTimeout(function() {
         console.log("Placing Order");
-        for (var i = 0; i < 80; i++) {
-            if (i % 5 == 1) {
-                checkCaptcha(handleCaptcha);
-            } else {
-		$("body").append("<iframe src="+u+">");
-            }
-            pausecomp(2000);
-	    console.log("第"+i+"次");
-	    $("#autobuy").text("第" + i + "次抢购中" + (extra || ""));		
-        }
+        //checkCaptcha(function(){
+		handleReBuy(extra);
+	//});
     }, (end - start) / 1);
+}
+
+var handleReBuy = function(extra){
+	$("#autobuy").text("第" + buyTime + "次抢购中" + (extra || ""));
+	var u = getOrder();
+	if(buyTime <= 80){
+		if(buyTime % 5 == 0){
+			checkCaptcha(function(){
+				handleReBuy(extra);
+			});
+		}else{
+			$("body").append("<iframe src="+u+">");
+			pausecomp(1000);
+			handleReBuy(extra);
+		}
+	}else{
+		$("#autobuy").text("抢购完成 请查看待支付"));
+		console.log("完成");
+	}
+	console.log("第"+buyTime+"次");
+	buyTime++;
 }
 
 var getThisOrder = function() {
