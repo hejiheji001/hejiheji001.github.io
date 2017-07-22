@@ -170,8 +170,10 @@ var handleReBuy = function(extra){
 	var hintDom = $("#autobuy"); 
 	hintDom.text("第" + buyTime + "次抢购中" + (extra || ""));
 	var u = getOrder();
+	console.log("第"+buyTime+"次");
+	buyTime++;
 	if(buyTime <= 80){
-		if(buyTime % 5 == 0){
+// 		if(buyTime % 5 == 0){
 			console.log("YQLS");
 			checkCaptcha(function(result){
 				console.log("YQLE");
@@ -191,17 +193,15 @@ var handleReBuy = function(extra){
 			    	}
 				handleReBuy(extra);
 			});
-		}else{
-			$("body").append("<iframe src="+u+">");
-			pausecomp(1000);
-			handleReBuy(extra);
-		}
+// 		}else{
+// 			$("body").append("<iframe src="+u+">");
+// 			pausecomp(1000);
+// 			handleReBuy(extra);
+// 		}
 	}else{
 		$("#autobuy").text("抢购完成 请查看待支付");
 		console.log("完成");
 	}
-	console.log("第"+buyTime+"次");
-	buyTime++;
 }
 
 var getThisOrder = function() {
