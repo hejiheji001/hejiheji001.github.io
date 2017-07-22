@@ -159,7 +159,7 @@ var placeOrder = function(target, dom, extra) {
     var x = setTimeout(function() {
         $(dom).text("第" + (81 - retryBuy) + "次抢购中" + (extra || ""));
         console.log("Placing Order");
-        for (var i = 0; i < 40; i++) {
+        for (var i = 0; i < 50; i++) {
             if (i % 5 == 0) {
             	retryCap++;
                 checkCaptcha(handleCaptcha);
@@ -169,7 +169,7 @@ var placeOrder = function(target, dom, extra) {
                     dataType: "jsonp"
                 });
             }
-            pausecomp(120);
+            pausecomp(200);
         }
     }, (end - start) / 1);
 }
@@ -283,7 +283,7 @@ var handleCountdown = function(result) {
         var isCountDown = window.debugCount || data.reply.isCountDown;
         var countNumAdd = countDownTimes + 1; 
         if (isCountDown) {
-		var st = Math.floor((Math.random()+2) * 8) + 5;
+		var st = Math.floor((Math.random()+2) * 7) + 5;
 		end = (new Date()).getTime();
 		offset = Math.floor(((end - start)/1000) * Math.random());
 		st -= offset;
