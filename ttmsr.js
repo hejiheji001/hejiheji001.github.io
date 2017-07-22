@@ -9,7 +9,7 @@ var offset = 0;
 var start = 0;
 var end = 0;
 var expire = -1;
-var version = "V20"; //   测速专用【任务提交】后 截图 
+var version = "V21"; //   测速专用【任务提交】后 截图 
 //window.debugTime = 60;
 //window.debugCount = true
 var bannedKeys = ["pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP", "pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS", "6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
@@ -159,7 +159,7 @@ var placeOrder = function(target, dom, extra) {
     var x = setTimeout(function() {
         $(dom).text("第" + (81 - retryBuy) + "次抢购中" + (extra || ""));
         console.log("Placing Order");
-        for (var i = 0; i < 50; i++) {
+        for (var i = 0; i < 80; i++) {
             if (i % 5 == 0) {
             	retryCap++;
                 checkCaptcha(handleCaptcha);
@@ -169,9 +169,9 @@ var placeOrder = function(target, dom, extra) {
                     dataType: "jsonp"
                 });
             }
-            pausecomp(200);
+            pausecomp(500);
         }
-    }, (end - start) / 1);
+    }, (end - start + 100) / 1);
 }
 
 var getThisOrder = function() {
