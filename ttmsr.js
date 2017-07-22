@@ -176,7 +176,7 @@ var handleReBuy = function(extra){
 	console.log("第"+buyTime+"次");
 	buyTime++;
 	if(buyTime <= 80){
-		if(buyTime % 3 == 1){
+		if(buyTime % 10 == 1){
 			console.log("YQLS");
 			checkCaptcha(function(result){
 				console.log("YQLE");
@@ -198,10 +198,10 @@ var handleReBuy = function(extra){
 				handleReBuy(extra);
 			});
 		}else{
-			console.log("iframeS");
-			$("body").append("<iframe src="+u+">");
+			console.log("iframeS" + (new Date()));
 			pausecomp(1000);
-			console.log("iframeE");
+			$("body").append("<iframe src="+u+">");
+			console.log("iframeE" + (new Date()));
 			handleReBuy(extra);
 		}
 	}else{
