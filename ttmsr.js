@@ -195,11 +195,12 @@ var handleReBuy = function(extra){
 						hintDom.text("继续抢购中");
 					}
 				}
+				handleReBuy(extra);
 			});
-			handleReBuy(extra);
 		}else{
 			console.log("iframeS");
 			$("body").append("<iframe src="+u+">");
+			pausecomp(1000);
 			console.log("iframeE");
 			handleReBuy(extra);
 		}
