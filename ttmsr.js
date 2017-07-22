@@ -140,6 +140,9 @@ var retryCaptcha = function(c, u, callback, url) {
 var placeOrder = function(target, dom, extra) {
     if(retryBuy < 0){
 	    $(dom).text("请查看待支付页面");
+	    if (window.int) {
+        window.clearInterval(int);
+    }
 	    return;
     }
     var t = new Date();
@@ -169,7 +172,7 @@ var placeOrder = function(target, dom, extra) {
                     dataType: "jsonp"
                 });
             }
-            pausecomp(500);
+            pausecomp(1000);
         }
     }, (end - start + 100) / 1);
 }
