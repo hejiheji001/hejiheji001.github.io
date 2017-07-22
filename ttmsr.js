@@ -176,27 +176,33 @@ var handleReBuy = function(extra){
 	console.log("第"+buyTime+"次");
 	buyTime++;
 	if(buyTime <= 80){
-		console.log("YQLS");
-		checkCaptcha(function(result){
-			$("body").append("<iframe src="+u+">");
-			console.log("YQLE");
-			if (result.query.results) {
-				var msg = result.query.results.reply.orderMessage;
-				if(msg){
-					hintDom.text(msg + " 继续抢购中");
-					if (-1 < msg.indexOf("支付")) {
-						alert("成功了");
-					} else if (-1 < msg.indexOf("userKey非正常加密")){
-						alert("请立即截图 userKey非正常加密");
-					} else if (-1 < msg.indexOf("抢光了")){
-						//buyTime = 80;
+		if(buyTime % 3 == 0){
+			console.log("YQLS");
+			checkCaptcha(function(result){
+				console.log("YQLE");
+				if (result.query.results) {
+					var msg = result.query.results.reply.orderMessage;
+					if(msg){
+						hintDom.text(msg + " 继续抢购中");
+						if (-1 < msg.indexOf("支付")) {
+							alert("成功了");
+						} else if (-1 < msg.indexOf("userKey非正常加密")){
+							alert("请立即截图 userKey非正常加密");
+						} else if (-1 < msg.indexOf("抢光了")){
+							//buyTime = 80;
+						}
+					}else{
+						hintDom.text("继续抢购中");
 					}
-				}else{
-					hintDom.text("继续抢购中");
 				}
-			}
+				handleReBuy(extra);
+			});
+		}else{
+			console.log("iframeS");
+			$("body").append("<iframe src="+u+">");
+			console.log("iframeE");
 			handleReBuy(extra);
-		});
+		}
 	}else{
 		buyEnd = (new Date()).getTime();
 		$("#autobuy").text("抢购完成 请查看待支付");
