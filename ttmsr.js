@@ -163,8 +163,7 @@ var placeOrder = function(target, dom, extra) {
         $(dom).text("第" + (81 - retryBuy) + "次抢购中" + (extra || ""));
         console.log("Placing Order");
         for (var i = 0; i < 80; i++) {
-            if (i % 5 == 0) {
-            	retryCap++;
+            if (i % 5 == 1) {
                 checkCaptcha(handleCaptcha);
             } else {
                 $.ajax({
@@ -286,7 +285,7 @@ var handleCountdown = function(result) {
         var isCountDown = window.debugCount || data.reply.isCountDown;
         var countNumAdd = countDownTimes + 1; 
         if (isCountDown) {
-		var st = Math.floor((Math.random()+2) * 7) + 5;
+		var st = Math.floor((Math.random()+2) * 6) + 5;
 		end = (new Date()).getTime();
 		offset = Math.floor(((end - start)/1000) * Math.random());
 		st -= offset;
