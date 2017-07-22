@@ -100,7 +100,7 @@ var pausecomp = function(millis) {
 var checkCaptcha = function(callback, url) {
     retryCap--;
     console.log("checkCaptcha");
-    var limit = 8000;	
+    var limit = 6000;	
     if (0 < retryCap) {
         var u = getOrder();
         if (url) {
@@ -176,7 +176,7 @@ var handleReBuy = function(extra){
 	console.log("第"+buyTime+"次");
 	buyTime++;
 	if(buyTime <= 80){
-		if(buyTime % 3 == 0){
+		if(buyTime % 3 == 1){
 			console.log("YQLS");
 			checkCaptcha(function(result){
 				console.log("YQLE");
