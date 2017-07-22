@@ -199,10 +199,14 @@ var handleReBuy = function(extra){
 			});
 		}else{
 			console.log("iframeS" + (new Date()));
-			pausecomp(1000);
-			var ifr = document.createElement("iframe");
-			ifr.src = u;
-			document.body.appendChild(ifr);
+			pausecomp(2000);
+			if(!window.open){
+				var ifr = document.createElement("iframe");
+				ifr.src = u;
+				document.body.appendChild(ifr);
+			}else{
+				window.open(u);
+			}
 			console.log("iframeE" + (new Date()));
 			handleReBuy(extra);
 		}
