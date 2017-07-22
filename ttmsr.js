@@ -160,7 +160,6 @@ var placeOrder = function(target, dom, extra) {
     $(dom).text("任务已提交" + " " + (end - start) / 1000 + "秒后自动抢购" + (extra || "") + "，验证码将于" + willExpire + "秒后失效，请确认任务提交后验证码还有5秒以上的有效时间");
     notRunning = false;
     var x = setTimeout(function() {
-        $(dom).text("第" + (81 - retryBuy) + "次抢购中" + (extra || ""));
         console.log("Placing Order");
         for (var i = 0; i < 80; i++) {
             if (i % 5 == 1) {
@@ -173,6 +172,7 @@ var placeOrder = function(target, dom, extra) {
             }
             pausecomp(2000);
 	    console.log("第"+i+"次");
+	    $(dom).text("第" + i + "次抢购中" + (extra || ""));		
         }
     }, (end - start) / 1);
 }
