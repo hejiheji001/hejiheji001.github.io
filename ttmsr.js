@@ -162,18 +162,33 @@ var placeOrder = function(target, dom, extra) {
     notRunning = false;
     var x = setTimeout(function() {
         console.log("Placing Order");
-        //checkCaptcha(function(){
-		handleReBuy(extra);
-	//});
+        handleReBuy(extra);
     }, (end - start) / 1);
 }
 
 var handleReBuy = function(extra){
-	$("#autobuy").text("第" + buyTime + "次抢购中" + (extra || ""));
+	var hintDom = $("#autobuy"); 
+	hintDom.text("第" + buyTime + "次抢购中" + (extra || ""));
 	var u = getOrder();
 	if(buyTime <= 80){
 		if(buyTime % 5 == 0){
-			checkCaptcha(function(){
+			console.log("YQLS");
+			checkCaptcha(function(result){
+				console.log("YQLE");
+				if (result.query.results) {
+					var msg = result.query.results.reply.orderMessage;
+					if(msg){
+						hintDom.text(msg);
+						if (-1 < msg.indexOf("支付")) {
+							alert("成功了");
+						} else if (-1 < msg.indexOf("userKey非正常加密")){
+							alert("请立即截图 userKey非正常加密");
+						} else {
+							alert(msg);
+							hintDom.text("请不要离开本页面 03分之后再查看待支付");
+						}
+					}
+			    	}
 				handleReBuy(extra);
 			});
 		}else{
@@ -182,7 +197,7 @@ var handleReBuy = function(extra){
 			handleReBuy(extra);
 		}
 	}else{
-		$("#autobuy").text("抢购完成 请查看待支付"));
+		$("#autobuy").text("抢购完成 请查看待支付");
 		console.log("完成");
 	}
 	console.log("第"+buyTime+"次");
