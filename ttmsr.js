@@ -171,9 +171,10 @@ var placeOrder = function(target, dom, extra) {
                     dataType: "jsonp"
                 });
             }
-            pausecomp(1000);
+            pausecomp(2000);
+	    console.log("第"+i+"次");
         }
-    }, (end - start + 100) / 1);
+    }, (end - start) / 1);
 }
 
 var getThisOrder = function() {
