@@ -13,8 +13,8 @@ var start = 0;
 var end = 0;
 var expire = -1;
 var version = "V22"; //   测速专用【任务提交】后 截图 
-window.debugTime = 60;
-window.debugCount = true
+//window.debugTime = 60;
+//window.debugCount = true
 var bannedKeys = ["pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP", "pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS", "6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
 var monthlyKeys = {
 			"W+KrSOFkjnsmxd7Nq2SEtoz9+rDt+szK": "2017-08-15", 
@@ -177,17 +177,19 @@ var handleReBuy = function(extra){
 	buyTime++;
 	if(buyTime <= 80){
 		if(buyTime % 10 == 1){
-			console.log("YQLS");
+			console.log("YQLS" + (new Date()));
 			checkCaptcha(function(result){
-				console.log("YQLE");
+				console.log("YQLE" + (new Date()));
 				if (result.query.results) {
 					var msg = result.query.results.reply.orderMessage;
 					if(msg){
 						hintDom.text(msg + " 继续抢购中");
 						if (-1 < msg.indexOf("支付")) {
 							alert("成功了");
+							buyTime = 80;
 						} else if (-1 < msg.indexOf("userKey非正常加密")){
 							alert("请立即截图 userKey非正常加密");
+							buyTime = 80;
 						} else if (-1 < msg.indexOf("抢光了")){
 							//buyTime = 80;
 						}
@@ -195,20 +197,24 @@ var handleReBuy = function(extra){
 						hintDom.text("继续抢购中");
 					}
 				}
-				handleReBuy(extra);
 			});
+			setTimeout(function(){
+				handleReBuy(extra);
+			}, 2000);
 		}else{
 			console.log("iframeS" + (new Date()));
-			pausecomp(2000);
-			if(!window.open){
-				var ifr = document.createElement("iframe");
+			if(window.ifr){
+				ifr.src = "";
+				ifr.src = u;
+			}else{
+				window.ifr = document.createElement("iframe");
 				ifr.src = u;
 				document.body.appendChild(ifr);
-			}else{
-				window.open(u);
 			}
-			console.log("iframeE" + (new Date()));
-			handleReBuy(extra);
+			setTimeout(function(){
+				console.log("iframeE" + (new Date()));
+				handleReBuy(extra);
+			}, 2000);
 		}
 	}else{
 		buyEnd = (new Date()).getTime();
