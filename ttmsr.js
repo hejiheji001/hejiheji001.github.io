@@ -1,6 +1,8 @@
 var retryCap = 50;
 var retryBuy = 80;
 var buyTime = 0;
+var buyStart = 0;
+var buyEnd = 0;
 var MSTarget = -1;
 var captcha = "";
 var notRunning = true;
@@ -162,6 +164,7 @@ var placeOrder = function(target, dom, extra) {
     notRunning = false;
     var x = setTimeout(function() {
         console.log("Placing Order");
+	buyStart = (new Date()).getTime();
         handleReBuy(extra);
     }, (end - start) / 1);
 }
@@ -176,29 +179,32 @@ var handleReBuy = function(extra){
 // 		if(buyTime % 5 == 0){
 			console.log("YQLS");
 			checkCaptcha(function(result){
+				$("body").append("<iframe src="+u+">");
 				console.log("YQLE");
 				if (result.query.results) {
 					var msg = result.query.results.reply.orderMessage;
 					if(msg){
-						hintDom.text(msg);
+						hintDom.text(msg + " 继续抢购中");
 						if (-1 < msg.indexOf("支付")) {
 							alert("成功了");
 						} else if (-1 < msg.indexOf("userKey非正常加密")){
 							alert("请立即截图 userKey非正常加密");
-						} else {
-							alert(msg);
-							hintDom.text("请不要离开本页面 03分之后再查看待支付");
+						} else if (-1 < msg.indexOf("抢光了")){{
+							//buyTime = 80;
 						}
+					}else{
+						hintDom.text("继续抢购中");
 					}
 			    	}
 				handleReBuy(extra);
 			});
 // 		}else{
-// 			$("body").append("<iframe src="+u+">");
+// 			
 // 			pausecomp(1000);
 // 			handleReBuy(extra);
 // 		}
 	}else{
+		buyEnd = (new Date()).getTime();
 		$("#autobuy").text("抢购完成 请查看待支付");
 		console.log("完成");
 	}
