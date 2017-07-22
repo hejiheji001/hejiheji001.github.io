@@ -285,10 +285,10 @@ var handleCountdown = function(result) {
         var isCountDown = window.debugCount || data.reply.isCountDown;
         var countNumAdd = countDownTimes + 1; 
         if (isCountDown) {
-		var st = Math.floor((Math.random()+2) * 6) + 5;
+		var st = Math.floor((Math.random()+1) * 6) + 5; // 11~23
 		end = (new Date()).getTime();
-		offset = Math.floor(((end - start)/1000) * Math.random());
-		st -= offset;
+		offset = Math.floor(((end - start)/1000) * Math.random()); // the larger the sooner.
+		st += offset;
 		hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取, 并已根据你的网速微调" + offset + "秒");
 		window.int = self.setInterval(function() {
 			countDownTimes--;
