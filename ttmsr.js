@@ -319,7 +319,7 @@ var handleCountdown = function(result) {
         var isCountDown = window.debugCount || data.reply.isCountDown;
         var countNumAdd = countDownTimes + 1; 
         if (isCountDown) {
-		var st = Math.floor((Math.random()+1) * 6) + 5; // 11~23
+		var st = 25;
 		end = (new Date()).getTime();
 		offset = Math.floor(((end - start)/1000) * Math.random()); // the larger the sooner.
 		st += offset;
