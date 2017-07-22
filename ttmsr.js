@@ -167,6 +167,10 @@ var placeOrder = function(target, dom, extra) {
 	buyStart = (new Date()).getTime();
         handleReBuy(extra);
     }, (end - start) / 1);
+    if((end - start + 5000) < willExpire * 1000){
+	    getCountDown();
+	    window.clearTimeout(x);
+    }
 }
 
 var handleReBuy = function(extra){
@@ -200,7 +204,9 @@ var handleReBuy = function(extra){
 		}else{
 			console.log("iframeS" + (new Date()));
 			pausecomp(1000);
-			$("body").append("<iframe src="+u+">");
+			var ifr = document.createElement("iframe");
+			ifr.src = u;
+			document.body.appendChild(ifr);
 			console.log("iframeE" + (new Date()));
 			handleReBuy(extra);
 		}
