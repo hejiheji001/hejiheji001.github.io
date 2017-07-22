@@ -167,10 +167,6 @@ var placeOrder = function(target, dom, extra) {
 	buyStart = (new Date()).getTime();
         handleReBuy(extra);
     }, (end - start) / 1);
-    if((end - start + 5000) < willExpire * 1000){
-	    getCountDown();
-	    window.clearTimeout(x);
-    }
 }
 
 var handleReBuy = function(extra){
