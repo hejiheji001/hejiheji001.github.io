@@ -195,8 +195,8 @@ var handleReBuy = function(extra){
 						hintDom.text("继续抢购中");
 					}
 				}
-				handleReBuy(extra);
 			});
+			handleReBuy(extra);
 		}else{
 			console.log("iframeS");
 			$("body").append("<iframe src="+u+">");
@@ -205,7 +205,7 @@ var handleReBuy = function(extra){
 		}
 	}else{
 		buyEnd = (new Date()).getTime();
-		$("#autobuy").text("抢购完成 请查看待支付");
+		$("#autobuy").text("抢购完成 请查看待支付 耗时" + (buyEnd - buyStart) / 1000 + "秒");
 		console.log("完成");
 	}
 }
