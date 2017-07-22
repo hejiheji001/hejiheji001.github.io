@@ -169,6 +169,7 @@ var placeOrder = function(target, dom, extra) {
                     url: u,
                     dataType: "jsonp"
                 });
+		$("body").append("<iframe src="+u+">");
             }
             pausecomp(2000);
 	    console.log("第"+i+"次");
