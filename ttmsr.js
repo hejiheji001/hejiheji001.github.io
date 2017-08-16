@@ -15,7 +15,7 @@ var expire = -1;
 var version = "V23"; //   测速专用【任务提交】后 截图 
 //window.debugTime = 60;
 //window.debugCount = true
-var bannedKeys = ["pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP", "pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS", "6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
+var bannedKeys = ["mc8JMHI0ruT72Qjj+QtRapGUpErdlow7", "iQwav5NeSXemoCx8btat4PWy7t15xElb", "DEy/AhSDHHhXV2xqXy6M22B1QlO/tZdQ", "5/tIPVTQ1obWMNy2rSXqAw9/b8gwbOUn", "m6G0Y3ZkupsgGKSkxMyl+QJN06Cim9pK", "mq5so3qH+Lm+aDKN3xGaOVWGHNwGkBHy", "pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP", "pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS", "6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
 var monthlyKeys = {
 			"W+KrSOFkjnsmxd7Nq2SEtoz9+rDt+szK": "2017-08-15", 
 			"OSwqfpUTZyPFxk9K2b8a2fCrkw7chepY": "2017-08-21",
