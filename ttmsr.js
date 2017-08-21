@@ -18,14 +18,14 @@ var version = "V23"; //   测速专用【任务提交】后 截图
 var bannedKeys = ["mc8JMHI0ruT72Qjj+QtRapGUpErdlow7", "iQwav5NeSXemoCx8btat4PWy7t15xElb", "DEy/AhSDHHhXV2xqXy6M22B1QlO/tZdQ", "5/tIPVTQ1obWMNy2rSXqAw9/b8gwbOUn", "m6G0Y3ZkupsgGKSkxMyl+QJN06Cim9pK", "mq5so3qH+Lm+aDKN3xGaOVWGHNwGkBHy", "pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP", "pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS", "6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
 var monthlyKeys = {
 			"W+KrSOFkjnsmxd7Nq2SEtoz9+rDt+szK": "2017-08-15", 
-			"OSwqfpUTZyPFxk9K2b8a2fCrkw7chepY": "2017-08-21",
+			"OSwqfpUTZyPFxk9K2b8a2fCrkw7chepY": "2017-09-21",
 			"VpZ6yaSTACft0KPnQfUppPic67IEX2mu": "2017-09-17",
 			"gU0ipPc0/+nivZhC0hIz914M4+Lk5pqB": "2017-08-24",
 			"kRTBRP0WM4TCUN9WidwKA7fPcnfruRYe": "2017-08-17",
 			"l1zgr7B9sAplSdL0/AhUy0ScQIU0P7mF": "2017-08-20", 
 			"F5eEur2ik9/KrStkm32lPZOK+J01TZij": "2017-07-22",
 			"gRtPhWbHhHszycNMpbYX/ZhYlz225ACu": "2017-09-23",
-			"HhoaQ5WpehEHSWHSiHHiuoQLG5g0HfiB": "2017-08-21",
+			"HhoaQ5WpehEHSWHSiHHiuoQLG5g0HfiB": "2017-09-21",
 			"2oznqUaQqT/Bl/vg/oVgXXfdfxqyfyPw": "2017-08-22"
 		  };
 var getEnc = function() {
