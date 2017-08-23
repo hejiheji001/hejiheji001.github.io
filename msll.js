@@ -21,9 +21,9 @@ var readLine = function(){
     var lines = text.split("\n");
     var pre = lines.pop();
     $("#preset").val(lines.join("\n"));
-    return pre.indexOf("@") > -1 ? pre.split("@") : false;
+    return pre.indexOf("@") > -1 ? pre.split("@") : [];
   }else{
-    return false;
+    return [];
   }
 }
 
@@ -32,7 +32,7 @@ var getEnc = function(orderId){
   if(valid){
     $("#yql").attr("disabled", "disabled");
     var pre = readLine();
-    if(pre && ($("#orderId").val() + $("#code").val() + $("#mobile").val()) == ""){
+    if(pre.length === 3){
      $("#orderId").val(pre[0]); 
      $("#code").val(pre[1]);
      $("#mobile").val(pre[2]); 
