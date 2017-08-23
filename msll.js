@@ -47,7 +47,7 @@ var getUrl = function(data){
       var orderId = $("#orderId").val();
       var u = "http://ms.lefone.cn/msflowday/couponShowController/showCoupon.do?enStr=" + encodeURIComponent(str);
       var result = "订单：" + orderId + " 码：" + code + " 手机号：" + mobile + " 充值链接：" + u;
-      var extra = " 3款" + orderId;
+      var extra = " 2款" + orderId;
       if(myList.indexOf(orderId) > -1){
         extra = " 14款" + orderId;
       }
