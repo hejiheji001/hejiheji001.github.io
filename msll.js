@@ -33,8 +33,8 @@ var getEnc = function(orderId){
     $("#yql").attr("disabled", "disabled");
     var pre = readLine();
     if(pre){
-      $("#mobile").val(pre[0]);
-      $("#orderId").val(pre[1]);
+      $("#code").val(pre[1]);
+      $("#orderId").val(pre[0]);
     }
     var mobile = $("#mobile").val();
     var orderId = $("#orderId").val();
