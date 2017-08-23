@@ -1,7 +1,7 @@
 var bannedKeys = [];
 
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号> <input type=text class=form-control id=code placeholder=兑换码>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号> <input type=text class=form-control id=code placeholder=兑换码><textarea id=result class=form-control>");
   $("#yql").attr("onclick", "getEnc()");
 }
 
