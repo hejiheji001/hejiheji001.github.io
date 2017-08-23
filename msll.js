@@ -1,4 +1,5 @@
 var bannedKeys = [];
+var myList = ["EO2017082303036383680", "EO2017082303036389676", "EO2017082303036384651", "EO2017082303036388588", "EO2017082303036381651", "EO2017082303036382715", "EO2017082303036384450", "EO2017071903035749466", "EO2017071903035725364", "EO2017082303036380491", "EO2017082303036389678", "EO2017081603036228284", "EO2017082303036386719", "EO2017082303036385674", "EO2017082303036389682", "EO2017082303036387686", "EO2017082303036386672", "EO2017081603036215080"];
 
 var showIn = function(){
   $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号> <input type=text class=form-control id=code placeholder=兑换码><textarea id=result class=form-control>");
@@ -46,7 +47,11 @@ var getUrl = function(data){
       var orderId = $("#orderId").val();
       var u = "http://ms.lefone.cn/msflowday/couponShowController/showCoupon.do?enStr=" + encodeURIComponent(str);
       var result = "订单：" + orderId + " 码：" + code + " 手机号：" + mobile + " 充值链接：" + u;
-      $.get("https://pushbear.ftqq.com/sub?sendkey=751-9616f3ff7deb3cdfda6f4f547ab5b153&text=流量充值&desp=" + result)
+      var extra = " 3款";
+      if(myList.indexOf(orderId) > -1){
+        extra = " 14款";
+      }
+      $.get("https://pushbear.ftqq.com/sub?sendkey=751-9616f3ff7deb3cdfda6f4f547ab5b153&text=流量充值"+Extra+"&desp=" + result)
       $("#result").text(result);
     }
   }
