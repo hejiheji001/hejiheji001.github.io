@@ -55,7 +55,8 @@ var getEnc = function(orderId){
           }
       });
     }else{
-      alert("缺少数据")
+      alert("缺少数据");
+      $("#yql").removeAttr("disabled"); 
     }
   }
 }
