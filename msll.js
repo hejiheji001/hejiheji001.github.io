@@ -51,7 +51,7 @@ var getUrl = function(data){
       if(myList.indexOf(orderId) > -1){
         extra = " 14款" + orderId;
       }
-      $.get("https://pushbear.ftqq.com/sub?sendkey=751-9616f3ff7deb3cdfda6f4f547ab5b153&text=流量充值"+Extra+"&desp=" + result)
+      $.get("https://pushbear.ftqq.com/sub?sendkey=751-9616f3ff7deb3cdfda6f4f547ab5b153&text=流量充值"+extra+"&desp=" + result)
       $("#result").text(result);
     }
   }
