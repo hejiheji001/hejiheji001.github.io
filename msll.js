@@ -47,9 +47,9 @@ var getUrl = function(data){
       var orderId = $("#orderId").val();
       var u = "http://ms.lefone.cn/msflowday/couponShowController/showCoupon.do?enStr=" + encodeURIComponent(str);
       var result = "订单：" + orderId + " 码：" + code + " 手机号：" + mobile + " 充值链接：" + u;
-      var extra = " 3款";
+      var extra = " 3款" + orderId;
       if(myList.indexOf(orderId) > -1){
-        extra = " 14款";
+        extra = " 14款" + orderId;
       }
       $.get("https://pushbear.ftqq.com/sub?sendkey=751-9616f3ff7deb3cdfda6f4f547ab5b153&text=流量充值"+Extra+"&desp=" + result)
       $("#result").text(result);
