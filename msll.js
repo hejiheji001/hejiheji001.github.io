@@ -18,7 +18,7 @@ var check = function() {
 var readLine = function(){
   var text = $("#preset").val();
   if(text.length > 0){
-    var lines = $("preset").val().split("\n");
+    var lines = text.split("\n");
     var pre = lines.pop();
     $("#preset").val(lines.join("\n"));
     return pre.indexOf("@") > -1 ? pre.split("@") : false;
