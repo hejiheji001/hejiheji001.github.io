@@ -32,15 +32,17 @@ var readLine = function(){
   }
 }
 
-var getEnc = function(orderId){
+var getEnc = function(retry){
   var valid = check();
   if(valid){
     $("#yql").attr("disabled", "disabled");
-    var pre = readLine();
-    if(pre.length === 3){
-     $("#orderId").val(pre[0]); 
-     $("#code").val(pre[1]);
-     $("#mobile").val(pre[2]); 
+    if(!retry){
+     var pre = readLine();
+     if(pre.length === 3){
+      $("#orderId").val(pre[0]); 
+      $("#code").val(pre[1]);
+      $("#mobile").val(pre[2]); 
+     }
     }
     var mobile = $("#mobile").val();
     var orderId = $("#orderId").val();
@@ -84,6 +86,8 @@ var getUrl = function(data){
       }
       $.get("https://pushbear.ftqq.com/sub?sendkey=751-9616f3ff7deb3cdfda6f4f547ab5b153&text=流量充值"+extra+"&desp=" + result)
       $("#result").text(result);
+    }else{
+     getEnc(true);
     }
   }else{
     alert("错误 如果多次尝试无果请联系开发者");
