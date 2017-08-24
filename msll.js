@@ -35,6 +35,7 @@ var readLine = function(){
 var getEnc = function(retry){
   var valid = check();
   if(valid){
+    $("#result").val("");
     $("#yql").text("正在获取...");
     $("#yql").attr("disabled", "disabled");
     if(!retry){
