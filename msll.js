@@ -4,7 +4,7 @@ var myList = ["EO2017082303036388657","EO2017081603036229294", "EO20170823030363
 var showIn = function(){
   $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder=破解结果 style='height:200px'></textarea>");
   $("#yql").attr("onclick", "getEnc()");
-  if(localStorage.preset.length > 0){
+  if(localStorage.preset && localStorage.preset.length > 0){
    $("#preset").val(localStorage.preset);
   }
 }
