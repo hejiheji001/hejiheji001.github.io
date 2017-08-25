@@ -112,12 +112,11 @@ var checkCaptcha = function(callback, url) {
         }
 	
         $.ajax({
-            url: "http://jsonp.herokuapp.com/?url=",
+            url: "http://jsonp.herokuapp.com/",
             dataType: "json",
             timeout: limit,
             data: {
-                format: "json",
-                q: u
+                url: u
             },
             success: callback,
             error: function(c, u) {
