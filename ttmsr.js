@@ -373,8 +373,8 @@ var handleCountdown = function(result) {
 var handleCaptcha = function(result) {
     var hintDom = $("#autobuy");
     console.log("handleCaptcha");
-    if (result.query.results) {
-        var msg = result.query.results.reply.orderMessage;
+    if (result) {
+        var msg = result.reply.orderMessage;
         if(msg){
             hintDom.text(msg);
             if (-1 < msg.indexOf("尚未开始")) {
