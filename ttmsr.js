@@ -325,8 +325,8 @@ var handleCountdown = function(result) {
     }
     var hintDom = $("#autobuy");
     hintDom.attr("onclick", "getCountDown();");
-    if (result.query.results) {
-        var data = result.query.results;
+    if (result) {
+        var data = result;
         var countDownTimes = window.debugTime || data.reply.countDownTimes;
         var isCountDown = window.debugCount || data.reply.isCountDown;
         var countNumAdd = countDownTimes + 1; 
