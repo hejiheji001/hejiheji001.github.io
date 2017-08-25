@@ -112,12 +112,12 @@ var checkCaptcha = function(callback, url) {
         }
 	
         $.ajax({
-            url: "https://query.yahooapis.com/v1/public/yql",
+            url: "http://jsonp.herokuapp.com/?url=",
             dataType: "json",
             timeout: limit,
             data: {
                 format: "json",
-                q: $("#autobuy").data("ql") + u + $("#autobuy").data("qr")
+                q: u
             },
             success: callback,
             error: function(c, u) {
