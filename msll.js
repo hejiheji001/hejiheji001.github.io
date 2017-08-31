@@ -2,7 +2,7 @@ var bannedKeys = ["aXJzdHRlc3Q="];
 var myList = [];
 
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-08-31-23:31)' style='height:200px'></textarea>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-08-31-23:42)' style='height:200px'></textarea>");
   $("#yql").attr("onclick", "getEnc()");
   if(localStorage.preset && localStorage.preset.length > 0){
    $("#preset").val(localStorage.preset);
@@ -23,7 +23,7 @@ var readLine = function(){
   localStorage.preset = text;
   if(text.length > 0){
     var lines = text.split("\n");
-    var pre = lines.pop();
+    var pre = lines.pop().trim();
     $("#preset").val(lines.join("\n"));
     localStorage.preset = $("#preset").val();
     return pre.indexOf("@") > -1 ? pre.split("@") : [];
@@ -40,9 +40,9 @@ var getEnc = function(retry){
     if(!retry){
      var pre = readLine();
      if(pre.length === 3){
-      $("#orderId").val(pre[0]); 
-      $("#code").val(pre[1]);
-      $("#mobile").val(pre[2]); 
+      $("#orderId").val(pre[0].trim()); 
+      $("#code").val(pre[1].trim());
+      $("#mobile").val(pre[2].trim()); 
      }
     }
     var mobile = $("#mobile").val().trim();
