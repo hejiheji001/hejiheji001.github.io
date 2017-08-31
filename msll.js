@@ -2,7 +2,7 @@ var bannedKeys = ["aXJzdHRlc3Q="];
 var myList = [];
 
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-08-25-14:26)' style='height:200px'></textarea>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-08-31-23:31)' style='height:200px'></textarea>");
   $("#yql").attr("onclick", "getEnc()");
   if(localStorage.preset && localStorage.preset.length > 0){
    $("#preset").val(localStorage.preset);
@@ -45,8 +45,8 @@ var getEnc = function(retry){
       $("#mobile").val(pre[2]); 
      }
     }
-    var mobile = $("#mobile").val();
-    var orderId = $("#orderId").val();
+    var mobile = $("#mobile").val().trim();
+    var orderId = $("#orderId").val().trim();
     if(mobile && orderId){
       var u = 'https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/main/TDESEncryptByCMBCC.json?paramMap={"orderId":"'+orderId+'","mobile":"'+mobile+'"}';
       $.ajax({
@@ -76,9 +76,9 @@ var getUrl = function(data){
     var re = data.query.results;
     if(re){
       var str = re.reply.enStr;
-      var mobile = $("#mobile").val();
-      var code = $("#code").val();
-      var orderId = $("#orderId").val();
+      var mobile = $("#mobile").val().trim();;
+      var code = $("#code").val().trim();;
+      var orderId = $("#orderId").val().trim();;
       var u = "http://ms.lefone.cn/msflowday/couponShowController/showCoupon.do?enStr=" + encodeURIComponent(str);
       var result = "订单：" + orderId + " 码：" + code + " 手机号：" + mobile + " 充值链接：" + u;
       var extra = " 2款" + orderId;
