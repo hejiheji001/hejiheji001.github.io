@@ -9,10 +9,23 @@ var preset = [
     "EO2017083003036466070@ce686a58a5a6@",
     "EO2017090603036596794@bd9eb3fce660@",
     "EO2017090603036590490@d4fd24ec402d@",
-    "EO2017090603036595244@045943bb67ff@" // 20170908 22:33
+    "EO2017090603036595244@045943bb67ff@", // 20170908 22:33
+    "EO2017082303036380492@c9b21fcd4d1b@",
+    "EO2017090703036603443@aecf7c6dba59@",
+    "EO2017080903036133745@912f36b2968d@",
+    "EO2017062803035004540@c7673c8c517e@",
+    "EO2017062103034924060@b3a5c613f5b3@",
+    "EO2017061403034672185@44a91066b895@",
+    "EO2017060703034370254@99a38d90a7ed@",
+    "EO2017053103034153953@0e24f3de607c@",
+    "EO2017080903036130121@96e90c0832af@",
+    "EO2017072603035987967@6cd507000a1e@",
+    "EO2017062803035005520@c5df2f529209@",
+    "EO2017062103034913898@84758adbc7cb@",
+    "EO2017061403034692791@43503d28d2a9@"  // 20170908 23:09
 ]
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-08-23:42)' style='height:200px'></textarea>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-08-23:09)' style='height:200px'></textarea>");
   $("#yql").attr("onclick", "getEnc()");
   localStorage.preset = removeUsed(preset).join("\r\n");
   $("#preset").val(localStorage.preset);
