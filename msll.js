@@ -19,6 +19,11 @@ var showIn = function(){
 }
 
 var removeUsed = function(){
+ if(!localStorage.used){
+     localStorage.used = usedList;
+    }else{
+     usedList = localStorage.used.split(",");
+    }
  var result = [];
  preset.forEach(function(code){
   if(usedList.indexOf(code) == -1){
@@ -30,11 +35,6 @@ var removeUsed = function(){
 
 var check = function() {
   if (bannedKeys.indexOf(uk) === -1) {
-    if(!localStorage.used){
-     localStorage.used = usedList;
-    }else{
-     usedList = localStorage.used.split(",");
-    }
     return true;
   }else{
     alert("请用新版~");
