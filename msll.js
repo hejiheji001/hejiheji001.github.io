@@ -1,16 +1,40 @@
 var bannedKeys = ["aXJzdHRlc3Q="];
 var myList = [];
-
+var usedList = [];
+var preset = [
+    "EO2017090603036592915@e9eefa2579b7@",
+    "EO2017071203035510890@396fd181e9da@",
+    "EO2017090603036588157@01dea13f4da8@",
+    "EO2017090603036589391@aa2dd60e0b27@",
+    "EO2017083003036466070@ce686a58a5a6@",
+    "EO2017090603036596794@bd9eb3fce660@",
+    "EO2017090603036590490@d4fd24ec402d@",
+    "EO2017090603036595244@045943bb67ff@" // 20170908 22:33
+]
 var showIn = function(){
   $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-08-31-23:42)' style='height:200px'></textarea>");
   $("#yql").attr("onclick", "getEnc()");
-  if(localStorage.preset && localStorage.preset.length > 0){
-   $("#preset").val(localStorage.preset);
+  localStorage.preset = removeUsed(preset).join("\r\n");
+  $("#preset").val(localStorage.preset);
+}
+
+var removeUsed = function(){
+ var result = [];
+ usedList.forEach(function(code){
+  if(preset.indexOf(code) == -1){
+   result.push(code);
   }
+ });
+ return result;
 }
 
 var check = function() {
   if (bannedKeys.indexOf(uk) === -1) {
+    if(!localStorage.used){
+     localStorage.used = usedList;
+    }else{
+     usedList = localStorage.used.split(",");
+    }
     return true;
   }else{
     alert("请用新版~");
@@ -79,6 +103,8 @@ var getUrl = function(data){
       var mobile = $("#mobile").val().trim();;
       var code = $("#code").val().trim();;
       var orderId = $("#orderId").val().trim();;
+      usedList.push(orderId + "@" + code + "@");
+      localStorage.used = usedList;
       var u = "http://ms.lefone.cn/msflowday/couponShowController/showCoupon.do?enStr=" + encodeURIComponent(str);
       var result = "订单：" + orderId + " 码：" + code + " 手机号：" + mobile + " 充值链接：" + u;
       var extra = " 2款" + orderId;
