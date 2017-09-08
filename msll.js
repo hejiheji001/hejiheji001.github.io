@@ -20,8 +20,8 @@ var showIn = function(){
 
 var removeUsed = function(){
  var result = [];
- usedList.forEach(function(code){
-  if(preset.indexOf(code) == -1){
+ preset.forEach(function(code){
+  if(usedList.indexOf(code) == -1){
    result.push(code);
   }
  });
