@@ -25,10 +25,10 @@ var preset = [
     "EO2017061403034692791@43503d28d2a9@"  // 20170908 23:09
 ]
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-08-23:09)' style='height:200px'></textarea>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-09-11 23:09)' style='height:200px'></textarea>");
   $("#yql").attr("onclick", "getEnc()");
-  localStorage.preset = removeUsed(preset).join("\r\n");
-  $("#preset").val(localStorage.preset);
+  //localStorage.preset = removeUsed(preset).join("\r\n");
+ // $("#preset").val(localStorage.preset);
 }
 
 var removeUsed = function(){
