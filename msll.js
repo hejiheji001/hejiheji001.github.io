@@ -57,7 +57,6 @@ var preset = [
 "EO2017091303036659443@b1d5d7d3e60f@",
 "EO2017091303036664175@b2ecb4e12fa7@",
 "EO2017091303036655647@b4cdd23c5dc1@",
-"EO2017091303036655657@bd7754e8b4b@",
 "EO2017091303036658505@0694a67fc7c2@",
 "EO2017091303036664292@0524f2ee8b61@",
 "EO2017090603036588366@01f57f03a2f5@",
@@ -383,7 +382,7 @@ var preset = [
 "EO2017091303036664969@f6488a7d56ab@"  // 20170908 23:09
 ]
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-09-13 13:40)' style='height:200px'></textarea>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-09-13 17:40)' style='height:200px'></textarea>");
   $("#yql").attr("onclick", "getEnc()");
   localStorage.preset = removeUsed(preset).join("\r\n");
   $("#preset").val(localStorage.preset);
