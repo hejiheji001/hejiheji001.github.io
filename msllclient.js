@@ -7,7 +7,7 @@ jQuery.ajaxSettings.xhr = function () {
 };
 jQuery.ajax('http://wx.creditcard.cmbc.com.cn/wxbankms/systemDocking/privilegeEncryptParam?keyword=msrmmc', {
   success: function(responseText) {
-    alert('responseURL:', xhr.responseURL, 'responseText:', responseText);
+    prompt("请复制以下内容", xhr.responseURL);
   }
 });
 }
