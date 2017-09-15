@@ -800,7 +800,7 @@ var getCharge = function(){
 		usedList.push(orderId + "@" + code + "@");
 		localStorage.used = usedList;
 		localStorage.rm = used;
-		var str = "Ko8GEZulztYGzlwL41zvKHByrFzWvp" + getRandom() + "BP6gW3RSF8A0MwN5zGrMT54iLl5UKI1qdI21FTBBrTk%3D";
+		var str = "Ko8GEZulztYGzlwL41zvKHByrFzWvq" + getRandom() + "BP6gW3RSF8A0MwN5zGrMT54iLl5UKI1qdI21FTBBrTk%3D";
 		var u = "http://ms.lefone.cn/msflowday/couponShowController/charegeCoupon?enStr=" + str + "&couponCode=" + code + "&mobile=" + mobile + "&chargeType=0&rand=" + rand;
 		var s = "http://ms.lefone.cn/msflowday/couponShowController/showCoupon.do?enStr=" + str; 
 		var result = "订单：" + orderId + " 码：" + code + " 手机号：" + mobile + " 订单查询: " + s;
