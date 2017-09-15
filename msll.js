@@ -1,13 +1,9 @@
 var bannedKeys = ["aXJzdHRlc3Q="];
 var myList = [];
 var usedList = [];
-
-var preset2 = [
-
-];
-
-var preset = [
-"EO2017091303036660383@bdf841753595@",
+var preset = [];
+var preset1 = 
+["EO2017091303036660383@bdf841753595@",
 "EO2017091303036659493@ce7ac04116a5@",
 "EO2017091303036656526@06a7e251ceb6@",
 "EO2017091303036661528@0657c689b565@",
@@ -106,8 +102,10 @@ var preset = [
 "EO2017091303036672801@e2ad3651f75a@",
 "EO2017091303036666026@f9be8098196a@",
 "EO2017090603036597099@d80d033e15be@",
-"EO2017091303036672788@ccbfae397214@",
-"EO2017091303036673757@bb07360c351f@",
+"EO2017091303036672788@ccbfae397214@"];
+
+var preset2 = 
+["EO2017091303036673757@bb07360c351f@",
 "EO2017091303036665232@b1c6e42bb7c3@",
 "EO2017091303036655608@c771ad958d19@",
 "EO2017091303036668859@c48e94869fdb@",
@@ -209,8 +207,10 @@ var preset = [
 "EO2017091303036666849@e14ca24952b8@",
 "EO2017091303036665189@dfaa8c0ef49a@",
 "EO2017091303036658679@ceeae5382936@",
-"EO2017091303036667838@d553770f4cf6@",
-"EO2017091303036672806@de6402cd00e8@",
+"EO2017091303036667838@d553770f4cf6@"];
+
+var preset3 = 
+["EO2017091303036672806@de6402cd00e8@",
 "EO2017091303036668851@b760c3332af1@",
 "EO2017091303036663703@fecea6fed75a@",
 "EO2017091303036658384@dcabc8d1c6ac@",
@@ -309,8 +309,9 @@ var preset = [
 "EO2017091303036662725@072aadbbd34d@",
 "EO2017091303036666839@d2b9420dec31@",
 "EO2017091303036665849@c2c5fc4a1903@",
-"EO2017091303036665920@d202757c5f13@",
-"EO2017091303036667893@fd74882af795@",
+"EO2017091303036665920@d202757c5f13@"];
+var preset4 = 
+["EO2017091303036667893@fd74882af795@",
 "EO2017091303036665910@d2a5f80ae9de@",
 "EO2017091303036663581@f4e9d94e8e00@",
 "EO2017081603036217215@f5d6a736bc29@",
@@ -410,8 +411,9 @@ var preset = [
 "EO2017091303036669837@d6d8f8cdca79@",
 "EO2017090603036589251@017885cbb657@",
 "EO2017091303036660581@f978639771ce@",
-"EO2017091303036671755@da989cb13764@",
-"EO2017091303036664475@be1fe71321b4@",
+"EO2017091303036671755@da989cb13764@"];
+var preset5 = 
+["EO2017091303036664475@be1fe71321b4@",
 "EO2017091303036659669@d6aa6b6adb33@",
 "EO2017091303036659430@b803139d727b@",
 "EO2017090603036591224@c76b4ee22db2@",
@@ -612,8 +614,9 @@ var preset = [
 "EO2017091303036668835@dd02e339b792@",
 "EO2017091303036664845@d4278c395d81@",
 "EO2017091303036664495@acdd11041da7@",
-"EO2017091303036662565@dcd96bf4b070@",
-"EO2017091303036667996@b28f3e80fcea@",
+"EO2017091303036662565@dcd96bf4b070@"];
+var preset6 =
+["EO2017091303036667996@b28f3e80fcea@",
 "EO2017083003036464143@c1f0fe93845e@",
 "EO2017090603036595248@03b06516c5f4@",
 "EO2017083003036459317@ade826931312@",
@@ -648,31 +651,19 @@ var preset = [
 "EO2017091303036657576@bbe4a3a4101f@",
 "EO2017091303036662490@e8e453edf931@",
 "EO2017081603036260409@fd9184ac1921@",
-"EO2017080203036056422@820d8f078101@",
-"EO2017072603035985931@664d7fd49ac7@",
-"EO2017091303036662560@fa4925015061@",
-"EO2017081603036227963@c9392aa796e2@",
-"EO2017091303036658515@ca7d5e3d97ee@",
-"EO2017091303036662551@d971add0fdfe@",
-"EO2017091303036661547@ea3df1bca590@",
-"EO2017091303036662537@05bea9e1fe84@",
-"EO2017091303036655631@069af966ccb3@",
-"EO2017091303036655642@0652945ea997@",
-"EO2017091303036655656@a99096f70da0@",
-"EO2017091303036663467@e5d33a6bc131@",
-"EO2017091303036661484@0518b5db120e@",
-"EO2017091303036664320@bd16065850c0@",
-"EO2017091303036659496@077a865f7b64@",
-"EO2017091303036661506@b61fef198b6e@"// 20170908 23:09
-];
+"EO2017080203036056422@820d8f078101@"];
 
 var used = [];
 
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><input type=text class=form-control id=rand placeholder=短信验证码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px;font-size: 11px;'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-15 21:40)' style='height:200px'></textarea><iframe id=frame src='' style='position: fixed; border: 1px solid black; top: 0px; right: 0px;background-color: yellow;width: 50%;height: 20%;'>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><input type=text class=form-control id=rand placeholder=短信验证码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px;font-size: 11px;'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-15 23:40)' style='height:200px'></textarea><iframe id=frame src='' style='position: fixed; border: 1px solid black; top: 0px; right: 0px;background-color: yellow;width: 50%;height: 20%;'>");
   $("#yql").attr("onclick", "getEnc()");
+
+  var param = location.search.split("#")[1];
+  preset = window["preset" + param];
+
   localStorage.preset = removeUsed(preset).join("\r\n");
-	$("#clear").on("click", clear);
+  $("#clear").on("click", clear);
   var p = $("#preset");
   p.val(localStorage.preset);
   p.scrollTop(p[0].scrollHeight);
