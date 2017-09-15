@@ -750,7 +750,7 @@ var getEnc = function(retry){
  //          }
  //      });
 		$("#frame").attr("src", u);
-		$("#yql").text("如果黄色框文字中包含true表示验证码发送成功");
+		$("#yql").text("如果黄色框文字中包含true表示验证码发送成功 点击可以重发验证码");
     }else{
       alert("缺少数据");
       $("#yql").removeAttr("disabled"); 
@@ -777,7 +777,7 @@ var getUrl = function(data){
 var getRandom = function(){
 	var text = "";
 	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	for (var i = 2; i >= 0; i--) {
+	for (var i = 2; i > 0; i--) {
 		text += possible.charAt(Math.floor(Math.random() * possible.length));
 	};
 	if(used.indexOf(text) == -1){
@@ -786,6 +786,13 @@ var getRandom = function(){
 	}else{
 		return getRandom();
 	}
+}
+
+var clear = function(){
+	$("#mobile").val("");
+	$("#code").val("");
+	$("#orderId").val("");
+	$("#rand").val("");
 }
 
 var getCharge = function(){
@@ -805,11 +812,7 @@ var getCharge = function(){
 		$("#frame").attr("src", u);
 		$.get("https://pushbear.ftqq.com/sub?sendkey=751-9616f3ff7deb3cdfda6f4f547ab5b153&text=流量充值"+extra+"&desp=" + result)
 		$("#result").val(result);
-		$("#yql").text("请看黄色框中充值结果");
-		$("#mobile").val("");
-		$("#code").val("");
-		$("#orderId").val("");
-		$("#rand").val("");
+		$("#charge").text("请看黄色框中充值结果");
 	}else{
 		alert("缺少验证码");
 	}
