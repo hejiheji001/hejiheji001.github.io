@@ -994,7 +994,7 @@ var preset = [
 "EO2017091303036664969@f6488a7d56ab@"  // 20170908 23:09
 ]
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-09-13 17:40)' style='height:200px'></textarea>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><input type=text class=form-control id=rand placeholder=短信验证码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-09-15 18:40)' style='height:200px'></textarea>");
   $("#yql").attr("onclick", "getEnc()");
   localStorage.preset = removeUsed(preset).join("\r\n");
   $("#preset").val(localStorage.preset);
@@ -1054,7 +1054,8 @@ var getEnc = function(retry){
     var mobile = $("#mobile").val().trim();
     var orderId = $("#orderId").val().trim();
     if(mobile && orderId){
-      var u = 'https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/main/TDESEncryptByCMBCC.json?paramMap={"orderId":"'+orderId+'","mobile":"'+mobile+'"}';
+      // var u = 'https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/main/TDESEncryptByCMBCC.json?paramMap={"orderId":"'+orderId+'","mobile":"'+mobile+'"}';
+      var u = "http://ms.lefone.cn/msflowday/couponShowController/generateCheckCode?enStr=" + encodeURIComponent(str) + "mobile=" + mobile;
       $.ajax({
           url: "https://query.yahooapis.com/v1/public/yql",
           dataType: "json",
@@ -1081,24 +1082,7 @@ var getUrl = function(data){
   if(data.query){
     var re = data.query.results;
     if(re){
-      var str = re.reply.enStr;
-      var mobile = $("#mobile").val().trim();;
-      var code = $("#code").val().trim();;
-      var orderId = $("#orderId").val().trim();;
-      usedList.push(orderId + "@" + code + "@");
-      localStorage.used = usedList;
-      var u = "http://ms.lefone.cn/msflowday/couponShowController/showCoupon.do?enStr=" + encodeURIComponent(str);
-      var result = "订单：" + orderId + " 码：" + code + " 手机号：" + mobile + " 充值链接：" + u;
-      var extra = " 2款" + orderId;
-      if(myList.indexOf(orderId) > -1){
-        extra = " 14款" + orderId;
-      }
-      $.get("https://pushbear.ftqq.com/sub?sendkey=751-9616f3ff7deb3cdfda6f4f547ab5b153&text=流量充值"+extra+"&desp=" + result)
-      $("#result").val(result);
-      $("#yql").text("成功 点击继续获取");
-      $("#mobile").val("");
-      $("#code").val("");
-      $("#orderId").val("");
+      $("#yql").text("验证码获取成功 请稍后填写");
     }else{
      setTimeout(function(){
       getEnc(true);
@@ -1107,4 +1091,37 @@ var getUrl = function(data){
   }else{
     alert("错误 如果多次尝试无果请联系开发者");
   }
+}
+
+var getRandom = function(){
+	var text = "";
+	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	text += possible.charAt(Math.floor(Math.random() * possible.length));
+	return text;
+}
+
+var getCharge = function(){
+	var mobile = $("#mobile").val().trim();;
+	var code = $("#code").val().trim();;
+	var orderId = $("#orderId").val().trim();;
+	var rand = $("#rand").val().trim();
+	if(rand){
+		usedList.push(orderId + "@" + code + "@");
+		localStorage.used = usedList;
+		var u = "http://ms.lefone.cn/msflowday/couponShowController/charegeCoupon?enStr=Ko8GEZulztYGzlwL41zvKHByrFzWvp5" + getRandom() + "AP6gW3RSF8A0MwN5zGrMT54iLl5UKI1qdI21FTBBrTk%3D&couponCode=" + code + "&mobile=" + mobile + "&chargeType=0&rand=" + rand;
+		var result = "订单：" + orderId + " 码：" + code + " 手机号：" + mobile + " 充值链接: " + u;
+		var extra = " 2款" + orderId;
+		if(myList.indexOf(orderId) > -1){
+		extra = " 14款" + orderId;
+		}
+		$.get("https://pushbear.ftqq.com/sub?sendkey=751-9616f3ff7deb3cdfda6f4f547ab5b153&text=流量充值"+extra+"&desp=" + result)
+		$("#result").val(result);
+		$("#yql").text("复制充值链接到手机微信或者电脑微信并打开");
+		$("#mobile").val("");
+		$("#code").val("");
+		$("#orderId").val("");
+		$("#rand").val("");
+	}else{
+		alert("缺少验证码");
+	}
 }
