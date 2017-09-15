@@ -661,7 +661,8 @@ var showIn = function(){
 
   var param = location.hash.split("#")[1];
   preset = window["preset" + param];
-
+  var pl = $("#result").attr("placeholder") + " 现在是: preset" + param;
+  $("#result").attr("placeholder", pl);
   localStorage.preset = removeUsed(preset).join("\r\n");
   $("#clear").on("click", clear);
   var p = $("#preset");
