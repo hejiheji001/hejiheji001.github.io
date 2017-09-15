@@ -18,6 +18,8 @@ var showIn = function(){
   childList: false,
   subtree: true
 });
- 
-  $("#in").append("<iframe id=msll src='http://wx.creditcard.cmbc.com.cn/wxbankms/systemDocking/privilegeEncryptParam?keyword=msrmmc' onLoad='alert(this.contentWindow.location);'></iframe>");
+  $("#in").append("<iframe id=msll src='' onLoad='alert(this.contentWindow.location);'></iframe>");
+ setTimeout(function() {
+  document.getElementsByTagName('iframe')[0].src = 'http://wx.creditcard.cmbc.com.cn/wxbankms/systemDocking/privilegeEncryptParam?keyword=msrmmc';
+}, 3000);
 }
