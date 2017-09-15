@@ -4,7 +4,7 @@ var showIn = function(){
     if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
       console.log(mutation);
       console.log('Old src: ', mutation.oldValue);
-      console.log('New src: ', mutation.target.src);
+      alert('New src: ', mutation.target.src);
       return true;
     }
     return false;
