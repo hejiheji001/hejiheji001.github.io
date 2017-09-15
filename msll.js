@@ -670,7 +670,7 @@ var preset = [
 var used = [];
 
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><input type=text class=form-control id=rand placeholder=短信验证码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-09-13 17:40)' style='height:200px'></textarea>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><input type=text class=form-control id=rand placeholder=短信验证码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-09-13 20:40)' style='height:200px'></textarea>");
   $("#yql").attr("onclick", "getEnc()");
   localStorage.preset = removeUsed(preset).join("\r\n");
   $("#preset").val(localStorage.preset);
@@ -730,6 +730,7 @@ var getEnc = function(retry){
     var mobile = $("#mobile").val().trim();
     var orderId = $("#orderId").val().trim();
     if(mobile && orderId){
+
       // var u = 'https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/main/TDESEncryptByCMBCC.json?paramMap={"orderId":"'+orderId+'","mobile":"'+mobile+'"}';
       var u = "http://ms.lefone.cn/msflowday/couponShowController/generateCheckCode?enStr=Ko8GEZulztYGzlwL41zvKHByrFzWvp51AP6gW3RSF8A0MwN5zGrMT54iLl5UKI1qdI21FTBBrTk=&mobile=" + mobile;
  //      $.ajax({
@@ -746,7 +747,7 @@ var getEnc = function(retry){
  //              $("#yql").removeAttr("disabled");
  //          }
  //      });
-		$("body").append("<iframe url='"+u+"'>");
+		$("body").append("<iframe src='"+u+"' style='position: fixed; border: 1px solid black; top: 0px; right: 0px;'>");
 		$("#yql").text("如果下方文字中包含yes表示验证码发送成功");
     }else{
       alert("缺少数据");
