@@ -901,9 +901,10 @@ var preset1 =
 var used = [];
 
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><input type=text class=form-control id=rand placeholder=短信验证码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px;font-size: 11px;'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-16 14:14)' style='height:200px'></textarea><iframe id=frame src='' style='position: fixed; border: 1px solid black; top: 0px; right: 0px;background-color: yellow;width: 50%;height: 20%;'>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px;font-size: 11px;'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-16 14:14)' style='height:200px'></textarea>");
   $("#yql").attr("onclick", "getEnc()");
-  
+  $("#charge").remove();
+  $("#yql").text("获取链接");
   var param = location.hash.split("#")[1];
   preset = window["preset" + param];
   var pl = $("#result").attr("placeholder") + " 现在是: preset" + param;
@@ -959,7 +960,7 @@ var readLine = function(){
 var getEnc = function(retry){
   var valid = check();
   if(valid){
-    $("#yql").text("正在获取...");
+    //$("#yql").text("正在获取...");
  //    $("#yql").attr("disabled", "disabled");
     if(!retry){
      var pre = readLine();
@@ -1062,6 +1063,6 @@ var getCharge = function(){
 		$("#result").val(result);
 		//$("#charge").text("请看黄色框中充值结果");
 	//}else{
-		alert("缺少验证码");
+		//alert("缺少验证码");
 	//}
 }
