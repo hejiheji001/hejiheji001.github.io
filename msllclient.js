@@ -12,8 +12,8 @@ var showIn = function(){
     str = param[0];
     code = param[1];
     mobile = param[2];
-    var newVersion = title + " 仅限手机号" + mobile;
-    $("h3").text(newVersion);
+    var newVersion = title + "</br>仅限手机号" + mobile;
+    $("h3").html(newVersion);
     $("#charge").attr("onclick", "charge()");
     valid = true;
   }else{
