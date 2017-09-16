@@ -12,7 +12,7 @@ var offset = 0;
 var start = 0;
 var end = 0;
 var expire = -1;
-var version = "V25"; //   测速专用【任务提交】后 截图 
+var version = "V26"; //   测速专用【任务提交】后 截图 
 //window.debugTime = 60;
 //window.debugCount = true
 var bannedKeys = ["mc8JMHI0ruT72Qjj+QtRapGUpErdlow7", "iQwav5NeSXemoCx8btat4PWy7t15xElb", "DEy/AhSDHHhXV2xqXy6M22B1QlO/tZdQ", "5/tIPVTQ1obWMNy2rSXqAw9/b8gwbOUn", "m6G0Y3ZkupsgGKSkxMyl+QJN06Cim9pK", "mq5so3qH+Lm+aDKN3xGaOVWGHNwGkBHy", "pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP", "pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS", "6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
@@ -113,7 +113,7 @@ var checkCaptcha = function(callback, url) {
         }
 	
         $.ajax({
-            url: "http://jsonp.herokuapp.com/",
+            url: "http://cors-proxy.htmldriven.com",
             dataType: "json",
             timeout: limit,
             data: {
@@ -327,7 +327,7 @@ var handleCountdown = function(result) {
     var hintDom = $("#autobuy");
     hintDom.attr("onclick", "getCountDown();");
     if (result) {
-        var data = result;
+        var data = JSON.parse(result.body);
         var countDownTimes = window.debugTime || data.reply.countDownTimes;
         var isCountDown = window.debugCount || data.reply.isCountDown;
         var countNumAdd = countDownTimes + 1; 
