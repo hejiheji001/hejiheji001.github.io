@@ -12,8 +12,9 @@ var showIn = function(){
     str = param[0];
     code = param[1];
     mobile = param[2];
-    var newVersion = title + "仅限手机号" + mobile;
+    var newVersion = title + " 仅限手机号" + mobile;
     $("h3").text(newVersion);
+    valid = true;
   }else{
     $("h3").text("缺乏必要数据");
   }
