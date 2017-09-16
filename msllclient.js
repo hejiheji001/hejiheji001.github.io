@@ -3,7 +3,7 @@ var code;
 var mobile;
 
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=rand placeholder=短信验证码><iframe id=frame src='' style='position: fixed; border: 1px solid black; top: 100px; left: 0px;background-color: yellow;width: 100%;height: 20%;'>");
+  $("#in").append("<input type=text class=form-control id=rand placeholder=短信验证码><iframe id=frame src='' style='position: fixed; border: 1px solid black; top: 90px; left: 0px;background-color: yellow;width: 100%;height: 20%;'>");
   $("#charge").attr("onclick", "getEnc()");
   var param = atob(location.search.split("param=")[1]).split("#");
   str = param[0];
