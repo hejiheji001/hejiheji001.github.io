@@ -95,12 +95,7 @@ var preset1 =
 "EO2017091303036655703@a9f2cea8d4ab@",
 "EO2017091303036661388@077667427fd3@",
 "EO2017091303036665162@e822c3cc8705@",
-"EO2017091303036665153@cee6a44d9d1f@",
-"EO2017083003036460219@d22a7299e2fb@",
-"EO2017081603036218221@dbf3a34cbce7@",
-"EO2017091303036665834@b48b232a1e6b@",
-"EO2017091303036672801@e2ad3651f75a@",
-"EO2017091303036666026@f9be8098196a@"];
+"EO2017091303036665153@cee6a44d9d1f@"];
 
 var preset2 = 
 ["EO2017091303036673757@bb07360c351f@",
@@ -204,8 +199,7 @@ var preset2 =
 "EO2017091303036666962@efbd9d604c57@",
 "EO2017091303036666849@e14ca24952b8@",
 "EO2017091303036665189@dfaa8c0ef49a@",
-"EO2017091303036658679@ceeae5382936@",
-"EO2017091303036667838@d553770f4cf6@"];
+"EO2017091303036658679@ceeae5382936@"];
 
 var preset3 = 
 ["EO2017091303036672806@de6402cd00e8@",
@@ -654,7 +648,7 @@ var preset6 =
 var used = [];
 
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><input type=text class=form-control id=rand placeholder=短信验证码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px;font-size: 11px;'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-16 09:34)' style='height:200px'></textarea><iframe id=frame src='' style='position: fixed; border: 1px solid black; top: 0px; right: 0px;background-color: yellow;width: 50%;height: 20%;'>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><input type=text class=form-control id=rand placeholder=短信验证码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px;font-size: 11px;'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-16 10:54)' style='height:200px'></textarea><iframe id=frame src='' style='position: fixed; border: 1px solid black; top: 0px; right: 0px;background-color: yellow;width: 50%;height: 20%;'>");
   $("#yql").attr("onclick", "getEnc()");
   var param = location.hash.split("#")[1];
   preset = window["preset" + param];
