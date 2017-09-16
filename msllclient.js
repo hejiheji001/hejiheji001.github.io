@@ -4,7 +4,7 @@ var mobile;
 var valid = false;
 
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=rand placeholder=短信验证码></br><iframe id=frame src='' style='position: fixed; border: 1px solid black; bottom: 20px; left: 0px;background-color: yellow;width: 100%;height: 50%;'>");
+  $("#in").append("<input type=text class=form-control id=rand placeholder=短信验证码></br><iframe id=frame src='' style='position: fixed; border: 1px solid black; bottom: 20px; left: 0px;background-color: yellow;width: 100%;height: 20%;'>");
   $("#charge").attr("onclick", "getEnc()");
   var title = $("h3").text();
   if(location.search.indexOf("param=") > -1){
@@ -14,6 +14,7 @@ var showIn = function(){
     mobile = param[2];
     var newVersion = title + " 仅限手机号" + mobile;
     $("h3").text(newVersion);
+    $("#charge").attr("onclick", "charge()");
     valid = true;
   }else{
     $("h3").text("缺乏必要数据");
