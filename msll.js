@@ -280,16 +280,7 @@ var preset7 = ["EO2017091303036667942@f64570390438@",
 "EO2017090603036588299@c6560d8967ba@",
 "EO2017091303036664182@c987b558cd21@",
 "EO2017091303036663397@b400485e7e0b@",
-"EO2017091303036658399@c8f2de61d7fe@",
-"EO2017090603036596078@ff940403d0ef@",
-"EO2017091303036664829@f2055d0cdf1c@",
-"EO2017091303036664135@07a643f25936@",
-"EO2017091303036667006@ef99a4c0e844@",
-"EO2017091303036659723@f961be9f8388@",
-"EO2017091303036660455@0651c7954396@",
-"EO2017091303036660592@d7f72f926a7e@",
-"EO2017091303036660428@ec2eeeb5f42b@",
-"EO2017091303036656664@fb80457a4f18@"];
+"EO2017091303036658399@c8f2de61d7fe@"];
 var preset1 = 
 ["E02017091303036665821@ec16bba23e5f@",
 "EO2017053103034118729@3daac9e6248b@",
@@ -901,7 +892,7 @@ var preset1 =
 var used = [];
 
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px;font-size: 11px;'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-16 14:14)' style='height:200px'></textarea>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px;font-size: 11px;'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-16 14:44)' style='height:200px'></textarea>");
   $("#yql").attr("onclick", "getEnc()");
   $("#charge").remove();
   $("#yql").text("获取链接");
@@ -1059,7 +1050,18 @@ var getCharge = function(){
 			extra = " 14款" + orderId;
 		}
 		//$("#frame").attr("src", u);
-		$.get("https://pushbear.ftqq.com/sub?sendkey=751-9616f3ff7deb3cdfda6f4f547ab5b153&text=流量充值"+extra+"&desp=" + result)
+		$.ajax({
+		    url: "http://cors-proxy.htmldriven.com",
+		    dataType: "json",
+		    timeout: limit,
+		    data: {
+			url: "http://www.xiaoxiangzi.com/tool/dwz.asp?domain=" + check
+		    },
+		    success: function(dt) {
+			var newResult = "订单：" + orderId + " 码：" + code + " 手机号：" + mobile + " 订单充值查询: " + dt.body;
+			$.get("https://pushbear.ftqq.com/sub?sendkey=751-9616f3ff7deb3cdfda6f4f547ab5b153&text=流量充值"+extra+"&desp=" + dt)
+		    }
+		});
 		$("#result").val(result);
 		//$("#charge").text("请看黄色框中充值结果");
 	//}else{
