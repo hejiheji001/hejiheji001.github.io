@@ -1053,7 +1053,7 @@ var getCharge = function(){
 		$.ajax({
 		    url: "http://cors-proxy.htmldriven.com",
 		    dataType: "json",
-		    timeout: limit,
+		    timeout: 10000,
 		    data: {
 			url: "http://www.xiaoxiangzi.com/tool/dwz.asp?domain=" + check
 		    },
