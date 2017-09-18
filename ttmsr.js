@@ -113,11 +113,12 @@ var checkCaptcha = function(callback, url) {
         }
 	
         $.ajax({
-            url: "http://cors-proxy.htmldriven.com",
+            url: "https://query.yahooapis.com/v1/public/yql",
             dataType: "json",
             timeout: limit,
             data: {
-                url: u
+		format: "json",
+                q: $("#autobuy").data("ql") + u + $("#autobuy").data("qr")
             },
             success: callback,
             error: function(c, u) {
@@ -180,8 +181,8 @@ var handleReBuy = function(extra){
 			console.log("YQLS" + (new Date()));
 			checkCaptcha(function(result){
 				console.log("YQLE" + (new Date()));
-				if (result) {
-					var msg = result.reply.orderMessage;
+				if (result.query.results) {
+					var msg = result.query.results.reply.orderMessage;
 					if(msg){
 						hintDom.text(msg + " 继续抢购中");
 						if (-1 < msg.indexOf("支付")) {
@@ -326,8 +327,8 @@ var handleCountdown = function(result) {
     }
     var hintDom = $("#autobuy");
     hintDom.attr("onclick", "getCountDown();");
-    if (result) {
-        var data = JSON.parse(result.body);
+    if (result.query.results) {
+        var data = result.query.results;
         var countDownTimes = window.debugTime || data.reply.countDownTimes;
         var isCountDown = window.debugCount || data.reply.isCountDown;
         var countNumAdd = countDownTimes + 1; 
@@ -374,8 +375,8 @@ var handleCountdown = function(result) {
 var handleCaptcha = function(result) {
     var hintDom = $("#autobuy");
     console.log("handleCaptcha");
-    if (result) {
-        var msg = result.reply.orderMessage;
+    if (result.query.results) {
+        var msg = result.query.results.reply.orderMessage;
         if(msg){
             hintDom.text(msg);
             if (-1 < msg.indexOf("尚未开始")) {
