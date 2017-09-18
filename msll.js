@@ -1047,7 +1047,7 @@ var getCharge = function(){
 		var check = "http://sc.ftqq.com/?c=talkadmin&a=hookdetail&readtoken=59bcbf7b76f8d&wid=24674&param=" + btoa(str + "#" + code + "#" + mobile);
 		var result = "订单：" + orderId + " 码：" + code + " 手机号：" + mobile + " 订单充值查询: " + check;
 	        $("#frame").attr("src", info);
-	        $("#yql").text("请确认黄色框中显示乱码 否则再点我一次");
+	        $("#yql").text("请确认黄色框中显示乱码 否则【刷新后】再点我一次");
 		var extra = " 2款" + orderId;
 		if(myList.indexOf(orderId) > -1){
 			extra = " 14款" + orderId;
