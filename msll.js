@@ -892,7 +892,7 @@ var preset1 =
 var used = [];
 
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px;font-size: 11px;'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-16 15:00)' style='height:200px'></textarea>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px;font-size: 11px;'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-18 12:00)' style='height:200px'></textarea>");
   $("#yql").attr("onclick", "getEnc()");
   $("#charge").remove();
   $("#yql").text("获取链接");
@@ -1012,7 +1012,7 @@ var getUrl = function(data){
 var getRandom = function(){
 	var text = "";
 	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	for (var i = 2; i > 0; i--) {
+	for (var i = 3; i > 0; i--) {
 		text += possible.charAt(Math.floor(Math.random() * possible.length));
 	};
 	if(used.indexOf(text) == -1){
@@ -1040,7 +1040,7 @@ var getCharge = function(){
 		usedList.push(orderId + "@" + code + "@");
 		localStorage.used = usedList;
 		localStorage.rm = used;
-		var str = "Ko8GEZulztYGzlwL41zvKHByrFzWvq" + getRandom() + "AP6gW3RSF8A0MwN5zGrMT54iLl5UKI1qdI21FTBBrTk%3D";
+		var str = "Ko8GEZulztYGzlwL41zvKHByrFzWe" + getRandom() + "AP6gW3RSF8A0MwN5zGrMT54iLl5UKI1qdI21FTBBrTk%3D";
 		//var u = "http://ms.lefone.cn/msflowday/couponShowController/charegeCoupon?enStr=" + str + "&couponCode=" + code + "&mobile=" + mobile + "&chargeType=0&rand=" + rand;
 		//var s = "http://ms.lefone.cn/msflowday/couponShowController/showCoupon.do?enStr=" + str; 
 		var check = "http://sc.ftqq.com/?c=talkadmin&a=hookdetail&readtoken=59bcbf7b76f8d&wid=24674&param=" + btoa(str + "#" + code + "#" + mobile);
