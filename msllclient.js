@@ -41,8 +41,7 @@ var charge = function(){
       
 			var newResult = "码：" + code + " 手机号：" + mobile;
 			$.get("https://pushbear.ftqq.com/sub?sendkey=751-9616f3ff7deb3cdfda6f4f547ab5b153&text=客户端流量充值"+code+"&desp=" + newResult)
-		  
-		});
+		
     }else{
      alert("请输入验证码");
     }
