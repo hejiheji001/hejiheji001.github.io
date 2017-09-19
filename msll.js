@@ -2,7 +2,7 @@ var bannedKeys = ["aXJzdHRlc3Q="];
 var myList = [];
 var usedList = [];
 var preset = [];
-var preset 2 = ["EO2017091303036658453@064ac303a5d6@",
+var preset2 = ["EO2017091303036658453@064ac303a5d6@",
 "EO201709130303666170@1b7c82bf2b7bc@",
 "EO2017091303036670840@b59761c7105c@",
 "EO2017091303036665904@d2d9fa43c4e2@",
