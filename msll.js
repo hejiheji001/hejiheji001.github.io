@@ -268,10 +268,11 @@ var showIn = function(){
   $("#yql").text("获取链接");
   var param = location.hash.split("#")[1];
   preset = window["preset" + param];
-  $("#result").attr("placeholder", pl);
+  
   var latest = removeUsed(preset);
   localStorage.preset = latest.join("\r\n");
   var pl = $("#result").attr("placeholder") + " 现在是: preset" + param + " 剩余码子数量：" + latest.length;	
+  $("#result").attr("placeholder", pl);
   if(localStorage.preset.length == 0){
    prompt("复制里面的内容并发我，检查码子使用情况", localStorage.used);
   }
