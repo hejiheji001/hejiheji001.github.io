@@ -20,40 +20,7 @@ var preset2 =
 "EO2017083003036458350@d99f040bc058@",
 "EO2017091303036664306@bfdd72edcb4f@",
 "EO2017082303036382387@db8860b6c8db@",
-"EO2017082303036386647@f69518146f13@",
-"EO2017091303036659671@e2869c301d56@",
-"EO2017091303036659701@bed991b6ccc9@",
-"EO2017091303036665255@fe5be2e7a535@",
-"EO2017091303036669839@ffbc01ed6113@",
-"EO2017091303036666963@e37c0f41567e@",
-"EO2017091303036663579@f0402dcfea5b@",
-"EO2017091303036667883@fa5600e94791@",
-"EO2017081603036216929@f0bc34357423@",
-"EO2017091303036669831@db09f6efcd16@",
-"EO2017091303036665888@fee8d1308da6@",
-"EO2017091303036664596@e3767f179714@",
-"EO2017083003036460925@bb9debe3fb80@",
-"EO2017091303036670873@e122b4b077e4@",
-"EO2017091303036662550@c833bea26d1d@",
-"EO2017082303036389568@ecb8ec46d275@",
-"EO2017072603035980655@6188e61cce53@",
-"EO2017091303036669892@e6ea4c2b731a@",
-"EO2017091303036667016@ec862119e27f@",
-"EO2017091303036664523@f888ae261323@",
-"EO2017091303036670885@dbcfc7fc676f@",
-"EO2017091303036663588@ee026a2f8c13@",
-"EO2017080203036049441@7e2f276df8e6@",
-"EO2017091303036673798@ad2866616b4c@",
-"EO2017082303036386593@e064bb93c27e@",
-"EO2017091303036663536@b2d798ec257f@",
-"EO2017091303036662521@066e2ed9ba6b@",
-"EO2017080903036125111@94b568756ecc@",
-"EO2017071203035430022@2f2e890be2e0@",
-"EO2017071903035774856@528a75af9cb6@",
-"EO2017080203036048332@794019cb82cc@",
-"EO2017080903036132868@8e5e52f5a99f@",
-"EO2017081603036223986@a70ceacf504c@",
-"EO2017081603036278145@f3aed53863a6@"];
+"EO2017082303036386647@f69518146f13@"];
 
 var preset7 = ["EO2017091303036667942@f64570390438@",
 "EO2017080203036053241@7791e994c18f@",
@@ -945,7 +912,7 @@ var preset1 =
 var used = [];
 
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px;font-size: 11px;'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-20 13:47)' style='height:200px'></textarea><iframe id=frame src='' style='position: fixed; border: 1px solid black; top: 0px; right: 0px;background-color: yellow;width: 40%;height: 20%;'>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px;font-size: 11px;'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-20 14:47)' style='height:200px'></textarea><iframe id=frame src='' style='position: fixed; border: 1px solid black; top: 0px; right: 0px;background-color: yellow;width: 40%;height: 20%;'>");
   $("#yql").attr("onclick", "getEnc()");
   $("#charge").remove();
   $("#yql").text("获取链接");
