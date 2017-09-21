@@ -102,6 +102,7 @@ var pausecomp = function(millis) {
 var checkCaptcha = function(callback, url) {
     retryCap--;
     console.log("checkCaptcha");
+    jsonproxy = Math.floor(Math.random() * 2);
     var limit = 6000;	
     if (0 < retryCap) {
         var u = getOrder();
