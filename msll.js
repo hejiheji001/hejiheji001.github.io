@@ -104,8 +104,8 @@ var getEnc = function(retry){
      if(pre.length === 4){
       $("#orderId").val(pre[0].trim()); 
       $("#code").val(pre[1].trim());
-      $("#mobile").val(pre[2].trim());
-      $("#enc").val(pre[3].trim());
+      $("#mobile").val(pre[3].trim());
+      $("#enc").val(pre[2].trim());
      }
     }
     var mobile = $("#mobile").val().trim();
