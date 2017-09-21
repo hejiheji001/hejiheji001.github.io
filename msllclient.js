@@ -9,13 +9,15 @@ var showIn = function(){
   var title = $("h3").text();
   if(location.search.indexOf("param=") > -1){
     var param = atob(location.search.split("param=")[1]).split("#");
-    str = param[0];
-    code = param[1];
-    mobile = param[2];
-    var newVersion = title + "</br>仅限手机号" + mobile;
-    $("h3").html(newVersion);
-    $("#charge").attr("onclick", "charge()");
-    valid = true;
+
+	str = param[0];
+	code = param[1];
+	mobile = param[2];
+	var newVersion = title + "</br>仅限手机号" + mobile;
+	$("h3").html(newVersion);
+	$("#charge").attr("onclick", "charge()");
+	valid = true;
+    
   }else{
     $("h3").text("缺乏必要数据");
   }
@@ -23,7 +25,7 @@ var showIn = function(){
 
 var getRand = function(){
   if(valid){
-    var randURL = "http://ms.lefone.cn/msflowday/couponShowController/generateCheckCode?enStr=Ko8GEZulztYGzlwL41zvKHByrFzWvp51AP6gW3RSF8A0MwN5zGrMT54iLl5UKI1qdI21FTBBrTk=&mobile=" + mobile;
+    var randURL = "http://ms.lefone.cn/msflowday/couponShowController/generateCheckCode?enStr=UmGdgjarlMgUUcyuaagJoXIIQ3DK44FsD5G00suinyka7hNvFpPqJcBsljrtwJKX2aBuNTC8Jqw=&mobile=" + mobile;
     $("#frame").attr("src", randURL);
     $("#rand").text("黄色框文字包含true表示短信发送成功 90秒有效");
   }else{
