@@ -24,9 +24,9 @@ var presetX =
 
 var preset3 = [];
 var preset1 = [
-	"EO2017081603036214964@dbdecfd4f8e7@UmGdgjarlMiIaazfERBDfAPv12XU9g5BlR0yYbyjPaxRpJVhQ7c8HWnsPGyD0beS2aBuNTC8Jqw=",
-	"EO2017092003036767302@bbdaa7bc3585@UmGdgjarlMiIaazfERBDfAPv12XU9g5B8H7qid6l+rQqAjao/kbwtKROlkMX61NI2aBuNTC8Jqw=",
-	"EO2017092003036774839@f1a854f1b2c3@UmGdgjarlMiIaazfERBDfAPv12XU9g5Bjrgy0xKi3ceW2Q4olJV/fCcLdJSYFuzP2aBuNTC8Jqw="
+	"EO2017081603036214964@dbdecfd4f8e7@UmGdgjarlMiIaazfERBDfAPv12XU9g5BlR0yYbyjPaxRpJVhQ7c8HWnsPGyD0beS2aBuNTC8Jqw=@",
+	"EO2017092003036767302@bbdaa7bc3585@UmGdgjarlMiIaazfERBDfAPv12XU9g5B8H7qid6l+rQqAjao/kbwtKROlkMX61NI2aBuNTC8Jqw=@",
+	"EO2017092003036774839@f1a854f1b2c3@UmGdgjarlMiIaazfERBDfAPv12XU9g5Bjrgy0xKi3ceW2Q4olJV/fCcLdJSYFuzP2aBuNTC8Jqw=@"
 ];
 var used = [];
 
@@ -190,11 +190,11 @@ var getCharge = function(){
 		usedList.push(orderId + "@" + code + "@" + enc + "@");
 		localStorage.used = usedList;
 		//localStorage.rm = used;
-		var str = "UmGdgjarlMgUUcyuaagJoXIIQ3DK44FsD5G00suinyka7hNvFpPqJcBsljrtwJKX2aBuNTC8Jqw%3D";
+		//var str = "UmGdgjarlMgUUcyuaagJoXIIQ3DK44FsD5G00suinyka7hNvFpPqJcBsljrtwJKX2aBuNTC8Jqw%3D";
 		//var u = "http://ms.lefone.cn/msflowday/couponShowController/charegeCoupon?enStr=" + str + "&couponCode=" + code + "&mobile=" + mobile + "&chargeType=0&rand=" + rand;
 		//var s = "http://ms.lefone.cn/msflowday/couponShowController/showCoupon.do?enStr=" + str; 
 	        //var info = "http://ms.lefone.cn/msflowday/couponShowController/getCouponInfo?enStr=" + str;
-		var check = "http://sc.ftqq.com/?c=talkadmin&a=hookdetail&readtoken=59bcbf7b76f8d&wid=24674&param=" + btoa(str + "#" + code + "#" + mobile + "#" + enc);
+		var check = "http://sc.ftqq.com/?c=talkadmin&a=hookdetail&readtoken=59bcbf7b76f8d&wid=24674&param=" + btoa(enc + "#" + code + "#" + mobile);
 		var result = "订单：" + orderId + " 码：" + code + " 手机号：" + mobile + " 订单充值查询: " + check;
 	        //$("#frame").attr("src", info);
 	        //$("#yql").text("请确认黄色框中显示乱码 否则【记录码子并刷新后】再点我一次");
