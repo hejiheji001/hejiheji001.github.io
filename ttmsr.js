@@ -12,7 +12,8 @@ var offset = 0;
 var start = 0;
 var end = 0;
 var expire = -1;
-var version = "V26"; //   测速专用【任务提交】后 截图 
+var jsonproxy = Math.floor(Math.random() * 2);
+var version = "V27"; //   测速专用【任务提交】后 截图 
 //window.debugTime = 60;
 //window.debugCount = true
 var bannedKeys = ["mc8JMHI0ruT72Qjj+QtRapGUpErdlow7", "iQwav5NeSXemoCx8btat4PWy7t15xElb", "DEy/AhSDHHhXV2xqXy6M22B1QlO/tZdQ", "5/tIPVTQ1obWMNy2rSXqAw9/b8gwbOUn", "m6G0Y3ZkupsgGKSkxMyl+QJN06Cim9pK", "mq5so3qH+Lm+aDKN3xGaOVWGHNwGkBHy", "pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP", "pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS", "6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
@@ -111,20 +112,34 @@ var checkCaptcha = function(callback, url) {
 			start = (new Date()).getTime();
 		}
         }
-	
-        $.ajax({
-            url: "https://query.yahooapis.com/v1/public/yql",
-            dataType: "json",
-            timeout: limit,
-            data: {
-		format: "json",
-                q: $("#autobuy").data("ql") + u + $("#autobuy").data("qr")
-            },
-            success: callback,
-            error: function(c, u) {
-                retryCaptcha(c, u, callback, url);
-            }
-        });
+	if(jsonproxy == 0){
+		$.ajax({
+		    url: "http://cors-proxy.htmldriven.com",
+		    dataType: "json",
+		    timeout: limit,
+		    data: {
+			url: u
+		    },
+		    success: callback,
+		    error: function(c, u) {
+			retryCaptcha(c, u, callback, url);
+		    }
+		});
+	}else if(jsonproxy == 1){
+		$.ajax({
+		    url: "https://query.yahooapis.com/v1/public/yql",
+		    dataType: "json",
+		    timeout: limit,
+		    data: {
+			format: "json",
+			q: $("#autobuy").data("ql") + u + $("#autobuy").data("qr")
+		    },
+		    success: callback,
+		    error: function(c, u) {
+			retryCaptcha(c, u, callback, url);
+		    }
+		});
+	}
     } else {
         $("#autobuy").text("无法检测验证码 碰碰运气");
         if (url) {
@@ -181,8 +196,14 @@ var handleReBuy = function(extra){
 			console.log("YQLS" + (new Date()));
 			checkCaptcha(function(result){
 				console.log("YQLE" + (new Date()));
-				if (result.query.results) {
-					var msg = result.query.results.reply.orderMessage;
+				var res = 1;
+				if(jsonproxy == 0){
+				    res = result;
+				}else if(jsonproxy == 1){
+				    res = result.query.results;
+				}
+				if (res) {
+					var msg = res.reply.orderMessage;
 					if(msg){
 						hintDom.text(msg + " 继续抢购中");
 						if (-1 < msg.indexOf("支付")) {
@@ -327,8 +348,14 @@ var handleCountdown = function(result) {
     }
     var hintDom = $("#autobuy");
     hintDom.attr("onclick", "getCountDown();");
-    if (result.query.results) {
-        var data = result.query.results;
+    var res = 1;
+	if(jsonproxy == 0){
+	    res = JSON.parse(result.body);
+	}else if(jsonproxy == 1){
+	    res = result.query.results;
+	}
+    if (res) {
+        var data = res;
         var countDownTimes = window.debugTime || data.reply.countDownTimes;
         var isCountDown = window.debugCount || data.reply.isCountDown;
         var countNumAdd = countDownTimes + 1; 
@@ -375,8 +402,14 @@ var handleCountdown = function(result) {
 var handleCaptcha = function(result) {
     var hintDom = $("#autobuy");
     console.log("handleCaptcha");
-    if (result.query.results) {
-        var msg = result.query.results.reply.orderMessage;
+        var res = 1;
+	if(jsonproxy == 0){
+	    res = result;
+	}else if(jsonproxy == 1){
+	    res = result.query.results;
+	}
+    if (res) {
+        var msg = res.reply.orderMessage;
         if(msg){
             hintDom.text(msg);
             if (-1 < msg.indexOf("尚未开始")) {
