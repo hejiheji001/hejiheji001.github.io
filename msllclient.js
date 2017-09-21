@@ -37,7 +37,7 @@ var charge = function(){
   if(valid){
     var rand = $("#rand").val().trim();
     if(rand){
-     var chargeURL = "http://ms.lefone.cn/msflowday/couponShowController/charegeCoupon?enStr=" + str + "&couponCode=" + code + "&mobile=" + mobile + "&chargeType=0&rand=" + rand;
+     var chargeURL = "http://ms.lefone.cn/msflowday/couponShowController/charegeCoupon?enStr=" + str + "&couponCode=" + code + "&mobile=" + mobile + "&chargeType=0&confirm=confirm&rand=" + rand;
      $("#frame").attr("src", chargeURL);
      $("#charge").text("黄色框中显示充值结果");
       
