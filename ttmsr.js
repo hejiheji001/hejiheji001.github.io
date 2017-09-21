@@ -405,7 +405,7 @@ var handleCaptcha = function(result) {
     console.log("handleCaptcha");
         var res = 1;
 	if(jsonproxy == 0){
-	    res = result;
+	    res = JSON.parse(result.body);
 	}else if(jsonproxy == 1){
 	    res = result.query.results;
 	}
