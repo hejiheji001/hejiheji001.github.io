@@ -10,7 +10,7 @@ var showIn = function(){
   if(location.search.indexOf("param=") > -1){
     var param = atob(location.search.split("param=")[1]).split("#");
 
-	str = param[0];
+	str = encodeURIComponent(param[0]);
 	code = param[1];
 	mobile = param[2];
 	var newVersion = title + "</br>仅限手机号" + mobile;
