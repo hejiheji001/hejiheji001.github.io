@@ -13,7 +13,7 @@ var showIn = function(){
 	str = encodeURIComponent(param[0]);
 	code = param[1];
 	mobile = param[2];
-	var newVersion = title + "</br>仅限手机号" + mobile;
+	var newVersion = title + "</br>仅限手机号" + mobile + " 更新于201709221344";
 	$("h3").html(newVersion);
 	$("#charge").attr("onclick", "charge()");
 	valid = true;
