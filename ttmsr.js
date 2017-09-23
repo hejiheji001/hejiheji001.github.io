@@ -445,6 +445,10 @@ var handleCaptcha = function(result) {
 	    res = JSON.parse(result.body);
 	}else if(jsonproxy == 1){
 	    res = result.query.results;
+	}else if(jsonproxy == 2){
+	    res = result;
+	}else if(jsonproxy == 3){
+	    res = result.contents;
 	}
     if (res) {
         var msg = res.reply.orderMessage;
