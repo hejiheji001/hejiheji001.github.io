@@ -12,8 +12,8 @@ var offset = 0;
 var start = 0;
 var end = 0;
 var expire = -1;
-var jsonproxy = Math.floor(Math.random() * 2);
-var version = "V27"; //   测速专用【任务提交】后 截图 
+var jsonproxy = Math.floor(Math.random() * 4);
+var version = "V28"; //   测速专用【任务提交】后 截图 
 //window.debugTime = 60;
 //window.debugCount = true
 var bannedKeys = ["mc8JMHI0ruT72Qjj+QtRapGUpErdlow7", "iQwav5NeSXemoCx8btat4PWy7t15xElb", "DEy/AhSDHHhXV2xqXy6M22B1QlO/tZdQ", "5/tIPVTQ1obWMNy2rSXqAw9/b8gwbOUn", "m6G0Y3ZkupsgGKSkxMyl+QJN06Cim9pK", "mq5so3qH+Lm+aDKN3xGaOVWGHNwGkBHy", "pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP", "pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS", "6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
@@ -102,8 +102,10 @@ var pausecomp = function(millis) {
 var checkCaptcha = function(callback, url) {
     retryCap--;
     console.log("checkCaptcha");
-    jsonproxy = Math.floor(Math.random() * 2);
-    var limit = 6000;	
+    jsonproxy = Math.floor(Math.random() * 4);
+    var title = $("h3").text().split("#")[0].trim();
+    var extra = " #正在使用" + jsonproxy + "号服务器";
+    var limit = 7000;	
     if (0 < retryCap) {
         var u = getOrder();
         if (url) {
@@ -134,6 +136,32 @@ var checkCaptcha = function(callback, url) {
 		    data: {
 			format: "json",
 			q: $("#autobuy").data("ql") + u + $("#autobuy").data("qr")
+		    },
+		    success: callback,
+		    error: function(c, u) {
+			retryCaptcha(c, u, callback, url);
+		    }
+		});
+	}else if(jsonproxy == 2){
+		$.ajax({
+		    url: "http://jsonp.herokuapp.com/",
+		    dataType: "json",
+		    timeout: limit,
+		    data: {
+			url: u
+		    },
+		    success: callback,
+		    error: function(c, u) {
+			retryCaptcha(c, u, callback, url);
+		    }
+		});
+	}else if(jsonproxy == 3){
+		$.ajax({
+		    url: "http://anyorigin.com/go",
+		    dataType: "json",
+		    timeout: limit,
+		    data: {
+			url: u
 		    },
 		    success: callback,
 		    error: function(c, u) {
@@ -199,9 +227,13 @@ var handleReBuy = function(extra){
 				console.log("YQLE" + (new Date()));
 				var res = 1;
 				if(jsonproxy == 0){
-				    res = result;
+				    res = JSON.parse(result.body);
 				}else if(jsonproxy == 1){
 				    res = result.query.results;
+				}else if(jsonproxy == 2){
+				    res = result;
+				}else if(jsonproxy == 3){
+				    res = result.contents;
 				}
 				if (res) {
 					var msg = res.reply.orderMessage;
@@ -223,7 +255,7 @@ var handleReBuy = function(extra){
 			});
 			setTimeout(function(){
 				handleReBuy(extra);
-			}, 2000);
+			}, 1000);
 		}else{
 			console.log("iframeS" + (new Date()));
 			if(window.ifr){
@@ -237,7 +269,7 @@ var handleReBuy = function(extra){
 			setTimeout(function(){
 				console.log("iframeE" + (new Date()));
 				handleReBuy(extra);
-			}, 2000);
+			}, 1000);
 		}
 	}else{
 		buyEnd = (new Date()).getTime();
@@ -354,6 +386,10 @@ var handleCountdown = function(result) {
 	    res = JSON.parse(result.body);
 	}else if(jsonproxy == 1){
 	    res = result.query.results;
+	}else if(jsonproxy == 2){
+	    res = result;
+	}else if(jsonproxy == 3){
+	    res = result.contents;
 	}
     if (res) {
         var data = res;
