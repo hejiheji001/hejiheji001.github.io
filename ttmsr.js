@@ -104,7 +104,7 @@ var checkCaptcha = function(callback, url) {
     console.log("checkCaptcha");
     jsonproxy = Math.floor(Math.random() * 4);
     var title = $("h3").text().split("#")[0].trim();
-    var extra = " #正在使用" + jsonproxy + "号服务器";
+    var extra = " #正在使用" + (jsonproxy + 1) + "号服务器";
     $("h3").text(title + extra);
     var limit = 7000;	
     if (0 < retryCap) {
