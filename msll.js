@@ -22,12 +22,54 @@ var presetX =
 "EO2017082303036382387@db8860b6c8db@",
 "EO2017082303036386647@f69518146f13@"];
 
-var presetY = ["EO2017092003036774274@b5d5a1202598@UmGdgjarlMiIaazfERBDfAPv12XU9g5Bz/j8oJtFd9alBmspJuqgAlp26CwSaouW2aBuNTC8Jqw=@",
-"EO2017092003036769535@b7c604815b9f@UmGdgjarlMiIaazfERBDfAPv12XU9g5B1Frd/n+bBngcfI+5x3oW/D7JuXDluMmp2aBuNTC8Jqw=@",
-"EO2017090603036591253@046f0ece3aee@UmGdgjarlMiIaazfERBDfB0nAj8bV2bO0zziItVzvIlSnw1jJR6aS0kbRTM00ZfH2aBuNTC8Jqw=@",
-"EO2017092003036770438@d53609f45ce5@UmGdgjarlMiIaazfERBDfAPv12XU9g5Br2ho+Z8jbd5Snw1jJR6aS5v0F+ZEyj1E2aBuNTC8Jqw=@",
-"EO2017092003036771185@bc5ed8712973@UmGdgjarlMiIaazfERBDfAPv12XU9g5B6+zMzuy6eTRDq95RSstVLRzeialtmT0+2aBuNTC8Jqw=@",
-"EO2017092003036767550@accc6b95f1ed@UmGdgjarlMiIaazfERBDfAPv12XU9g5BYG+qQHmuGvdxPvBD7zjjxFe4qy8EubJz2aBuNTC8Jqw=@"];
+var presetY = [
+	"EO2017092003036770342@eea7e38ceb8f@UmGdgjarlMiIaazfERBDfAPv12XU9g5B8FYeF2lsUO2fM1k6bwP23+lbYtNf9Hrh2aBuNTC8Jqw=@",
+	"EO2017092003036774211@d31ec81b5671@UmGdgjarlMiIaazfERBDfAPv12XU9g5BYzfWEbuLLQFzTJ48rAhXqHkgoXisiXZG2aBuNTC8Jqw=@",
+	"EO2017062103034889911@bf4ee1501a2a@UmGdgjarlMgUUcyuaagJoaHB3+RgUmnhBT6qu3t+ps87CZkqqfiVVnJw11kPd8Mq2aBuNTC8Jqw=@",
+	"EO2017082303036384595@eb4733a4b384@UmGdgjarlMjDqfksanOqpwflaCUwKft49MJJ5OXiYLM7CZkqqfiVVnJw11kPd8Mq2aBuNTC8Jqw=@",
+	"EO2017092003036773432@de2617d0b691@UmGdgjarlMiIaazfERBDfAPv12XU9g5BZktdSOKy7nhxPvBD7zjjxOY2z8pbkUgz2aBuNTC8Jqw=@",
+	"EO2017092003036768338@d7b65c8a5997@UmGdgjarlMiIaazfERBDfAPv12XU9g5Bu3pNHwJ2vJiW2Q4olJV/fIZTIKMIkeR62aBuNTC8Jqw=@",
+	"EO2017092003036769544@af487be322e0@UmGdgjarlMiIaazfERBDfAPv12XU9g5B3ffq2o5WghNRpJVhQ7c8HTU0eHBQ9X+e2aBuNTC8Jqw=@",
+	"EO2017092003036771190@e44ab21d261f@UmGdgjarlMiIaazfERBDfAPv12XU9g5B615mhRlT+w1xPvBD7zjjxBJ14TjCtV0K2aBuNTC8Jqw=@",
+	"EO2017092003036772260@fdbda450ac85@UmGdgjarlMiIaazfERBDfAPv12XU9g5BCtVThZobQDpKqnoztl8w306PLmq+IL/r2aBuNTC8Jqw=@",
+	"EO2017092003036766509@dff843b1d089@UmGdgjarlMiIaazfERBDfAPv12XU9g5BF33+tz6JcE4qAjao/kbwtJ6xw2kZOypg2aBuNTC8Jqw=@",
+	"EO2017092003036764742@cae8b75cd47c@UmGdgjarlMiIaazfERBDfAPv12XU9g5BGTLmWbyMdpI7CZkqqfiVVg2c5qpsjuH52aBuNTC8Jqw=@",
+	"EO2017092003036766731@bcc3255cbd5b@UmGdgjarlMiIaazfERBDfAPv12XU9g5Baxi74x2wlnk7CZkqqfiVVqdN1n2xgSYN2aBuNTC8Jqw=@",
+	"EO2017092003036768527@bcd6b7878c54@UmGdgjarlMiIaazfERBDfAPv12XU9g5Bha0rtBNsKJh+3aFHOlAjJw3Ms1bhw34d2aBuNTC8Jqw=@",
+	"EO2017092003036768381@aecb743391f3@UmGdgjarlMiIaazfERBDfAPv12XU9g5BAHoE6U3r8cVRpJVhQ7c8HQPJkvKWpNZQ2aBuNTC8Jqw=@",
+	"EO2017092003036772303@f3ecb321e917@UmGdgjarlMiIaazfERBDfAPv12XU9g5BKcZ18wleFpJRpJVhQ7c8HfKuujsoAECZ2aBuNTC8Jqw=@",
+	"EO2017092003036774060@dc9fef49291e@UmGdgjarlMiIaazfERBDfAPv12XU9g5BA1tjw8V9EWJRpJVhQ7c8HXT9pHCWtXjk2aBuNTC8Jqw=@",
+	"EO2017092003036773245@e6a3d1949b5f@UmGdgjarlMiIaazfERBDfAPv12XU9g5BodV4V/XhcONmjJWAtZ7719WDSW826yXo2aBuNTC8Jqw=@",
+	"EO2017092003036765479@ebf16023df49@UmGdgjarlMiIaazfERBDfAPv12XU9g5BajCuBZvuWbcfK63mVA1scJQCeoEk1tgK2aBuNTC8Jqw=@",
+	"EO2017092003036770447@e44797895ed2@UmGdgjarlMiIaazfERBDfAPv12XU9g5BudYvlxETasRSnw1jJR6aSwXbbBdzKK5Q2aBuNTC8Jqw=@",
+	"EO2017092003036770354@ad4571be4845@UmGdgjarlMiIaazfERBDfAPv12XU9g5BGxrpyxfHb31MCaG3jx07WjRfwB3dowzh2aBuNTC8Jqw=@",
+	"EO2017092003036767520@d340f197d4bf@UmGdgjarlMiIaazfERBDfAPv12XU9g5BD2DUAxz5TF07CZkqqfiVVgZq+vBVxwIZ2aBuNTC8Jqw=@",
+	"EO2017092003036774251@fd47e0eaa3bd@UmGdgjarlMiIaazfERBDfAPv12XU9g5BBi6xq56iQW5MCaG3jx07Wr7/47ipwgGW2aBuNTC8Jqw=@",
+	"EO2017092003036766452@bea07c117966@UmGdgjarlMiIaazfERBDfAPv12XU9g5BJM9f80JLva3xSR5I4zD0QdKZbF57zdFw2aBuNTC8Jqw=@",
+	"EO2017092003036770513@db342d3b1426@UmGdgjarlMiIaazfERBDfAPv12XU9g5BqvzHcWVC45qlBmspJuqgAq14Y44aM5kz2aBuNTC8Jqw=@",
+	"EO2017092003036767367@fd8996a1d7ae@UmGdgjarlMiIaazfERBDfAPv12XU9g5BuvAO3euTw9sqAjao/kbwtLz5j0q17cMm2aBuNTC8Jqw=@",
+	"EO2017092003036767552@b05e67587399@UmGdgjarlMiIaazfERBDfAPv12XU9g5BkVmjfiRfpTBDq95RSstVLZFZUMqK1RSi2aBuNTC8Jqw=@",
+	"EO2017092003036774231@bac9c1d3cf89@UmGdgjarlMiIaazfERBDfAPv12XU9g5BfBwDcSdYtDoy8msexwur1xm5XD3fQCGJ2aBuNTC8Jqw=@",
+	"EO2017082303036380622@fefd51103244@UmGdgjarlMjDqfksanOqpwflaCUwKft4BfeV3iLuADc7CZkqqfiVVntJzMC7bEzR2aBuNTC8Jqw=@",
+	"EO2017092003036772330@bbfc82b680b8@UmGdgjarlMiIaazfERBDfAPv12XU9g5Bx6X1k1BA4pNKqnoztl8w33rv/ZEF6Kj62aBuNTC8Jqw=@",
+	"EO2017092003036773115@f7447a1249c1@UmGdgjarlMiIaazfERBDfAPv12XU9g5Bqnvw7WswczLZmwYQzEdtZaMimxXS0meu2aBuNTC8Jqw=@",
+	"EO2017092003036770324@cbf44e708e99@UmGdgjarlMiIaazfERBDfAPv12XU9g5B9hXn8Xy9pclKqnoztl8w3xrjK5ddwl5G2aBuNTC8Jqw=@",
+	"EO2017092003036769295@e0d21ac4519e@UmGdgjarlMiIaazfERBDfAPv12XU9g5BMJ7TziAddENKqnoztl8w3w70OGkKwH2L2aBuNTC8Jqw=@",
+	"EO2017092003036769401@b2b5674dadf0@UmGdgjarlMiIaazfERBDfAPv12XU9g5BpUodxmjUkjZSnw1jJR6aS+tzz+rxfBUs2aBuNTC8Jqw=@",
+	"EO2017092003036767404@d64f3311fee8@UmGdgjarlMiIaazfERBDfAPv12XU9g5B+h3+k2Boh41Snw1jJR6aSyYWgp2YHyyn2aBuNTC8Jqw=@",
+	"EO2017092003036768295@d5acd3863a52@UmGdgjarlMiIaazfERBDfAPv12XU9g5Bk/q3R1OvpbrGPVX3nDKUWhwuI+3QnF8r2aBuNTC8Jqw=@",
+	"EO2017092003036767259@df5e5713d9b1@UmGdgjarlMiIaazfERBDfAPv12XU9g5BQAJZzFgV6wqC5JErSRCLZzLsrVtA8exz2aBuNTC8Jqw=@",
+	"EO2017092003036766422@cca0add1049b@UmGdgjarlMiIaazfERBDfAPv12XU9g5B7lS1liSqiXVnGXUP+TBJCpvV8CnT6by+2aBuNTC8Jqw=@",
+	"EO2017092003036773184@c87843e98890@UmGdgjarlMiIaazfERBDfAPv12XU9g5Bx7zgrwxsB5dnGXUP+TBJCh44C4XUfDV52aBuNTC8Jqw=@",
+	"EO2017092003036772341@eadfbea96557@UmGdgjarlMiIaazfERBDfAPv12XU9g5BWx3oz85cz/lRpJVhQ7c8Hc48hW2BJ+Nl2aBuNTC8Jqw=@",
+	"EO2017092003036765722@ae8f5bccbe2d@UmGdgjarlMiIaazfERBDfAPv12XU9g5BRzMZ9y7emPuW2Q4olJV/fCHwb96AzAm72aBuNTC8Jqw=@",
+	"EO2017092003036774274@b5d5a1202598@UmGdgjarlMiIaazfERBDfAPv12XU9g5Bz/j8oJtFd9alBmspJuqgAlp26CwSaouW2aBuNTC8Jqw=@",
+	"EO2017092003036769535@b7c604815b9f@UmGdgjarlMiIaazfERBDfAPv12XU9g5B1Frd/n+bBngcfI+5x3oW/D7JuXDluMmp2aBuNTC8Jqw=@",
+	"EO2017090603036591253@046f0ece3aee@UmGdgjarlMiIaazfERBDfB0nAj8bV2bO0zziItVzvIlSnw1jJR6aS0kbRTM00ZfH2aBuNTC8Jqw=@",
+	"EO2017092003036770438@d53609f45ce5@UmGdgjarlMiIaazfERBDfAPv12XU9g5Br2ho+Z8jbd5Snw1jJR6aS5v0F+ZEyj1E2aBuNTC8Jqw=@",
+	"EO2017092003036771185@bc5ed8712973@UmGdgjarlMiIaazfERBDfAPv12XU9g5B6+zMzuy6eTRDq95RSstVLRzeialtmT0+2aBuNTC8Jqw=@",
+	"EO2017092003036767550@accc6b95f1ed@UmGdgjarlMiIaazfERBDfAPv12XU9g5BYG+qQHmuGvdxPvBD7zjjxFe4qy8EubJz2aBuNTC8Jqw=@"
+];
 
 var preset2 = [
 	"EO2017092003036773216@f680e4eda260@UmGdgjarlMiIaazfERBDfAPv12XU9g5B2HhgumkzCBVMCaG3jx07WqYqCq8i4Pq92aBuNTC8Jqw=@",
@@ -623,9 +665,9 @@ var preset1 = [
 	"EO2017092003036765536@be25479fa29f@UmGdgjarlMiIaazfERBDfAPv12XU9g5Bgnu9fYAaf0T+D3i4Q10XTGO3XiE8Y8Dh2aBuNTC8Jqw=@"
 ];
 var used = [];
-
+var rest = 0;
 var showIn = function(){
-  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><input type=text class=form-control id=enc placeholder=充值码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px;font-size: 11px;'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-23 20:20)' style='height:200px'></textarea><iframe id=frame src='' style='position: fixed; border: 1px solid black; top: 0px; right: 0px;background-color: yellow;width: 40%;height: 20%;'>");
+  $("#in").append("<input type=text class=form-control id=orderId placeholder=订单号> <input type=text class=form-control id=mobile placeholder=手机号><input type=text class=form-control id=code placeholder=兑换码><input type=text class=form-control id=enc placeholder=充值码><textarea id=preset class=form-control placeholder='预设订单和兑换码，以便快速获取地址。格式为 订单号@兑换码@手机号 如 EO2017082303123456789@abcdefg@13588888888 一行一条数据' style='height:200px;font-size: 11px;'></textarea><textarea id=result class=form-control placeholder='破解结果(更新日期2017-09-24 15:20)' style='height:200px'></textarea><iframe id=frame src='' style='position: fixed; border: 1px solid black; top: 0px; right: 0px;background-color: yellow;width: 40%;height: 20%;'>");
   $("#yql").attr("onclick", "getEnc()");
   $("#charge").remove();
   $("#frame").remove();
@@ -634,8 +676,9 @@ var showIn = function(){
   preset = window["preset" + param];
   
   var latest = removeUsed(preset);
+  rest = latest.length;
   localStorage.preset = latest.join("\r\n");
-  var pl = $("#result").attr("placeholder") + " 现在是: preset" + param + " 剩余码子数量：" + latest.length;	
+  var pl = $("#result").attr("placeholder") + " 现在是: preset" + param + " 剩余码子数量：" + rest;	
   $("#result").attr("placeholder", pl);
   if(localStorage.preset.length == 0){
    prompt("复制里面的内容并发我，检查码子使用情况", localStorage.used);
@@ -783,6 +826,7 @@ var getCharge = function(){
 	//var rand = $("#rand").val().trim();
 	//if(rand){
 		usedList.push(orderId + "@" + code + "@" + enc + "@");
+	  	rest--;
 		localStorage.used = usedList;
 		//localStorage.rm = used;
 		//var str = "UmGdgjarlMgUUcyuaagJoXIIQ3DK44FsD5G00suinyka7hNvFpPqJcBsljrtwJKX2aBuNTC8Jqw%3D";
@@ -793,10 +837,8 @@ var getCharge = function(){
 		var result = "订单：" + orderId + " 码：" + code + " 手机号：" + mobile + " 订单充值查询: " + check;
 	        //$("#frame").attr("src", info);
 	        //$("#yql").text("请确认黄色框中显示乱码 否则【记录码子并刷新后】再点我一次");
-		var extra = " 2款" + orderId;
-		if(myList.indexOf(orderId) > -1){
-			extra = " 14款" + orderId;
-		}
+		var extra = " 当前" + orderId + " 剩余" + rest;
+		
 		//$("#frame").attr("src", u);
 		$.ajax({
 		    url: "http://cors-proxy.htmldriven.com",
