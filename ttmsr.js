@@ -64,7 +64,10 @@ var getCountDown = function(str) {
         "0": ["A20170505897", "G201705057262", "0007138"]
     };
     var day = (new Date).getDay();
-    if(day == 2){alert("今日无活动～"); return;}	
+    if(day == 2){alert("今日无活动～"); return;}
+    if(day != 1 && uk == "W+KrSOFkjnvEaptX5ivr5eGFZfWuVf1z"){
+	    alert("完整版才支持其他日期哦～"); return;
+    }
     var a = info[day][0];
     var g = info[day][1];
     var m = info[day][2];
