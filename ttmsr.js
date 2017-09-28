@@ -276,7 +276,7 @@ var handleReBuy = function(extra){
 		}
 	}else{
 		buyEnd = (new Date()).getTime();
-		$("#autobuy").text("抢购完成 请查看待支付 耗时" + (buyEnd - buyStart) / 1000 + "秒");
+		$("#autobuy").text("抢购完成 请30分之内定期查看待支付 耗时" + (buyEnd - buyStart) / 1000 + "秒");
 		console.log("完成");
 	}
 }
@@ -471,7 +471,7 @@ var handleCaptcha = function(result) {
             } else if (-1 < msg.indexOf("userKey非正常加密")){
                 alert("请立即截图 userKey非正常加密");
             } else {
-		hintDom.text("请不要离开本页面 03分之后再查看待支付");
+		hintDom.text("请不要离开本页面 30分之内定期查看待支付");
 	    }
         }else{
         	doForcePay();
