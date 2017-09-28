@@ -13,7 +13,7 @@ var start = 0;
 var end = 0;
 var expire = -1;
 var jsonproxy = Math.floor(Math.random() * 4);
-var version = "V28"; //   测速专用【任务提交】后 截图 
+var version = "失败请上报服务器代号 V29"; //   测速专用【任务提交】后 截图 
 //window.debugTime = 60;
 //window.debugCount = true
 var bannedKeys = ["mc8JMHI0ruT72Qjj+QtRapGUpErdlow7", "iQwav5NeSXemoCx8btat4PWy7t15xElb", "DEy/AhSDHHhXV2xqXy6M22B1QlO/tZdQ", "5/tIPVTQ1obWMNy2rSXqAw9/b8gwbOUn", "m6G0Y3ZkupsgGKSkxMyl+QJN06Cim9pK", "mq5so3qH+Lm+aDKN3xGaOVWGHNwGkBHy", "pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP", "pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS", "6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
@@ -134,12 +134,11 @@ var checkCaptcha = function(callback, url) {
 		});
 	}else if(jsonproxy == 1){
 		$.ajax({
-		    url: "https://query.yahooapis.com/v1/public/yql",
+		    url: "http://proxy.hackeryou.com",
 		    dataType: "json",
 		    timeout: limit,
 		    data: {
-			format: "json",
-			q: $("#autobuy").data("ql") + u + $("#autobuy").data("qr")
+			reqUrl: u
 		    },
 		    success: callback,
 		    error: function(c, u) {
@@ -233,7 +232,7 @@ var handleReBuy = function(extra){
 				if(jsonproxy == 0){
 				    res = JSON.parse(result.body);
 				}else if(jsonproxy == 1){
-				    res = result.query.results;
+				    res = result;
 				}else if(jsonproxy == 2){
 				    res = result;
 				}else if(jsonproxy == 3){
@@ -389,7 +388,7 @@ var handleCountdown = function(result) {
 	if(jsonproxy == 0){
 	    res = JSON.parse(result.body);
 	}else if(jsonproxy == 1){
-	    res = result.query.results;
+	    res = result;
 	}else if(jsonproxy == 2){
 	    res = result;
 	}else if(jsonproxy == 3){
@@ -447,7 +446,7 @@ var handleCaptcha = function(result) {
 	if(jsonproxy == 0){
 	    res = JSON.parse(result.body);
 	}else if(jsonproxy == 1){
-	    res = result.query.results;
+	    res = result;
 	}else if(jsonproxy == 2){
 	    res = result;
 	}else if(jsonproxy == 3){
