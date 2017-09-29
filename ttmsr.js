@@ -12,8 +12,8 @@ var offset = 0;
 var start = 0;
 var end = 0;
 var expire = -1;
-var jsonproxy = Math.floor(Math.random() * 4);
-var version = "失败请上报服务器代号 V29"; //   测速专用【任务提交】后 截图 
+var jsonproxy = 1; //Math.floor(Math.random() * 4);
+var version = "V30"; //   测速专用【任务提交】后 截图 
 //window.debugTime = 60;
 //window.debugCount = true
 var bannedKeys = ["mc8JMHI0ruT72Qjj+QtRapGUpErdlow7", "iQwav5NeSXemoCx8btat4PWy7t15xElb", "DEy/AhSDHHhXV2xqXy6M22B1QlO/tZdQ", "5/tIPVTQ1obWMNy2rSXqAw9/b8gwbOUn", "m6G0Y3ZkupsgGKSkxMyl+QJN06Cim9pK", "mq5so3qH+Lm+aDKN3xGaOVWGHNwGkBHy", "pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP", "pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS", "6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
@@ -105,9 +105,9 @@ var pausecomp = function(millis) {
 var checkCaptcha = function(callback, url) {
     retryCap--;
     console.log("checkCaptcha");
-    jsonproxy = Math.floor(Math.random() * 4);
+    jsonproxy = 1; // Math.floor(Math.random() * 4);
     var title = $("h3").text().split("#")[0].trim();
-    var extra = " #正在使用" + (jsonproxy + 1) + "号服务器";
+    var extra = " #正在使用" + (jsonproxy) + "号服务器";
     $("h3").text(title + extra);
     var limit = 7000;	
     if (0 < retryCap) {
@@ -134,12 +134,9 @@ var checkCaptcha = function(callback, url) {
 		});
 	}else if(jsonproxy == 1){
 		$.ajax({
-		    url: "http://proxy.hackeryou.com",
+		    url: "http://45.78.32.101:8080/" + u,
 		    dataType: "json",
 		    timeout: limit,
-		    data: {
-			reqUrl: u
-		    },
 		    success: callback,
 		    error: function(c, u) {
 			retryCaptcha(c, u, callback, url);
