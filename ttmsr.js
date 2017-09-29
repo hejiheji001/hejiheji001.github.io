@@ -328,6 +328,8 @@ var doForcePay = function(){
 			retryBuy = 10;
 			$("#autobuy").attr("onclick", "doForcePay()");
 		}else{
+			//buyIt();
+			//retryBuy = 10;
 			$("#autobuy").text("50次尝试均无法获取验证码 基本无望 可以尝试再点一次本按钮碰运气");
 		}
 	}
@@ -397,7 +399,7 @@ var handleCountdown = function(result) {
         var isCountDown = window.debugCount || data.reply.isCountDown;
         var countNumAdd = countDownTimes + 1; 
         if (isCountDown) {
-		var st = 25;
+		var st = 35;
 		end = (new Date()).getTime();
 		offset = Math.floor(((end - start)/1000) * Math.random()); // the larger the sooner.
 		st += offset;
