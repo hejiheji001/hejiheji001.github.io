@@ -271,6 +271,8 @@ var handleReBuy = function(extra){
                 ifr.style.bottom = "0px";
                 ifr.style.position = "absolute";
                 ifr.style.background = "yellow";
+                ifr.style.height = "9%";
+                ifr.style.width = "100%";
 				ifr.src = u;
 				document.body.appendChild(ifr);
 			}
