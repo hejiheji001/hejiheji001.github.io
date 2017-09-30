@@ -222,6 +222,9 @@ var handleReBuy = function(extra){
 	var u = getOrder();
 	console.log("第"+buyTime+"次");
 	buyTime++;
+
+    captcha = $('#code').val().trim().toUpperCase();
+
 	if(buyTime <= 80){
 		if(buyTime % 20 == 1){
 			console.log("YQLS" + (new Date()));
@@ -265,6 +268,9 @@ var handleReBuy = function(extra){
 				ifr.src = u;
 			}else{
 				window.ifr = document.createElement("iframe");
+                ifr.style.bottom = "0px";
+                ifr.style.position = "absolute";
+                ifr.style.background = "yellow";
 				ifr.src = u;
 				document.body.appendChild(ifr);
 			}
@@ -356,7 +362,7 @@ var doForcePay = function(){
 		console.log("doForcePay");
 		retryBuy--;
 		var thisOrder = getThisOrder();
-		placeOrder(thisOrder, "#autobuy", " 由于你的网络问题 目前正在尝试最后的努力 务必等到提示你查看待支付后再退出 外挂可能会很卡");
+		placeOrder(thisOrder, "#autobuy", " 如果提示验证码错误，请随时更改验证码，可以尝试更换新码，或者替换可能错误的字母");
 	}else{
 		if(captcha){
 			$("#autobuy").text("验证码获取成功 但未能获得有效信息 无法判断成功与否 若03分以前可再点一次本按钮 否则查看待支付");
