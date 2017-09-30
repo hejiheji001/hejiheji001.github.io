@@ -303,11 +303,11 @@ var buyIt = function(str) {
 
         var cap = $("#captcha");
         if(cap.length == 0){
-            hintDom.before("<img id=captcha style='width: 100%;' src='https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "'></img>");    
+            hintDom.before("<img id=captcha style='width: 50%;' src='https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "'></img>");    
             $("#captcha").after("<input id=code class=form-control placeholder='验证码无需注意大小写, 点击图片可以更换验证码' type=text></input>");
             $("#captcha").attr("onclick", "buyIt()");
             // hintDom.text("输入完验证码后迅速点我提交任务 点击图片可以更换验证码");
-            hintDom.attr("onclick", "captcha = $('#code').val().trim().toUpperCase();placeOrder(getThisOrder(), '#autobuy');");
+            // hintDom.attr("onclick", "captcha = $('#code').val().trim().toUpperCase();placeOrder(getThisOrder(), '#autobuy');");
             // $("#autobuy").one("click", function(){
             //     // var thisOrder = getThisOrder();
             //     retryCap++;
@@ -459,7 +459,7 @@ var handleCountdown = function(result) {
 			}
             var text = getTimeFormat(countDownTimes)
             if(captcha){
-                text += " 验证码为" + captcha + " 30秒后失效，确认无误请及时按我提交任务，否则点击图片更换验证码";
+                text += " 验证码为" + captcha + " 30秒后失效，确认无误请耐心等待，否则点击图片更换验证码";
             }else{
                 text += " 验证码将于" + (countDownTimes - st) + "秒后获取, 并已根据你的网速微调" + offset + "秒";
             }
