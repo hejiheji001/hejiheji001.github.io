@@ -307,7 +307,7 @@ var buyIt = function(str) {
             $("#captcha").after("<input id=code class=form-control placeholder=输入验证码无需注意大小写 type=text></input>");
             $("#captcha").attr("onclick", "buyIt()");
             hintDom.text("输入完验证码后迅速点我提交任务 点击图片可以更换验证码");
-            hintDom.attr("onclick", "captcha = $('#code').text().trim().toUpperCase();buyIt();");
+            hintDom.attr("onclick", "captcha = $('#code').val().trim().toUpperCase();buyIt();");
             // $("#autobuy").one("click", function(){
             //     // var thisOrder = getThisOrder();
             //     retryCap++;
@@ -318,10 +318,11 @@ var buyIt = function(str) {
             //     checkCaptcha(handleCaptcha);
             // });
         }else{
-            cap.attr("src", "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk));
+            cap.attr("src", "");
+            cap.attr("src", "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "&r=" + (new Date()).getTime());
         }
 
-        if(captcha.length == 5){
+        if(captcha.length == 5){ 
             var thisOrder = getThisOrder();
             placeOrder(thisOrder, "#autobuy");
         }
@@ -346,7 +347,7 @@ var buyIt = function(str) {
 }
 
 var doForcePay = function(){
-    captcha = $('#code').text().trim().toUpperCase();
+    captcha = $('#code').val().trim().toUpperCase();
     if(captcha.length != 5){
         captcha = false;
     }
