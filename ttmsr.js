@@ -303,7 +303,7 @@ var buyIt = function(str) {
 
         var cap = $("#captcha");
         if(cap.length == 0){
-            hintDom.before("<img id=captcha src='https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "'></img>");    
+            hintDom.before("<img id=captcha style='width: 100%;' src='https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "'></img>");    
             $("#captcha").after("<input id=code class=form-control placeholder='验证码无需注意大小写, 点击图片可以更换验证码' type=text></input>");
             $("#captcha").attr("onclick", "buyIt()");
             // hintDom.text("输入完验证码后迅速点我提交任务 点击图片可以更换验证码");
