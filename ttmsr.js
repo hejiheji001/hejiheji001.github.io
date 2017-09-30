@@ -442,9 +442,11 @@ var handleCountdown = function(result) {
 		hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取, 并已根据你的网速微调" + offset + "秒");
 		window.int = self.setInterval(function() {
             // if(!captcha){
-            captcha = $('#code').val().trim().toUpperCase();
-            if(captcha.length != 5){
-                captcha = false;
+            if($("#code").length == 1){
+                captcha = $('#code').val().trim().toUpperCase();
+                if(captcha.length != 5){
+                    captcha = false;
+                }
             }
             // }
 
