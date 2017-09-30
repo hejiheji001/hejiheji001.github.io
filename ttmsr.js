@@ -31,7 +31,6 @@ var monthlyKeys = {
 			"WPI27dVqrrIjzt8nRX+Zn0JuvRRPs0IS": "2017-10-02"
 		  };
 var getEnc = function() {
-  alert("注意！本版本需要你手动输入验证码！无需注意大小写，务必在出现输入框后尽快输入！");
   var end = monthlyKeys[uk];
   var now = new Date();
   var extra = "";
@@ -304,7 +303,7 @@ var buyIt = function(str) {
 
         var cap = $("#captcha");
         if(cap.length == 0){
-            hintDom.before("<img id=cap src='https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "'>1</img>");    
+            hintDom.before("<img id=captcha src='https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "'>1</img>");    
             $("#captcha").after("<input id=code class=form-control placeholder=输入验证码无需注意大小写 type=text></input>");
             $("#captcha").attr("onclick", "buyIt()");
             hintDom.text("输入完验证码后迅速点我提交任务");
