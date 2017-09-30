@@ -13,7 +13,7 @@ var start = 0;
 var end = 0;
 var expire = -1;
 var jsonproxy = 1; //Math.floor(Math.random() * 4);
-var version = "V30"; //   测速专用【任务提交】后 截图 
+var version = "V31"; //   测速专用【任务提交】后 截图 
 //window.debugTime = 60;
 //window.debugCount = true
 var bannedKeys = ["mc8JMHI0ruT72Qjj+QtRapGUpErdlow7", "iQwav5NeSXemoCx8btat4PWy7t15xElb", "DEy/AhSDHHhXV2xqXy6M22B1QlO/tZdQ", "5/tIPVTQ1obWMNy2rSXqAw9/b8gwbOUn", "m6G0Y3ZkupsgGKSkxMyl+QJN06Cim9pK", "mq5so3qH+Lm+aDKN3xGaOVWGHNwGkBHy", "pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP", "pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS", "6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
@@ -114,63 +114,63 @@ var checkCaptcha = function(callback, url) {
         var u = getOrder();
         if (url) {
           	u = url;
-		limit = 10000;
- 		if(start == 0){
-			start = (new Date()).getTime();
-		}
+    		limit = 10000;
+     		if(start == 0){
+    			start = (new Date()).getTime();
+    		}
         }
-	if(jsonproxy == 0){
-		$.ajax({
-		    url: "http://cors-proxy.htmldriven.com",
-		    dataType: "json",
-		    timeout: limit,
-		    data: {
-			url: u
-		    },
-		    success: callback,
-		    error: function(c, u) {
-			retryCaptcha(c, u, callback, url);
-		    }
-		});
-	}else if(jsonproxy == 1){
-		$.ajax({
-		    url: "http://45.78.32.101:8080/" + u,
-		    dataType: "json",
-		    timeout: limit,
-		    success: callback,
-		    error: function(c, u) {
-			retryCaptcha(c, u, callback, url);
-		    }
-		});
-	}else if(jsonproxy == 2){
-		$.ajax({
-		    url: "http://jsonp.herokuapp.com/",
-		    dataType: "json",
-		    timeout: limit,
-		    data: {
-			url: u
-		    },
-		    success: callback,
-		    error: function(c, u) {
-			retryCaptcha(c, u, callback, url);
-		    }
-		});
-	}else if(jsonproxy == 3){
-		$.ajax({
-		    url: "http://anyorigin.com/go",
-		    dataType: "json",
-		    timeout: limit,
-		    data: {
-			url: u
-		    },
-		    success: callback,
-		    error: function(c, u) {
-			retryCaptcha(c, u, callback, url);
-		    }
-		});
-	}
+    	if(jsonproxy == 0){
+    		$.ajax({
+    		    url: "http://cors-proxy.htmldriven.com",
+    		    dataType: "json",
+    		    timeout: limit,
+    		    data: {
+    			url: u
+    		    },
+    		    success: callback,
+    		    error: function(c, u) {
+    			retryCaptcha(c, u, callback, url);
+    		    }
+    		});
+    	}else if(jsonproxy == 1){
+    		$.ajax({
+    		    url: "http://45.78.32.101:8080/" + u,
+    		    dataType: "json",
+    		    timeout: limit,
+    		    success: callback,
+    		    error: function(c, u) {
+    			retryCaptcha(c, u, callback, url);
+    		    }
+    		});
+    	}else if(jsonproxy == 2){
+    		$.ajax({
+    		    url: "http://jsonp.herokuapp.com/",
+    		    dataType: "json",
+    		    timeout: limit,
+    		    data: {
+    			url: u
+    		    },
+    		    success: callback,
+    		    error: function(c, u) {
+    			retryCaptcha(c, u, callback, url);
+    		    }
+    		});
+    	}else if(jsonproxy == 3){
+    		$.ajax({
+    		    url: "http://anyorigin.com/go",
+    		    dataType: "json",
+    		    timeout: limit,
+    		    data: {
+    			url: u
+    		    },
+    		    success: callback,
+    		    error: function(c, u) {
+    			retryCaptcha(c, u, callback, url);
+    		    }
+    		});
+    	}
     } else {
-        $("#autobuy").text("无法检测验证码 碰碰运气");
+        // $("#autobuy").text("无法检测验证码 碰碰运气");
         if (url) {
             callback();
         }else{
@@ -189,19 +189,21 @@ var placeOrder = function(target, dom, extra) {
     if(retryBuy < 0){
 	    $(dom).text("请查看待支付页面");
 	    if (window.int) {
-        window.clearInterval(int);
-    }
+            window.clearInterval(int);
+        }
 	    return;
     }
     var t = new Date();
     var str = t.toLocaleString("zh-cn", {
         hour12: false
     }).split(" ")[0];
+
     var start = t.getTime();
     var end = new Date(str + " " + (target - 1) + ":59:58").getTime();
     if (0 < MSTarget) {
         end = MSTarget;
     }
+    
     var u = getOrder();
     var willExpire = 30 + ((expire - (new Date()).getTime()) / 1000);
     console.log("placeOrder in " + (end - start));
@@ -209,7 +211,7 @@ var placeOrder = function(target, dom, extra) {
     notRunning = false;
     var x = setTimeout(function() {
         console.log("Placing Order");
-	buyStart = (new Date()).getTime();
+	    buyStart = (new Date()).getTime();
         handleReBuy(extra);
     }, (end - start) / 1);
 }
@@ -296,22 +298,45 @@ var buyIt = function(str) {
         if (str) {
             hintDom.text(str + " 重新获取验证码中");
         } else {
-            hintDom.text("获取验证码中");
+            hintDom.text("点击验证码可以更换图片");
         }
-        getCaptcha(function(d) {
-            if (d.Result && d.Result.length === 5) {
+
+        var captcha = $("#captcha");
+        if(captcha.length == 0){
+            $("#autobuy").before("<img id=captcha src='https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "'>1</img>");    
+            $("#captcha").after("<input id=code class=form-control placeholder=输入验证码无需注意大小写 type=text></input>");
+            $("#captcha").attr("onclick", "buyIt()");
+            $("#autobuy").text("输入完验证码后点我提交任务");
+            $("#autobuy").one("click", function(){
+                // var thisOrder = getThisOrder();
                 retryCap++;
-                captcha = d.Result.toUpperCase();
-		expire = (new Date()).getTime();
-                hintDom.text("检测验证码中，验证码为 " + captcha + "，验证码将于30秒后失效");
+                captcha = $("#code").text().trim().toUpperCase();
+                // hintDom.text("检测验证码中，验证码为 " + captcha + "，验证码将于30秒后失效");
+                // placeOrder(thisOrder, "#autobuy");
+                expire = (new Date()).getTime();
                 checkCaptcha(handleCaptcha);
-            } else {
-                buyIt(d.Error);
-            }
-        });
+            });
+        }else{
+            captcha.attr("src", "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk));
+        }
+
+        
+
+
+        // getCaptcha(function(d) {
+        //     if (d.Result && d.Result.length === 5) {
+        //         retryCap++;
+        //         captcha = d.Result.toUpperCase();
+		      // expire = (new Date()).getTime();
+        //         hintDom.text("检测验证码中，验证码为 " + captcha + "，验证码将于30秒后失效");
+        //         checkCaptcha(handleCaptcha);
+        //     } else {
+        //         buyIt(d.Error);
+        //     }
+        // });
     } else {
         hintDom.text("无法验证码 碰碰运气");
-	console.log("Try Force");
+	    console.log("Try Force");
         doForcePay();
     }
 }
@@ -462,7 +487,7 @@ var handleCaptcha = function(result) {
                 alert("成功了");
             } else if (getThisOrder() === 15 && msg === "已经抢光啦" && notRunning) {
                 var thisOrder = getThisOrder();
-		placeOrder(thisOrder, "#autobuy");
+		        placeOrder(thisOrder, "#autobuy");
             } else if (-1 < msg.indexOf("key")) {
                 buyIt(msg);
             } else if (-1 < msg.indexOf("图片")) {
