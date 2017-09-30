@@ -298,15 +298,15 @@ var buyIt = function(str) {
         if (str) {
             hintDom.text(str + " 重新获取验证码中");
         } else {
-            hintDom.text("点击验证码可以更换图片");
+            // hintDom.text("点击验证码可以更换图片");
         }
 
         var cap = $("#captcha");
         if(cap.length == 0){
             hintDom.before("<img id=captcha src='https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "'></img>");    
-            $("#captcha").after("<input id=code class=form-control placeholder=输入验证码无需注意大小写 type=text></input>");
+            $("#captcha").after("<input id=code class=form-control placeholder='验证码无需注意大小写, 点击图片可以更换验证码' type=text></input>");
             $("#captcha").attr("onclick", "buyIt()");
-            hintDom.text("输入完验证码后迅速点我提交任务 点击图片可以更换验证码");
+            // hintDom.text("输入完验证码后迅速点我提交任务 点击图片可以更换验证码");
             hintDom.attr("onclick", "captcha = $('#code').val().trim().toUpperCase();buyIt();");
             // $("#autobuy").one("click", function(){
             //     // var thisOrder = getThisOrder();
@@ -441,6 +441,13 @@ var handleCountdown = function(result) {
 		st += offset;
 		hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取, 并已根据你的网速微调" + offset + "秒");
 		window.int = self.setInterval(function() {
+            // if(!captcha){
+            captcha = $('#code').val().trim().toUpperCase();
+            if(captcha.length != 5){
+                captcha = false;
+            }
+            // }
+
 			countDownTimes--;
 			timeLeft = countDownTimes;
 			if (countDownTimes <= st && notSubmit) {
@@ -448,12 +455,19 @@ var handleCountdown = function(result) {
 			    MSTarget = (new Date()).getTime() + countDownTimes * 1000;
 			    buyIt();
 			}
+            var text = getTimeFormat(countDownTimes)
+            if(captcha){
+                text += " 验证码为" + captcha + " 30秒后失效，确认无误请及时按我提交任务，否则点击图片更换验证码";
+            }else{
+                text += " 验证码将于" + (countDownTimes - st) + "秒后获取, 并已根据你的网速微调" + offset + "秒";
+            }
 			if (st < countDownTimes) {
-			    hintDom.text(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取, 并已根据你的网速微调" + offset + "秒");
+                hintDom.text(text);
 			}
 
 			if (0 < countDownTimes) {
-			    console.log(getTimeFormat(countDownTimes) + " 验证码将于" + (countDownTimes - st) + "秒后获取, 并已根据你的网速微调" + offset + "秒");
+                hintDom.text(text);
+			    console.log(text);
 			}
 
 			if(countDownTimes <= 0){
