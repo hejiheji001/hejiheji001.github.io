@@ -13,7 +13,7 @@ var start = 0;
 var end = 0;
 var expire = -1;
 var jsonproxy = 1; //Math.floor(Math.random() * 4);
-var version = "V31"; //   测速专用【任务提交】后 截图 
+var version = "V30"; //   测速专用【任务提交】后 截图 
 //window.debugTime = 60;
 //window.debugCount = true
 var bannedKeys = ["mc8JMHI0ruT72Qjj+QtRapGUpErdlow7", "iQwav5NeSXemoCx8btat4PWy7t15xElb", "DEy/AhSDHHhXV2xqXy6M22B1QlO/tZdQ", "5/tIPVTQ1obWMNy2rSXqAw9/b8gwbOUn", "m6G0Y3ZkupsgGKSkxMyl+QJN06Cim9pK", "mq5so3qH+Lm+aDKN3xGaOVWGHNwGkBHy", "pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP", "pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS", "6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
@@ -31,6 +31,7 @@ var monthlyKeys = {
 			"WPI27dVqrrIjzt8nRX+Zn0JuvRRPs0IS": "2017-10-02"
 		  };
 var getEnc = function() {
+  alert("注意！本版本需要你手动输入验证码！无需注意大小写，务必在出现输入框后尽快输入！");
   var end = monthlyKeys[uk];
   var now = new Date();
   var extra = "";
@@ -186,7 +187,7 @@ var retryCaptcha = function(c, u, callback, url) {
 }
 
 var placeOrder = function(target, dom, extra) {
-    if(retryBuy < 0){
+    if(retryBuy < -20){
 	    $(dom).text("请查看待支付页面");
 	    if (window.int) {
             window.clearInterval(int);
@@ -223,7 +224,7 @@ var handleReBuy = function(extra){
 	console.log("第"+buyTime+"次");
 	buyTime++;
 	if(buyTime <= 80){
-		if(buyTime % 10 == 1){
+		if(buyTime % 20 == 1){
 			console.log("YQLS" + (new Date()));
 			checkCaptcha(function(result){
 				console.log("YQLE" + (new Date()));
@@ -301,26 +302,30 @@ var buyIt = function(str) {
             hintDom.text("点击验证码可以更换图片");
         }
 
-        var captcha = $("#captcha");
-        if(captcha.length == 0){
-            $("#autobuy").before("<img id=captcha src='https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "'>1</img>");    
+        var cap = $("#captcha");
+        if(cap.length == 0){
+            hintDom.before("<img id=cap src='https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "'>1</img>");    
             $("#captcha").after("<input id=code class=form-control placeholder=输入验证码无需注意大小写 type=text></input>");
             $("#captcha").attr("onclick", "buyIt()");
-            $("#autobuy").text("输入完验证码后点我提交任务");
-            $("#autobuy").one("click", function(){
-                // var thisOrder = getThisOrder();
-                retryCap++;
-                captcha = $("#code").text().trim().toUpperCase();
-                // hintDom.text("检测验证码中，验证码为 " + captcha + "，验证码将于30秒后失效");
-                // placeOrder(thisOrder, "#autobuy");
-                expire = (new Date()).getTime();
-                checkCaptcha(handleCaptcha);
-            });
+            hintDom.text("输入完验证码后迅速点我提交任务");
+            hintDom.attr("onclick", "captcha = $('#code').text().trim().toUpperCase();buyIt();");
+            // $("#autobuy").one("click", function(){
+            //     // var thisOrder = getThisOrder();
+            //     retryCap++;
+            //     captcha = $("#code").text().trim().toUpperCase();
+            //     // hintDom.text("检测验证码中，验证码为 " + captcha + "，验证码将于30秒后失效");
+            //     // placeOrder(thisOrder, "#autobuy");
+            //     expire = (new Date()).getTime();
+            //     checkCaptcha(handleCaptcha);
+            // });
         }else{
-            captcha.attr("src", "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk));
+            cap.attr("src", "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk));
         }
 
-        
+        if(captcha.length == 5){
+            var thisOrder = getThisOrder();
+            placeOrder(thisOrder, "#autobuy");
+        }
 
 
         // getCaptcha(function(d) {
@@ -355,7 +360,7 @@ var doForcePay = function(){
 		}else{
 			//buyIt();
 			//retryBuy = 10;
-			$("#autobuy").text("50次尝试均无法获取验证码 基本无望 可以尝试再点一次本按钮碰运气");
+			$("#autobuy").text("验证码输入太慢了");
 		}
 	}
 }
