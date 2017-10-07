@@ -238,7 +238,7 @@ var handleReBuy = function(extra){
     captcha = $('#code').val().trim().toUpperCase();
 
 	if(buyTime <= 80){
-		if(buyTime % 20 == 1){
+		if(buyTime == 1){
 			console.log("YQLS" + (new Date()));
 			checkCaptcha(function(result){
 				console.log("YQLE" + (new Date()));
@@ -275,19 +275,19 @@ var handleReBuy = function(extra){
 			}, 1000);
 		}else{
 			console.log("iframeS" + (new Date()));
-			if(window.ifr){
-				ifr.src = "";
-				ifr.src = u;
-			}else{
+// 			if(window.ifr){
+// 				ifr.src = "";
+// 				ifr.src = u;
+// 			}else{
 				window.ifr = document.createElement("iframe");
-                ifr.style.bottom = "0px";
-                ifr.style.position = "absolute";
-                ifr.style.background = "yellow";
-                ifr.style.height = "9%";
-                ifr.style.width = "100%";
+				ifr.style.bottom = "0px";
+				ifr.style.position = "absolute";
+				ifr.style.background = "yellow";
+				ifr.style.height = "9%";
+				ifr.style.width = "100%";
 				ifr.src = u;
 				document.body.appendChild(ifr);
-			}
+// 			}
 			setTimeout(function(){
 				console.log("iframeE" + (new Date()));
 				handleReBuy(extra);
@@ -295,7 +295,7 @@ var handleReBuy = function(extra){
 		}
 	}else{
 		buyEnd = (new Date()).getTime();
-		$("#autobuy").text("抢购完成 请30分之内定期查看待支付 耗时" + (buyEnd - buyStart) / 1000 + "秒");
+		$("#autobuy").text("抢购结束 请30分之内定期查看待支付 耗时" + (buyEnd - buyStart) / 1000 + "秒");
 		console.log("完成");
 	}
 }
