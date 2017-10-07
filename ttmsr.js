@@ -308,7 +308,8 @@ var getThisOrder = function() {
     }
 }
 
-var changeCode = function(cap){
+var changeCode = function(){
+    var cap = $("#captcha");
     cap.attr("src", "");
     cap.attr("src", "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "&r=" + (new Date()).getTime());
     codeTime = (new Date()).getTime();	
