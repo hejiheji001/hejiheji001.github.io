@@ -83,6 +83,7 @@ var getCountDown = function(str) {
 
 var checkCode = function(){
     captcha = $('#code').val().trim().toUpperCase();
+    $("#checkcode").text("检测中...");
     checkCaptcha(handleCaptchaCheck);
 }
 
