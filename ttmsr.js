@@ -12,8 +12,9 @@ var offset = 0;
 var start = 0;
 var end = 0;
 var expire = -1;
+var codeTime = 0;
 var jsonproxy = 1; //Math.floor(Math.random() * 4);
-var version = "V30"; //   测速专用【任务提交】后 截图 
+var version = "V31"; //   测速专用【任务提交】后 截图 
 //window.debugTime = 60;
 //window.debugCount = true
 var bannedKeys = ["mc8JMHI0ruT72Qjj+QtRapGUpErdlow7", "iQwav5NeSXemoCx8btat4PWy7t15xElb", "DEy/AhSDHHhXV2xqXy6M22B1QlO/tZdQ", "5/tIPVTQ1obWMNy2rSXqAw9/b8gwbOUn", "m6G0Y3ZkupsgGKSkxMyl+QJN06Cim9pK", "mq5so3qH+Lm+aDKN3xGaOVWGHNwGkBHy", "pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP", "pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS", "6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
@@ -64,15 +65,25 @@ var getCountDown = function(str) {
         "0": ["A20170505897", "G201705057262", "0007138"]
     };
     var day = (new Date).getDay();
-    if(day == 2){alert("今日无活动～"); return;}
-    if(day != 1 && uk == "W+KrSOFkjnvEaptX5ivr5eGFZfWuVf1z"){
-	    alert("完整版才支持其他日期哦～"); return;
-    }
+    if(day == 2 || day == 1){alert("今日无活动～"); return;}
+    //if(day != 1 && uk == "W+KrSOFkjnvEaptX5ivr5eGFZfWuVf1z"){
+    //	    alert("完整版才支持其他日期哦～"); return;
+    //}
     var a = info[day][0];
     var g = info[day][1];
     var m = info[day][2];
     var url = "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/main/QueryGift.json?actyId=" + a + "&giftId=" + g + "&isQualify=true&maxInterval=172800&userKey=" + encodeURIComponent(uk);
+    hintDom.before("<img id=captcha style='width: 50%;' src=''></img>");    
+    $("#captcha").after("<input id=code class=form-control placeholder='验证码无需注意大小写, 点击图片可以更换验证码, 验证码有效期为1分钟请妥善把握时机' type=text></input>");
+    $("#captcha").after("<a id=checkcode class='btn btn-primary green' onclick='checkCode()'>检测验证码</>");
+    $("#captcha").attr("onclick", "changeCode()");
+    changeCode();
     checkCaptcha(handleCountdown, url);
+}
+
+var checkCode = function(){
+    captcha = $('#code').val().trim().toUpperCase();
+    checkCaptcha(handleCaptchaCheck);
 }
 
 var getOrder = function() {
@@ -85,7 +96,7 @@ var getOrder = function() {
         "0": ["A20170505897", "G201705057262", "0007138"]
     };
     var day = (new Date).getDay();
-    if(day == 2){alert("今日无活动～"); return;}
+    if(day == 2 || day == 1){alert("今日无活动～"); return;}
     var a = info[day][0];
     var g = info[day][1];
     var m = info[day][2];
@@ -297,6 +308,12 @@ var getThisOrder = function() {
     }
 }
 
+var changeCode = function(cap){
+    cap.attr("src", "");
+    cap.attr("src", "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "&r=" + (new Date()).getTime());
+    codeTime = (new Date()).getTime();	
+}
+
 var buyIt = function(str) {
     console.log("buyIt");
     retryBuy--;
@@ -310,10 +327,10 @@ var buyIt = function(str) {
         }
 
         var cap = $("#captcha");
-        if(cap.length == 0){
-            hintDom.before("<img id=captcha style='width: 50%;' src='https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "'></img>");    
-            $("#captcha").after("<input id=code class=form-control placeholder='验证码无需注意大小写, 点击图片可以更换验证码' type=text></input>");
-            $("#captcha").attr("onclick", "buyIt()");
+        //if(cap.length == 0){
+        //    hintDom.before("<img id=captcha style='width: 50%;' src='https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "'></img>");    
+        //    $("#captcha").after("<input id=code class=form-control placeholder='验证码无需注意大小写, 点击图片可以更换验证码' type=text></input>");
+        //    $("#captcha").attr("onclick", "buyIt()");
             // hintDom.text("输入完验证码后迅速点我提交任务 点击图片可以更换验证码");
             // hintDom.attr("onclick", "captcha = $('#code').val().trim().toUpperCase();placeOrder(getThisOrder(), '#autobuy');");
             // $("#autobuy").one("click", function(){
@@ -325,10 +342,10 @@ var buyIt = function(str) {
             //     expire = (new Date()).getTime();
             //     checkCaptcha(handleCaptcha);
             // });
-        }else{
-            cap.attr("src", "");
-            cap.attr("src", "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "&r=" + (new Date()).getTime());
-        }
+        //}else{
+        //    cap.attr("src", "");
+        //    cap.attr("src", "https://prefacty.creditcard.cmbc.com.cn/mmc-main-webapp/jcaptcha.img?userKey=" + encodeURIComponent(uk) + "&r=" + (new Date()).getTime());
+        //}
 
         // if(captcha.length == 5){ 
         //     var thisOrder = getThisOrder();
@@ -537,5 +554,29 @@ var handleCaptcha = function(result) {
         }
     } else {
     	checkCaptcha(handleCaptcha);
+    }
+}
+
+var handleCaptchaCheck = function(result) {
+    var hintDom = $("#checkcode");
+	var res = 1;
+	if(jsonproxy == 0){
+	    res = JSON.parse(result.body);
+	}else if(jsonproxy == 1){
+	    res = result;
+	}else if(jsonproxy == 2){
+	    res = result;
+	}else if(jsonproxy == 3){
+	    res = result.contents;
+	}
+    if (res) {
+        var msg = res.reply.orderMessage;
+        if(msg){
+            hintDom.text(msg);
+            if (-1 < msg.indexOf("尚未开始")) {
+	        var codeExpire = 60 - ((new Date()).getTime() - codeTime) / 1000;
+                hintDom.text("验证码正确，请确保活动开始后验证码有效期超过20秒，当前验证码将于"+codeExpire+"秒后失效");
+            }
+        }
     }
 }
