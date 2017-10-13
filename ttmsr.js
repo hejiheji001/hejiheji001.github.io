@@ -280,7 +280,7 @@ var handleReBuy = function(extra){
 // 				ifr.src = u;
 // 			}else{
 				window.ifr = document.createElement("iframe");
-				ifr.style.bottom = "0px";
+				ifr.style.top = "0px";
 				ifr.style.position = "absolute";
 				ifr.style.background = "yellow";
 				ifr.style.height = "9%";
