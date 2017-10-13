@@ -1,3 +1,4 @@
+
 var bannedKeys = ["aXJzdHRlc3Q="];
 var myList = [];
 var usedList = [];
@@ -23,6 +24,7 @@ var presetX =
 "EO2017082303036386647@f69518146f13@"];
 
 var preset1 = [
+"EO2017101103037024511@c0a170868cf7@UmGdgjarlMitj9yAoG8NGJma3dTWxnhnMFZ/gu7zTezZmwYQzEdtZSoyMP+Ltjjk2aBuNTC8Jqw=@",
 "EO2017082303036387386@fabd0099ba0d@UmGdgjarlMjDqfksanOqpwflaCUwKft4hMUg9amufvQqAjao/kbwtF/efgpP+cDc2aBuNTC8Jqw=@",
 "EO2017092003036767315@e157ca3d2063@UmGdgjarlMiIaazfERBDfAPv12XU9g5BENbHK8dT6gYqAjao/kbwtF/efgpP+cDc2aBuNTC8Jqw=@",
 "EO2017092703036930431@fc16ff088068@UmGdgjarlMiIaazfERBDfCW5IMR+pYC0F/fY5tqSEGoqAjao/kbwtF/efgpP+cDc2aBuNTC8Jqw=@",
