@@ -25,7 +25,7 @@ var showIn = function(){
 
 var getRand = function(){
   if(valid){
-    var randURL = "http://ms.lefone.cn/msflowday/couponShowController/generateCheckCode?enStr=UmGdgjarlMgUUcyuaagJoXIIQ3DK44FsD5G00suinyka7hNvFpPqJcBsljrtwJKX2aBuNTC8Jqw=&mobile=" + mobile;
+    var randURL = "http://ms.lefone.cn/msflowday/couponShowController/generateCheckCode?enStr=JT9BdLKrkZFfhhb4DlStYk1L2bBQNlLZutpU3VrqegQ1/5zVqRQxWB3UtmwTMZ0gDpzfqXpL94Q=&mobile=" + mobile;
     $("#frame").attr("src", randURL);
     $("#rand").text("黄色框文字包含true表示短信发送成功 90秒有效");
   }else{
