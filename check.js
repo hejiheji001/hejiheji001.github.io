@@ -1,4 +1,4 @@
-var thisV = "V20171031";
+var thisV = "V2017102";
 
 var check = function(){
 	if(thisV !== version){
