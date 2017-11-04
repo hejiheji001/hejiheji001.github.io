@@ -21,7 +21,7 @@ var bannedKeys = ["mc8JMHI0ruT72Qjj+QtRapGUpErdlow7", "iQwav5NeSXemoCx8btat4PWy7
 var monthlyKeys = {
 			"W+KrSOFkjnsmxd7Nq2SEtoz9+rDt+szK": "2017-08-15", 
 			"OSwqfpUTZyPFxk9K2b8a2fCrkw7chepY": "2017-09-21",
-			"VpZ6yaSTACft0KPnQfUppPic67IEX2mu": "2017-11-17",
+			"VpZ6yaSTACft0KPnQfUppPic67IEX2mu": "2018-06-01",
 			"gU0ipPc0/+nivZhC0hIz914M4+Lk5pqB": "2017-11-27",
 			"kRTBRP0WM4TCUN9WidwKA7fPcnfruRYe": "2017-08-17",
 			"l1zgr7B9sAplSdL0/AhUy0ScQIU0P7mF": "2017-08-20", 
