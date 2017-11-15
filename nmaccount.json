@@ -2,7 +2,8 @@
   "account": [
     {
       "id": "test",
-      "pwd": "12345"
+      "pwd": "12345",
+      "rules": "food"
     }
   ],
   "valid": [
