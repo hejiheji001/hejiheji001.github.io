@@ -1,13 +1,13 @@
 {
   "account": [
     {
-      "wxid": "test",
+      "id": "test",
       "pwd": "12345"
     }
   ],
   "valid": [
     {
-      "wxid": "test",
+      "id": "test",
       "end": "2017-11-11"
     }
   ]
