@@ -29,7 +29,8 @@ var monthlyKeys = {
 			"gRtPhWbHhHszycNMpbYX/ZhYlz225ACu": "2017-10-23",
 			"HhoaQ5WpehEHSWHSiHHiuoQLG5g0HfiB": "2017-09-21",
 			"2oznqUaQqT/Bl/vg/oVgXXfdfxqyfyPw": "2017-08-22",
-			"WPI27dVqrrIjzt8nRX+Zn0JuvRRPs0IS": "2017-12-03"
+			"WPI27dVqrrIjzt8nRX+Zn0JuvRRPs0IS": "2017-12-03",
+			"x1iHpVPoKSsfA3+IWLhvHtmpju9hMNny": "2017-11-23"
 		  };
 var getEnc = function() {
   var end = monthlyKeys[uk];
