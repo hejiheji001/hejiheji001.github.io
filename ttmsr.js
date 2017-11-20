@@ -14,7 +14,7 @@ var end = 0;
 var expire = -1;
 var codeTime = 0;
 var jsonproxy = Math.floor(Math.random() * 4);
-var version = "V33 新版完成请大家抽空上报信息 https://wj.qq.com/s/1615462/3062"; //   测速专用【任务提交】后 截图 
+var version = "V33"; //   测速专用【任务提交】后 截图 
 //window.debugTime = 60;
 //window.debugCount = true
 var bannedKeys = ["mc8JMHI0ruT72Qjj+QtRapGUpErdlow7", "iQwav5NeSXemoCx8btat4PWy7t15xElb", "DEy/AhSDHHhXV2xqXy6M22B1QlO/tZdQ", "5/tIPVTQ1obWMNy2rSXqAw9/b8gwbOUn", "m6G0Y3ZkupsgGKSkxMyl+QJN06Cim9pK", "mq5so3qH+Lm+aDKN3xGaOVWGHNwGkBHy", "pCbOG2B3zup9aOKK7qwy6KjKKaIVBbeP", "pCbOG2B3zuoNxAvagk8TOWv66q2OX+rS", "6ggjU9GnMsCUHRTulax6AaXRVzTJfxdA", "P2gv+Ol0uGjoqXS6HWGovdiQ6ukyDbpv","KUyIf2VcxGzdGtvFWK7vBibfHPr68Zjt","+JNBj78KXZyrvgVLP5AC6Q/SMem7j3fd", "AmVXNbtaRyAD8c0ej8Q+ua2wjialsb1y"];
@@ -30,7 +30,7 @@ var monthlyKeys = {
 			"HhoaQ5WpehEHSWHSiHHiuoQLG5g0HfiB": "2017-09-21",
 			"2oznqUaQqT/Bl/vg/oVgXXfdfxqyfyPw": "2017-08-22",
 			"WPI27dVqrrIjzt8nRX+Zn0JuvRRPs0IS": "2017-12-03",
-			"x1iHpVPoKSsfA3+IWLhvHtmpju9hMNny": "2017-11-23"
+			"xliHpVPoKSsfA3+IWLhvHtmpju9hMNny": "2017-11-23"
 		  };
 var getEnc = function() {
   var end = monthlyKeys[uk];
