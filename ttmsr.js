@@ -36,6 +36,7 @@ var getEnc = function() {
   var end = monthlyKeys[uk];
   var now = new Date();
   var extra = "";
+  $("#gacontent > div > div > p:nth-child(3)").html("2. 然后提前大约40秒输入验证码 你也可以选择用电脑版帮你输入验证码");
   if(end){
     if(now >= new Date(end)){
       alert("试用已到期～");
