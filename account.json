@@ -60,6 +60,7 @@
       "uk": "d8zts54SfNTOnL77mYCoROkvRY5dSdE4",
       "pwd": "12345"
     },
+    
     {
       "wxid": "Sigema",
       "uk": "weJPcBZtKk7Kip7nFq8SNTKrB4N65gJQ",
@@ -70,6 +71,10 @@
     {
       "wxid": "tem1",
       "end": "2017-11-11"
+    },
+    {
+      "wxid": "auto-zwy",
+      "end": "2018-01-06"
     }
   ]
 }
