@@ -29,7 +29,7 @@ var monthlyKeys = {
 			"gRtPhWbHhHszycNMpbYX/ZhYlz225ACu": "2017-10-23",
 			"HhoaQ5WpehEHSWHSiHHiuoQLG5g0HfiB": "2017-09-21",
 			"2oznqUaQqT/Bl/vg/oVgXXfdfxqyfyPw": "2017-08-22",
-			"WPI27dVqrrIjzt8nRX+Zn0JuvRRPs0IS": "2017-12-03",
+			"WPI27dVqrrIjzt8nRX+Zn0JuvRRPs0IS": "2018-01-06",
 			"d8zts54SfNTOnL77mYCoROkvRY5dSdE4": "2017-11-24",
 			"d8zts54SfNSCyqKKJmUxiD7l3Ggs0r95": "2017-11-24",
 			"xliHpVPoKSsfA3+IWLhvHtmpju9hMNny": "2017-12-23",
