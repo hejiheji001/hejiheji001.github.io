@@ -70,19 +70,20 @@ var getInfo = function(){
     }
     
     $("#provName").change(function(){
- 			var provId= $("select[id=provName] option").not(function(){ return !this.selected }).val();
- 			$("#mcc").append(Html);
-      $('#cityName').empty(); 
- 			if(provId==''){
- 				$('#cityName').append("<option>市</option>");
- 			}else{
-	 			var html="";
-        for(var i=0;i<cityInfo[provId];i++){
-           html +="<option value='"+result[i].CITY_CODE+"'>"+result[i].CITY_NAME+"</option>"
-        }
-        $("#cityName").append(html);  
- 			}
- 		});
+	var provId= $("select[id=provName] option").not(function(){ return !this.selected }).val();
+	$("#mcc").append(Html);
+	$('#cityName').empty(); 
+	if(provId==''){
+		$('#cityName').append("<option>市</option>");
+ 	}else{
+		var html="";
+		var result = cityInfo[provId];
+        	for(var i=0;i<result.length;i++){
+           		html +="<option value='"+result[i].CITY_CODE+"'>"+result[i].CITY_NAME+"</option>"
+		}
+        	$("#cityName").append(html);  
+	}
+	});
     
     $("#mcc").change(function(){
  			var provId= $("select[id=provName] option").not(function(){ return !this.selected }).val();
@@ -102,7 +103,7 @@ var getInfo = function(){
 			}
       $('#mercName').empty();
       var info = provId + "-" + cityId + "-" + mcc;
- 			var rs = shopInfo[info];
+      var rs = shopInfo[info].data;
       var html="";
       if(rs.length>0){
         for(var i=0;i<rs.length;i++){
