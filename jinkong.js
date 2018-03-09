@@ -6,13 +6,14 @@ var getInfo = function(id){
 
     if(id){
 	if(UKList.indexOf(id) > -1){
-		//var s = document.getElementById("sn");
-		//s.innerHTML = '<option value="">请选择终端序列号</option><option value="00000302Q1NL14308385" data="ocaMkw-V4fC_s3Y-hmapKmkN2INM">FireAwayH</option><option value="00000302Q1NL14308392" data="ocaMkw22CznM1sCStegMljQQOuP8">光光</option>';
+		var s = document.getElementById("sn");
+		s.innerHTML = '<option value="">请选择终端序列号</option><option value="00000302Q1NL14308385" data="ocaMkw-V4fC_s3Y-hmapKmkN2INM">FireAwayH</option>';
+		//<option value="00000302Q1NL14308392" data="ocaMkw22CznM1sCStegMljQQOuP8">光光</option>
 		var p = document.getElementById("provName");
 		p.innerHTML = ' <option value="">省</option> <option value="2">北京</option><option value="23">天津</option><option value="44">河北省</option><option value="243">山西省</option><option value="386">内蒙古自治区</option><option value="512">辽宁省</option><option value="647">吉林省</option><option value="730">黑龙江省</option><option value="889">上海</option><option value="912">江苏省</option><option value="1050">浙江省</option><option value="1163">安徽省</option><option value="1305">福建省</option><option value="1409">江西省</option><option value="1535">山东省</option><option value="1715">河南省</option><option value="1910">湖北省</option><option value="2043">湖南省</option><option value="2194">广东省</option><option value="2361">广西壮族自治区</option><option value="2499">海南省</option><option value="2528">重庆</option><option value="2571">四川省</option><option value="2797">贵州省</option><option value="2905">云南省</option><option value="3067">西藏自治区</option><option value="3155">陕西省</option><option value="3283">甘肃省</option><option value="3397">青海省</option><option value="3457">宁夏回族自治区</option><option value="3489">新疆维吾尔自治区</option><option value="3618">台湾省</option><option value="3699">香港特别行政区</option><option value="3703">澳门特别行政区</option><option value="3706">海外</option>';
-		//s.onchange = function(){
-		    //OPEN_ID = s.selectedOptions[0].getAttribute("data");
-		//};
+		s.onchange = function(){
+		    OPEN_ID = s.selectedOptions[0].getAttribute("data");
+		};
 	}else{
         	alert("您没有使用权限！");
     	}
