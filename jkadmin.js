@@ -1,0 +1,2 @@
+var getInfo = function(){
+}
