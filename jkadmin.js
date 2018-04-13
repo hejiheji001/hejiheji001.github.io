@@ -44,7 +44,7 @@ var create = function(){
   var text = $("#hide").val() + $("#text").val();
   var obj = {};
   if(link.val() + sn.val() + phone.val()){
-    var id = 1;
+    var id = new URL(link.val()).searchParams.get("openId");
     var line = phone.val() + "@" + id + "@" + sn.val() + "\n";
     text += line;
   }
