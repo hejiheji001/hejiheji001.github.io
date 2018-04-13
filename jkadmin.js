@@ -39,15 +39,18 @@ var getInfo = function(){
 
 var create = function(){
   try{
-	var link = $("#link");
-	var phone = $("#phone");
-	var sn = $("#sn");
+	var link = new URL($("#link").val());
+	var id = link.searchParams.get("openId");
+	var phone = $("#phone").val();
+	var sn = $("#sn").val();
 	var text = $("#hide").val() + $("#text").val();
 	var obj = {};
-	if(link.val() + sn.val() + phone.val()){
-		var id = new URL(link.val()).searchParams.get("openId");
-		var line = phone.val() + "@" + id + "@" + sn.val() + "\n";
+	if(id && sn.length == 20 && phone.length == 11){
+		var line = phone + "@" + id + "@" + sn + "\n";
 		text += line;
+	}else{
+		alert("信息输入有误");
+		return;
 	}
 	var infos = text.split("\n");
 	for(var i = 0; i < infos.length; i++){
