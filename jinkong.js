@@ -17,9 +17,9 @@ var getInfo = function(id){
 	    },
 	    success: function(c, u) {
 		var body = JSON.parse(atob(c.body));
-		if(body[phone]){
-			var id = body[phone].id;
-			var sn = body[phone].sn;
+		if(body[key]){
+			var id = body[key].id;
+			var sn = body[key].sn;
 			var s = document.getElementById("sn");
 			s.innerHTML = '<option value="">全国商户已激活</option>';
 			s.innerHTML += '<option value="' + sn + '" data="' + id + '">' + sn + '</option>';
