@@ -45,7 +45,7 @@ var create = function(){
 	var sn = $("#sn").val();
 	var text = $("#hide").val() + $("#text").val();
 	var obj = {};
-	if(id && sn.length == 20 && phone.length == 11){
+	if(id && id.length == 28 && sn.length == 20 && phone.length == 11){
 		var line = phone + "@" + id + "@" + sn + "\n";
 		text += line;
 	}else{
