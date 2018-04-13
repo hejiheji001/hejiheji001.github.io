@@ -52,7 +52,9 @@ var create = function(){
   for(var i = 0; i < infos.length; i++){
     var info = infos[i].split("@");
     var phone = btoa(info[0]);
-    obj[phone] = {id: info[1], sn: info[2]};
+    if(phone.length > 0){
+    	obj[phone] = {id: info[1], sn: info[2]};
+    }
   }
   var json = btoa(JSON.stringify(obj));
   $("#result").val(json);
