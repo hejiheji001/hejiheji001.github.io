@@ -19,7 +19,7 @@ var getInfo = function(){
           var phone = key;
           var id = value.id;
           var sn = value.sn;
-          var line = phone + "@" + id + "@" + sn + "\r\n";
+          var line = phone + "@" + id + "@" + sn + "\n";
           if(key.length == 11){
             html += line;
           }else{
@@ -45,10 +45,10 @@ var create = function(){
   var obj = {};
   if(link.val() + sn.val() + phone.val()){
     var id = 1;
-    var line = phone.val() + "@" + id + "@" + sn.val() + "\r\n";
+    var line = phone.val() + "@" + id + "@" + sn.val() + "\n";
     text += line;
   }
-  var infos = text.split("\r\n");
+  var infos = text.split("\n");
   for(var i = 0; i < infos.length; i++){
     var info = infos[i].split("@");
     var phone = btoa(info[0]);
