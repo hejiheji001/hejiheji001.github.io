@@ -38,24 +38,28 @@ var getInfo = function(){
 }
 
 var create = function(){
-  var link = $("#link");
-  var phone = $("#phone");
-  var sn = $("#sn");
-  var text = $("#hide").val() + $("#text").val();
-  var obj = {};
-  if(link.val() + sn.val() + phone.val()){
-    var id = new URL(link.val()).searchParams.get("openId");
-    var line = phone.val() + "@" + id + "@" + sn.val() + "\n";
-    text += line;
+  try{
+	var link = $("#link");
+	var phone = $("#phone");
+	var sn = $("#sn");
+	var text = $("#hide").val() + $("#text").val();
+	var obj = {};
+	if(link.val() + sn.val() + phone.val()){
+		var id = new URL(link.val()).searchParams.get("openId");
+		var line = phone.val() + "@" + id + "@" + sn.val() + "\n";
+		text += line;
+	}
+	var infos = text.split("\n");
+	for(var i = 0; i < infos.length; i++){
+		var info = infos[i].split("@");
+		var phone = btoa(info[0]);
+		if(phone.length > 0){
+			obj[phone] = {id: info[1], sn: info[2]};
+		}
+	}
+	var json = btoa(JSON.stringify(obj));
+	$("#result").val(json);
+  }catch{
+	alert("链接信息输入有误");  
   }
-  var infos = text.split("\n");
-  for(var i = 0; i < infos.length; i++){
-    var info = infos[i].split("@");
-    var phone = btoa(info[0]);
-    if(phone.length > 0){
-    	obj[phone] = {id: info[1], sn: info[2]};
-    }
-  }
-  var json = btoa(JSON.stringify(obj));
-  $("#result").val(json);
 }
