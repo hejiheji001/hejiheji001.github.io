@@ -1,7 +1,7 @@
 var getInfo = function(){
     var html = "";
     var hidden = "";
-    $("#in").append("<input type=hidden id=hide><input type=text class=form-control id=phone placeholder=新增用户手机号><input type=text class=form-control id=link placeholder=新增用户链接框><input type=text class=form-control id=sn placeholder=新增用户设备框><textarea id=text class=form-control style='height:200px;font-size: 11px;'>加载中...</textarea><textarea id=result class=form-control placeholder='更新日期2018-04-15 22:20' style='height:200px'></textarea><a class='btn btn-primary green' onclick='create();' id=create>生产新代码</a>");
+    $("#in").append("<input type=hidden id=hide><input type=text class=form-control id=phone placeholder=新增用户手机号><input type=text class=form-control id=link placeholder=新增用户链接框><input type=text class=form-control id=sn placeholder=新增用户设备框><textarea id=text class=form-control style='height:200px;font-size: 11px;'>加载中...</textarea><textarea id=result class=form-control placeholder='更新日期2018-04-15 22:30' style='height:200px'></textarea><a class='btn btn-primary green' onclick='create();' id=create>生产新代码</a>");
 
     $.ajax({
         url: "http://cors-proxy.htmldriven.com",
@@ -43,7 +43,7 @@ var create = function(){
     if($("#link").val()){
         try{
             var link = new URL($("#link").val());
-            var id = link.searchParams.get("openId");
+            var id = link.search.split("openId")[1].split("&")[0].replace("=", "");
             var phone = $("#phone").val();
             var sn = $("#sn").val();
 
