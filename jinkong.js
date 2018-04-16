@@ -32,7 +32,11 @@ var getInfo = function(id){
 			$(".weui-cells_form").append("<div style='text-align: center;'><a onclick='phone = prompt(\"请输入您的手机号\");localStorage[\"phone\"] = phone; location.reload();'>当前手机号：" + phone + "，点击修改</a></div>");
 		}else{
 			alert("您没有使用权限！");
-			showTooltips.remove()
+			$(".weui-cells_form").append("<div style='text-align: center;'><a onclick='phone = prompt(\"请输入您的手机号\");localStorage[\"phone\"] = phone; location.reload();'>当前手机号：" + phone + "，点击修改</a></div>");
+			showTooltips.remove();
+			$("#sn").remove();
+			$("#provName").remove();
+			$("#cityName").remove();
 		}
 	    },
 	    error: function(){
