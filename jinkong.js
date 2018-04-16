@@ -9,6 +9,7 @@ var getInfo = function(id){
 	var phone = localStorage["phone"];
 	if(!phone){
 	    phone = prompt("请输入您的手机号");
+	    localStorage["phone"] = phone;
 	}
 	var key = btoa(phone);
 	$.ajax({
