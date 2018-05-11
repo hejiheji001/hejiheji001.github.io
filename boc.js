@@ -150,13 +150,15 @@
             success: function(r){
                 var d = JSON.parse(r);
                 if(d.stat && d.result){
-                	$("body").prepend("<p>" + d.orderName + ":" + d.result + "</p>");
+                    $("body").prepend("<p>" + d.orderName + ":" + d.result + "</p>");
                     if(d.result == "交易成功"){
                         console.log("OK");
                     }else if(d.result == "活动不存在或未上架"){
-                        sechdule(10, function(){
+			sechdule(10, function(){
                             getCoupon(couponID);
                         });
+		    }else if(d.result == "库存不足"){
+                        console.log("STOP");
                     }else if(d.result == "登录超时，请重新登录"){
                         alert("登录超时，请重新登录");
                     }else{
