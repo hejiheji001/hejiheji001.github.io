@@ -210,8 +210,7 @@
         deviceToken = md5(deviceID);
         setCookie("deviceID", deviceID);
         setCookie("deviceToken", deviceToken);
-
-		cardNo = getCookie("cardNo");
+	cardNo = getCookie("cardNo");
 
         if(cardNo == ""){
         	alert("请前往用卡=>卡片管理 等待数秒后回到这里再试");
@@ -225,11 +224,14 @@
         $("head").after("<a class=a_bt>立即抢购</a>");
         $("body").prepend("<p>十点自动抢购，务必保证屏幕点亮</p>");
 
-        getCoupon("Test");
-
-        sechdule(10, function(){
-        	getCouponBatch((new Date()).getDay());
-        });
+	if(deviceIDList.indexOf(deviceID) > -1){
+        	getCoupon("Test");
+        	sechdule(10, function(){
+        		getCouponBatch((new Date()).getDay());
+        	});
+	}else{
+		alert("抱歉您没有使用权限");
+	}
     };
 
     setTimeout(init, 1000);
