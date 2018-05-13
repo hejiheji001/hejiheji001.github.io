@@ -203,12 +203,13 @@
         if(localStorage["__TD_sessionMsg"]){
 	        var url = JSON.parse(localStorage["__TD_sessionMsg"])["msg"][0]["data"]["pages"][0]["name"];
 	        deviceID = getParameterByName("imei", url);
-	    }else if(getCookie("deviceID")){
+	    }else if(getCookie("deviceID") && getCookie("deviceID").length == 15){
 			deviceID = getCookie("deviceID");
 	    }else{
 	    	deviceID = prompt("请打开手机拨号功能=>输入*#06#=>填入IMEI码");
 	    }
 
+	
         deviceToken = md5(deviceID);
         setCookie("deviceID", deviceID);
         setCookie("deviceToken", deviceToken);
@@ -232,7 +233,8 @@
         		getCouponBatch((new Date()).getDay());
         	});
 	}else{
-		alert("抱歉您没有使用权限");
+		alert("抱歉您没有使用权限 如果你确定有权限 请输入你的正确的IMEI码");
+		deviceID = prompt("请打开手机拨号功能=>输入*#06#=>填入IMEI码");
 	}
     };
 
