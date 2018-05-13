@@ -153,7 +153,7 @@
                 var d = JSON.parse(r);
                 if(d.stat && d.result){
                     $("body").prepend("<p>" + d.orderName + ":" + d.result + "</p>");
-                    if(d.result == "交易成功"){
+                    if(d.result == "交易成功" || d.result == "尚未支付"){
                         console.log("OK");
                     }else if(d.result == "活动不存在或未上架"){
 			sechdule(10, function(){
