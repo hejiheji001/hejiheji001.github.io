@@ -1,17 +1,5 @@
 (function(){
     var deviceIDList = ["359168071743472", "353052092848658", "358638072475036", "353627072498663"];
-	
-    var JDCoupon = "WHXFY000008";
-    var TMCoupon = "WHXFY000011";
-    var YXCoupon = "WHXFY000012";
-    var GPCoupon = "WJHMA000156";
-    var JFCoupon = "WHXFY000009";
-    var XTCpupon = "WJHMA000148";
-    var YHCpupon = "WZLXF000066";
-    var WMCpupon = "WZLXF000064";
-
-    var TSCoupon = "WEBUY200049";
-
     var deviceToken = "";
     var deviceID = "";
     var cardNo = "";
@@ -96,49 +84,77 @@
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     };
+	
+    var JDCoupon = "WHXFY000008";
+    var TMCoupon = "WHXFY000011";
+    var YXCoupon = "WHXFY000012";
+    var GPCoupon = "WJHMA000156";
+    var JFCoupon = "WHXFY000009";
+    var XTCoupon = "WJHMA000148";
+    var YHCoupon = "WZLXF000066";
+    var WMCoupon = "WZLXF000064";
+    var LGCoupon = "WJHMA000149";
+	
+    var TSCoupon = "WEBUY200049";
 
     var getCoupon = function(couponID){
         var money = "80.0";
+	var name = "";
 
         if(couponID == "JD"){
             couponID = JDCoupon;
+	    name = "京东";
         }
 
         if(couponID == "TM"){
             couponID = TMCoupon;
+	    name = "天猫";
         }
 
         if(couponID == "YX"){
             couponID = YXCoupon;
+	    name = "严选";
         }
 
         if(couponID == "GP"){
             couponID = GPCoupon;
+	    name = "Gap";
         }
 
         if(couponID == "JF"){
             couponID = JFCoupon;
             money = "90.0";
+	    name = "家乐福";
         }
 
         if(couponID == "XT"){
             couponID = XTCoupon;
             money = "60.0";
+	    name = "西提牛排";
+        }
+	    
+	if(couponID == "LG"){
+            couponID = LGCoupon;
+            money = "60.0";
+	    name = "鹿港小镇";
         }
 
         if(couponID == "WM"){
             couponID = WMCoupon;
             money = "90.0";
+	    name = "物美";
         }
 
         if(couponID == "YH"){
             couponID = YHCoupon;
             money = "90.0";
+	    name = "永辉";
         }
 
         if(couponID == "Test"){
             couponID = TSCoupon;
             money = "90.0";
+	    name = "【测试】汉堡王";
         }
 
         baseData["couponId"] = couponID;
@@ -152,8 +168,8 @@
             success: function(r){
                 var d = JSON.parse(r);
                 if(d.stat && d.result){
-                    $("body").prepend("<p>" + d.orderName + ":" + d.result + "</p>");
-                    if(d.result == "交易成功" || d.result == "尚未支付"){
+                    $("body").prepend("<p>" + name + ":" + d.result + "</p>");
+                    if(d.result == "交易成功" || d.result == "您有订单尚未支付，请完成支付后再行支付"){
                         console.log("OK");
                     }else if(d.result == "活动不存在或未上架"){
 			sechdule(10, function(){
@@ -189,6 +205,7 @@
         	getCoupon("YH");
         }else if(day == 3){
         	getCoupon("XT");
+		getCoupon("LG");
         }
     }
 
