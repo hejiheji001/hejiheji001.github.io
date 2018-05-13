@@ -223,8 +223,7 @@
         baseData["deviceToken"] = deviceToken;
         baseData["cardNo"] = encodeURIComponent(cardNo);
         baseData["imei"] = deviceID;
-
-        $("head").after("<a class=a_bt>立即抢购</a>");
+	    
         $("body").prepend("<p>十点自动抢购，务必保证屏幕点亮</p>");
 
 	if(deviceIDList.indexOf(deviceID) > -1){
@@ -233,8 +232,9 @@
         		getCouponBatch((new Date()).getDay());
         	});
 	}else{
-		alert("抱歉您没有使用权限 如果你确定有权限 请输入你的正确的IMEI码");
+		alert("抱歉您没有使用权限 如果你确定有权限 请输入正确的IMEI码 随后重新进入本页面");
 		deviceID = prompt("请打开手机拨号功能=>输入*#06#=>填入IMEI码");
+		setCookie("deviceID", deviceID);
 	}
     };
 
