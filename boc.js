@@ -1,4 +1,6 @@
 (function(){
+    var deviceIDList = ["359168071743472", "353052092848658", "358638072475036"];
+	
     var JDCoupon = "WHXFY000008";
     var TMCoupon = "WHXFY000011";
     var YXCoupon = "WHXFY000012";
