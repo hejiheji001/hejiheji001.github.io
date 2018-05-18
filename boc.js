@@ -97,10 +97,13 @@
 	
     var TSCoupon = "WEBUY200049";
 
-    var getCoupon = function(couponID){
+    var getCoupon = function(couponID, name){
         var money = "80.0";
-	var name = "";
-
+        var total = "1";
+	if(!name){
+	    name = "";
+	}
+	    
         if(couponID == "JD"){
             couponID = JDCoupon;
 	    name = "京东";
@@ -123,8 +126,9 @@
 
         if(couponID == "JF"){
             couponID = JFCoupon;
-            money = "90.0";
+            money = "180.0";
 	    name = "家乐福";
+	    total = "2";
         }
 
         if(couponID == "XT"){
@@ -141,13 +145,15 @@
 
         if(couponID == "WM"){
             couponID = WMCoupon;
-            money = "90.0";
-	    name = "物美";
+      	    name = "物美";
+            money = "180.0";
+	    total = "2";
         }
 
         if(couponID == "YH"){
             couponID = YHCoupon;
-            money = "90.0";
+            money = "180.0";
+	    total = "2";
 	    name = "永辉";
         }
 
@@ -173,22 +179,22 @@
                         console.log("OK");
                     }else if(d.result == "活动不存在或未上架"){
 			sechdule(10, function(){
-                            getCoupon(couponID);
+                            getCoupon(couponID, name);
                         });
 		    }else if(d.result == "库存不足"){
                         console.log("STOP");
                     }else if(d.result == "登录超时，请重新登录"){
                         alert("登录超时，请重新登录");
                     }else{
-                    	getCoupon(couponID);
+                    	getCoupon(couponID, name);
                     }
                 }else{
-                    getCoupon(couponID);
+                    getCoupon(couponID, name);
                 }
             },
             error: function(d){
                 console.log(d);
-                getCoupon(couponID);
+                getCoupon(couponID, name);
             }
         });
     };
@@ -200,7 +206,6 @@
         	getCoupon("YX");
         	getCoupon("GP");
         	getCoupon("JF");
-        	getCoupon("WM");
         	getCoupon("WM");
         	getCoupon("YH");
         }else if(day == 3){
