@@ -44,7 +44,7 @@
 
     var expireCookie = function(cname){
     	var cvalue = getCookie(cname);
-    	var d = new Date((new Date()).getTime() - 1000);
+    	var d = new Date(0,0,0);
     	var expires = "expires="+ d.toString();
     	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;";
     };
@@ -185,6 +185,7 @@
                         console.log("STOP");
                     }else if(d.result == "登录超时，请重新登录"){
                         alert("登录超时，请重新登录");
+			alert(getCookie("JSESSIONID"));
                     }else{
                     	getCoupon(couponID, name);
                     }
