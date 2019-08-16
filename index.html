@@ -336,7 +336,7 @@
 
 		// Feature 2:
 		function smoothing(num){
-			return num.toFixed(2);
+			return (typeof num === "string" ? Number(num) : num).toFixed(2);
 		}
 
 		// Feature 3:
@@ -345,7 +345,6 @@
 			var heightDom = document.getElementById("heightOfCamera");
 			if (!isNaN(Number(height))) {
 				heightDom.innerText = smoothing(height);
-
 				// For Part of Feature 4
 				heightDom.setAttribute("data", height);
 			} else {
