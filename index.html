@@ -311,6 +311,12 @@
 	</script>
 	<script>
 		window.onload = init;
+		
+		// Universal Util
+		function setDataForDom(dom, val){
+			dom.innerText = smoothing(val);
+			dom.setAttribute("data", val);
+		}
 
 		// Feature 1:
 		function init(){
@@ -320,6 +326,7 @@
 
 			window.addEventListener('deviceorientation', function(event) {
 				// Also For Part of Feature 4
+				console.log(event.alpha);
 				setDataForDom(alpha, event.alpha);
 				setDataForDom(beta, event.beta);
 				setDataForDom(gamma, event.gamma);
@@ -337,12 +344,6 @@
 				setDataForDom(z, deviceAbsolute.quaternion[2]);
 				setDataForDom(w, deviceAbsolute.quaternion[3]);
 			});
-		}
-
-		// Universal Util
-		function setDataForDom(dom, val){
-			dom.innerText = smoothing(val);
-			dom.setAttribute("data", val);
 		}
 
 		// Feature 2:
