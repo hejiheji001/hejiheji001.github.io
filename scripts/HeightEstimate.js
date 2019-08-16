@@ -41,7 +41,7 @@ function init() {
 
 // Feature 2:
 function smoothing(num) {
-    return (typeof num === "string" ? Number(num) : num).toFixed(2);
+    return (typeof num === "string" ? Number(num) : (num || 0)).toFixed(2);
 }
 
 // Feature 3:
