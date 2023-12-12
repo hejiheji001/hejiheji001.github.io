@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Recorder</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body class="container">
+
+    <h1 class="center-align">Voice Recorder</h1>
+
+    <div class="row">
+        <div class="col s12 m6 offset-m3">
+            <div class="card">
+                <div class="card-content">
+                    <button id="startButton" class="btn waves-effect waves-light">Start Recording</button>
+                    <button id="stopButton" class="btn waves-effect waves-light" disabled>Stop Recording</button>
+                    <button id="replayButton" class="btn waves-effect waves-light" disabled>Replay Recording</button>
+
+                    <canvas id="waveformCanvas" width="300" height="100" style="display: block; margin-top: 20px;"></canvas>
+
+                    <audio id="audioPlayer" controls style="display: block; margin-top: 20px;"></audio>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            M.AutoInit(); // Initialize Materialize components
+
+            const startButton = document.getElementById('startButton');
+            const stopButton = document.getElementById('stopButton');
+            const replayButton = document.getElementById('replayButton');
+            const audioPlayer = document.getElementById('audioPlayer');
+            const waveformCanvas = document.getElementById('waveformCanvas');
+            const waveformContext = waveformCanvas.getContext('2d');
+
+            let mediaRecorder;
+            let audioChunks = [];
+            let audioContext;
+            let analyser;
+            let dataArray;
+
+            const handleSuccess = (stream) => {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                const source = audioContext.createMediaStreamSource(stream);
+                source.connect(analyser);
+                analyser.connect(audioContext.destination);
+
+                analyser.fftSize = 256;
+                const bufferLength = analyser.frequencyBinCount;
+                dataArray = new Uint8Array(bufferLength);
+
+                mediaRecorder = new MediaRecorder(stream);
+
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) {
+                        audioChunks.push(event.data);
+                        analyser.getByteTimeDomainData(dataArray);
+                        drawWaveform();
+                    }
+                };
+
+                mediaRecorder.onstop = () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    audioPlayer.src = audioUrl;
+                    replayButton.disabled = false;
+                };
+
+                startButton.addEventListener('click', () => {
+                    mediaRecorder.start();
+                    startButton.disabled = true;
+                    stopButton.disabled = false;
+                });
+
+                stopButton.addEventListener('click', () => {
+                    mediaRecorder.stop();
+                    startButton.disabled = false;
+                    stopButton.disabled = true;
+                });
+
+                replayButton.addEventListener('click', () => {
+                    audioPlayer.play();
+                });
+            };
+
+            function drawWaveform() {
+                waveformContext.clearRect(0, 0, waveformCanvas.width, waveformCanvas.height);
+                waveformContext.lineWidth = 2;
+                waveformContext.strokeStyle = '#2196F3';
+                waveformContext.beginPath();
+
+                const sliceWidth = waveformCanvas.width * 1.0 / dataArray.length;
+                let x = 0;
+
+                for (let i = 0; i < dataArray.length; i++) {
+                    const v = dataArray[i] / 128.0;
+                    const y = v * waveformCanvas.height / 2;
+
+                    if (i === 0) {
+                        waveformContext.moveTo(x, y);
+                    } else {
+                        waveformContext.lineTo(x, y);
+                    }
+
+                    x += sliceWidth;
+                }
+
+                waveformContext.lineTo(waveformCanvas.width, waveformCanvas.height / 2);
+                waveformContext.stroke();
+            }
+
+            startButton.addEventListener('click', () => {
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(handleSuccess)
+                    .catch((error) => {
+                        console.error('Error accessing microphone:', error);
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
